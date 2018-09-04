@@ -1,0 +1,35 @@
+#intro__box,
+#intro__logo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 80px;
+	height: 80px;
+	background: var(--color-logo-bg);
+	opacity: 1;
+}
+
+#intro__box {
+	transform-origin: 0 0;
+	z-index: 0;
+	background: tomato;
+}
+
+#no-js #intro__box {
+	width: 100%;
+	height: 100vh;
+}
+
+#intro__logo {
+	background: transparent;
+	display: flex;
+	align-items: center;
+	color: #000;
+	pointer-events: auto;
+	cursor: pointer;
+}
+
+#icon--arrowup {
+	width: 1.25rem;
+	height: 1.25rem;
+}
