@@ -33,3 +33,18 @@
 	width: 1.25rem;
 	height: 1.25rem;
 }
+
+#intro__title-wrap {
+	text-align: center;
+	position: relative;
+	z-index: 100;
+	margin-top: 6rem;
+}
+
+#intro__title {
+	font-size: 90px;
+	letter-spacing: -0.15rem;
+	margin: 0 0 1.5rem;
+	line-height: 0.5;
+	text-transform: lowercase;
+}

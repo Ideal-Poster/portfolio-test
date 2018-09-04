@@ -34,6 +34,8 @@ class Panel extends React.Component {
   }
   layout() {
     this.DOM.el.style.transform = `scaleX(${winsize.width/this.boxRect.width}) scaleY(${winsize.height/this.boxRect.height})`
+    // console.log(winsize.width/this.boxRect.width)
+
   }
   initEvents() {
     this.onResize = () => {
@@ -48,6 +50,10 @@ class Panel extends React.Component {
     return(
       <div id="intro">
         <div id="intro__box"/>
+          <div id="intro__title-wrap">
+            <h1 id="intro__title"> Vonnoonv</h1>
+          </div>
+
       </div>
     );
   }
