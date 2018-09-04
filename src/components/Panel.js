@@ -31,7 +31,6 @@ class Panel extends React.Component {
 
     this.isOpen = true;
     this.initEvents();
-
   }
   layout() {
     this.DOM.el.style.transform = `scaleX(${winsize.width/this.boxRect.width}) scaleY(${winsize.height/this.boxRect.height})`
