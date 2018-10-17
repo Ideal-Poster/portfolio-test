@@ -1,6 +1,8 @@
 import React from 'react';
 import '../components/Panel.css';
 import anime from 'animejs'
+import { Row, Col } from 'antd';
+
 let debounce = (func, wait, immediate) => {
   var timeout;
   return () => {
@@ -78,9 +80,67 @@ class Panel extends React.Component {
       <div id="intro">
         <div id="intro__box"/>
         <div id="intro__title-wrap">
-          <h1 id="intro__title"> Vonnoonv</h1>
-					<a id="intro__enter">Enter</a>
 
+        	<svg width="20px" height="20px" id="icon--arrowup">
+            <title>arrow up</title>
+            <path d="M24.5 22.973H0L12.25.027z"></path>
+          </svg>
+
+          <div id="patch__icon">
+            <p>Ideal Poster
+              <br/>
+              Nerd Services
+            </p>
+          </div>
+
+          <p id="location">Flatbush Brooklyn New York NY 11215</p>
+
+          <ul id="media__links">
+            <li>
+              <a href="" target="_blank">Github</a>
+            </li>
+            <li>
+              <a href="" target="_blank">Instagram</a>
+            </li>
+          </ul>
+
+          <a id="email__link"
+            href="mailto:someone@example.com?Subject=Hello%20again"
+            target="_top">
+            Mgourdinedevelopment@gmail.com
+          </a>
+
+          <div id="description-center">
+            <Row type="flex">
+              <Col span={9} offset={3}>
+                <h1 id="header">A COMPUTER PROGRAMMER WITH AN EYE FOR DESIGN</h1>
+              </Col>
+            </Row>
+
+            <Row gutter={18} type="flex">
+              <Col span={5} offset={3}>
+                <p id="description-1">
+                  1. &emsp; Development
+                  <br/>
+                  <br/>
+                  A Fullstack Web developer with experience with  HMTL, CSS, Javascript, Node JS  and much more.  Experience  with REST API’s.
+                </p>
+              </Col>
+              <Col span={5}>
+                <p id="description-1">
+                  2. &emsp; Design
+                  <br/>
+                  <br/>
+                  Graphic and web design created using the latest design tools. I enjoy callorborate with other graphic artists and contributing to the work of others.              </p>
+              </Col>
+            </Row>
+          </div>
+
+          <Row >
+            <Col offset={12} span={12}>
+              <a id="intro__enter">Enter</a>
+            </Col>
+          </Row>
         </div>
       </div>
     );

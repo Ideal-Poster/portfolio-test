@@ -1,3 +1,12 @@
+#intro {
+	overflow: hidden;
+  font-size: 16px;
+	font-family: "Titillium Web";
+  /* font-weight: bold; */
+	/* line-height: 1.302; */
+	align-items: center;
+}
+
 #intro__box,
 #intro__logo {
 	position: absolute;
@@ -12,7 +21,8 @@
 #intro__box {
 	transform-origin: 0 0;
 	z-index: 0;
-	background: tomato;
+	background: #009767;
+	overflow: hidden;
 }
 
 #no-js #intro__box {
@@ -32,6 +42,9 @@
 #icon--arrowup {
 	width: 1.25rem;
 	height: 1.25rem;
+	left: 30px;
+	top: 30px;
+	position: fixed;
 }
 
 #intro__title-wrap {
@@ -48,3 +61,108 @@
 	line-height: 0.5;
 	text-transform: lowercase;
 }
+
+#icon--arrowup {
+	width: 50px;
+	height: 50px;
+	z-index: 4000;
+}
+
+#header {
+	margin-top: 35px;
+	font-size: 57px;
+  font-family: "Blender Pro Book";
+  color: rgb(254, 254, 255);
+	font-weight: 100;
+	line-height: 0.947;
+	padding-bottom: 35px;
+	max-width: 540px;
+}
+
+#header,
+#description-1,
+#description-2 {
+	text-align: left;
+}
+
+#description-1,
+#description-2 {
+	color: #100f0f;
+}
+
+#description-center {
+	position: fixed;
+	top: 50vh;
+	margin-top: -220px;
+  line-height: 1.302;
+}
+
+#intro__enter {
+	font-family: "Blender Pro Book";
+  font-size: 39.8px;
+	position: fixed;
+  color: rgb(255, 255, 255);
+	top: 50vh;
+}
+
+ul {
+	position: fixed;
+	list-style: none;
+	text-align: left;
+	bottom: 25px;
+}
+
+#media__links li a {
+	color: #100f0f;
+	z-index: 400;
+}
+
+#email__link {
+	color: #100f0f;
+	position: fixed;
+	list-style: none;
+	text-align: right;
+	right: 30px;
+	bottom: 30px;
+	z-index: 400;
+}
+
+#patch__icon {
+	color: #009767;
+	position: fixed;
+	list-style: none;
+	right: 30px;
+	top: 30px;
+	z-index: 400;
+	width: 130px;
+	height: 60px;
+	background: #100f0f;
+	padding-top: 10px;
+  line-height: 1.2;
+}
+
+#location {
+	text-align: right;
+	position: fixed;
+	right: -95px;
+	top: 50vh;
+	transform: rotate(90deg);
+	width: 265px;
+	text-align: center;
+  /* font-weight: bold; */
+
+}
+
+.Ideal_Poster_Nerd_Services {
+  font-size: 19px;
+  font-family: "Blender Pro";
+  color: rgb(0, 151, 103);
+  text-align: center;
+  position: absolute;
+  left: 1271.737px;
+  top: 1087.578px;
+  width: 103px;
+  height: 36px;
+  z-index: 18;
+}
+

@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "Blender Pro Thin";
+  src: url(../src/assets/fonts/BlenderPro-Thin.otf);
+}
+
+@font-face {
+  font-family: "Blender Pro Book";
+  src: url(../src/assets/fonts/BlenderPro-Book.otf);
+}
+
+
 body {
   margin: 0;
   padding: 0;
