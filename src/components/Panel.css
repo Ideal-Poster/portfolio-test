@@ -74,9 +74,10 @@
   font-family: "Blender Pro Book";
   color: rgb(254, 254, 255);
 	font-weight: 100;
-	line-height: 0.947;
+  line-height: 0.965;
 	padding-bottom: 35px;
 	max-width: 540px;
+	letter-spacing: -1px;
 }
 
 #header,
@@ -103,6 +104,9 @@
 	position: fixed;
   color: rgb(255, 255, 255);
 	top: 50vh;
+	letter-spacing: -1px;
+	text-align: center;
+	margin-top: 38px;
 }
 
 ul {
@@ -110,6 +114,10 @@ ul {
 	list-style: none;
 	text-align: left;
 	bottom: 25px;
+}
+
+#media__links {
+	bottom: 10px;
 }
 
 #media__links li a {
@@ -142,27 +150,36 @@ ul {
 }
 
 #location {
-	text-align: right;
 	position: fixed;
-	right: -95px;
+	right: 10px;
 	top: 50vh;
-	transform: rotate(90deg);
-	width: 265px;
-	text-align: center;
-  /* font-weight: bold; */
-
+	width: 265px;	/* font-weight: bold; */
+	margin-top: -122px;
+	-webkit-writing-mode: vertical-rl;
+	writing-mode: vertical-rl;
+	/* transform: rotate3d(0,0,1,0deg); */
+	/* display: flex; */
 }
 
-.Ideal_Poster_Nerd_Services {
-  font-size: 19px;
+#shape {
+	top: 50vh;
+	margin-top: -120px;
+	margin-left: -88px;
+	position: fixed;
+}
+
+.A_COMPUTER_PROGRAMMER_WITH_AN_EYE_FOR_DESIGN {
+  font-size: 57px;
   font-family: "Blender Pro";
-  color: rgb(0, 151, 103);
-  text-align: center;
+  color: rgb(254, 254, 255);
+  line-height: 0.965;
+  text-align: left;
   position: absolute;
-  left: 1271.737px;
-  top: 1087.578px;
-  width: 103px;
-  height: 36px;
-  z-index: 18;
+  left: 182.001px;
+  top: 1336.64px;
+  width: 479px;
+  height: 146px;
+  z-index: 7;
 }
+
 

@@ -28,10 +28,9 @@ class Panel extends React.Component {
 		this.DOM = {
 			el: document.getElementById('intro__box'),
 			enter: document.getElementById('intro__enter')
-	 }
-		// this.DOM.enter = document.getElementById('intro__enter');
-		console.log(this.DOM.enter);
+   }
 
+    this.DOM.logoImg = document.querySelector('#icon--arrowup');
 
 		this.animatableElems = Array.from(document.querySelectorAll('.animatable')).sort(() => 0.5 - Math.random());
 
@@ -53,6 +52,11 @@ class Panel extends React.Component {
 			this.close();
 		});
 
+    this.DOM.logoImg.addEventListener('click', (ev) => {
+      // ev.preventDefault();
+      this.open();
+    });
+
 
 		// Window resize
     this.onResize = () => {
@@ -64,16 +68,70 @@ class Panel extends React.Component {
     window.addEventListener('resize', debounce(() => this.onResize(), 10))
 	}
 	close() {
+    if ( !this.isOpen || this.isAnimating ) return;
+    this.isOpen = false;
+    this.isAnimating = true;
+
+
+    // Logo
+    anime.remove(this.DOM.logoImg);
+    anime({
+      targets: this.DOM.logoImg,
+      translateY: [{value: '-400%', duration: 200, easing: 'easeOutQuad'}, {value: ['200%', '0%'], duration: 700, easing: 'easeOutQuint'}]
+    });
+
+    // Panel
+    anime.remove(this.DOM.el);
 		anime({
 			targets: this.DOM.el,
 			duration: 1000,
 			scaleX: {value: 1, duration: 300, easing: 'easeOutQuad'},
 			scaleY: {value: 1, duration: 700, delay: 300, easing: 'easeOutExpo'},
 			complete: () => this.isAnimating = false
-		});
+    });
+
+    // Elements
+    anime.remove(this.animatableElems);
+    anime({
+      targets: this.animatableElems,
+      duration: 100,
+      easing: 'easeOutQuad',
+      translateX: '-30%',
+      opacity: 0,
+	    transform: 'rotate(90deg)'
+
+    });
 	}
 
+  open() {
+    if ( this.isOpen || this.isAnimating ) return;
+    this.isOpen = true;
+    this.isAnimating = true;
 
+    anime.remove(this.animatableElems);
+    anime({
+      targets: this.animatableElems,
+      duration: 1200,
+      delay: (t,i) => 300 + i*30,
+      easing: 'easeOutExpo',
+      translateX: '0%',
+      opacity: {
+        value: 1,
+        easing: 'linear',
+        duration: 400
+      }
+    });
+
+    const boxRect = this.DOM.el.getBoundingClientRect();
+    anime.remove(this.DOM.el);
+    anime({
+      targets: this.DOM.el,
+      scaleX: {value: winsize.width/boxRect.width, duration: 700, delay: 300, easing: 'easeOutExpo'},
+      scaleY: {value: winsize.height/boxRect.height, duration: 300, easing: 'easeOutQuad'},
+      complete: () => this.isAnimating = false
+    });
+
+  }
 
   render() {
     return(
@@ -86,16 +144,16 @@ class Panel extends React.Component {
             <path d="M24.5 22.973H0L12.25.027z"></path>
           </svg>
 
-          <div id="patch__icon">
+          <div id="patch__icon" className="animatable">
             <p>Ideal Poster
               <br/>
               Nerd Services
             </p>
           </div>
 
-          <p id="location">Flatbush Brooklyn New York NY 11215</p>
+          <p id="location" className="animatable">Flatbush Brooklyn New York NY 11215</p>
 
-          <ul id="media__links">
+          <ul id="media__links" className="animatable">
             <li>
               <a href="" target="_blank">Github</a>
             </li>
@@ -106,20 +164,22 @@ class Panel extends React.Component {
 
           <a id="email__link"
             href="mailto:someone@example.com?Subject=Hello%20again"
-            target="_top">
+            target="_top"
+            className="animatable">
             Mgourdinedevelopment@gmail.com
           </a>
+
 
           <div id="description-center">
             <Row type="flex">
               <Col span={9} offset={3}>
-                <h1 id="header">A COMPUTER PROGRAMMER WITH AN EYE FOR DESIGN</h1>
+                <h1 id="header" className="animatable">A COMPUTER PROGRAMMER WITH AN EYE FOR DESIGN</h1>
               </Col>
             </Row>
 
             <Row gutter={18} type="flex">
               <Col span={5} offset={3}>
-                <p id="description-1">
+                <p id="description-1" className="animatable">
                   1. &emsp; Development
                   <br/>
                   <br/>
@@ -127,7 +187,7 @@ class Panel extends React.Component {
                 </p>
               </Col>
               <Col span={5}>
-                <p id="description-1">
+                <p id="description-1" className="animatable">
                   2. &emsp; Design
                   <br/>
                   <br/>
@@ -135,12 +195,14 @@ class Panel extends React.Component {
               </Col>
             </Row>
           </div>
-
           <Row >
-            <Col offset={12} span={12}>
-              <a id="intro__enter">Enter</a>
+            <Col offset={12} span={10}>
+              <img className="animatable" id="shape" src={require("../assets/shape.png")} alt="shape"/>
+              <a className="animatable" id="intro__enter">Enter</a>
             </Col>
           </Row>
+
+
         </div>
       </div>
     );
