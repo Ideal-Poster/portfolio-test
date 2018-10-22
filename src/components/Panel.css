@@ -1,9 +1,7 @@
 #intro {
-	overflow: hidden;
-  font-size: 16px;
 	font-family: "Titillium Web";
-  /* font-weight: bold; */
-	/* line-height: 1.302; */
+  font-size: 16px;
+	overflow: hidden;
 	align-items: center;
 }
 
@@ -12,8 +10,8 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 80px;
-	height: 80px;
+	width: 82px;
+	height: 82px;
 	background: var(--color-logo-bg);
 	opacity: 1;
 }
@@ -70,14 +68,46 @@
 
 #header {
 	margin-top: 35px;
-	font-size: 57px;
+	font-size: 57.3px;
   font-family: "Blender Pro Book";
   color: rgb(254, 254, 255);
 	font-weight: 100;
   line-height: 0.965;
 	padding-bottom: 35px;
-	max-width: 540px;
+	max-width: 600px;
 	letter-spacing: -1px;
+}
+
+#enter__mobile {
+	font-family: "Blender Pro Book";
+	font-size: 27.6px;
+	margin-left: -118px;
+	margin-top: 101px;
+  color: rgb(255, 255, 255);
+	letter-spacing: -1px;
+	position: fixed;
+}
+
+#intro__enter {
+	font-family: "Blender Pro Book";
+  font-size: 39.8px;
+  color: rgb(255, 255, 255);
+	letter-spacing: -1px;
+	position: fixed;
+	margin-left: -170px;
+	margin-top: 10px;
+}
+
+#shape {
+	top: -155px;
+	position: relative;
+}
+
+#shape__mobile {
+	top: 0;
+	position: relative;
+	height: 160px;
+	display: none;
 }
 
 #header,
@@ -91,22 +121,11 @@
 	color: #100f0f;
 }
 
-#description-center {
+#description__center {
 	position: fixed;
 	top: 50vh;
-	margin-top: -220px;
+	margin-top: -228px;
   line-height: 1.302;
-}
-
-#intro__enter {
-	font-family: "Blender Pro Book";
-  font-size: 39.8px;
-	position: fixed;
-  color: rgb(255, 255, 255);
-	top: 50vh;
-	letter-spacing: -1px;
-	text-align: center;
-	margin-top: 38px;
 }
 
 ul {
@@ -123,6 +142,17 @@ ul {
 #media__links li a {
 	color: #100f0f;
 	z-index: 400;
+}
+
+#media__links li a:hover,
+#email__link:hover {
+	text-decoration: underline;
+}
+
+#media__links li a,
+#email__link {
+	text-decoration: underline solid transparent;
+  transition: text-decoration 0.4s ease;
 }
 
 #email__link {
@@ -153,33 +183,95 @@ ul {
 	position: fixed;
 	right: 10px;
 	top: 50vh;
-	width: 265px;	/* font-weight: bold; */
 	margin-top: -122px;
 	-webkit-writing-mode: vertical-rl;
 	writing-mode: vertical-rl;
-	/* transform: rotate3d(0,0,1,0deg); */
-	/* display: flex; */
 }
 
-#shape {
-	top: 50vh;
-	margin-top: -120px;
-	margin-left: -88px;
-	position: fixed;
+@media screen and (max-width: 991px) {
+	#header {
+		max-width: unset;
+		font-size: 47.7px;
+		padding-bottom: 30px;
+	}
+	#shape {
+		top: -29px;
+		height: 180px;
+	}
+	#intro__enter {
+		font-size: 27.6px;
+		margin-left: -118px;
+		margin-top: 86px;
+	}
+	#description__center {
+		margin-top: -193px;
+	}
 }
 
-.A_COMPUTER_PROGRAMMER_WITH_AN_EYE_FOR_DESIGN {
-  font-size: 57px;
-  font-family: "Blender Pro";
-  color: rgb(254, 254, 255);
-  line-height: 0.965;
-  text-align: left;
-  position: absolute;
-  left: 182.001px;
-  top: 1336.64px;
-  width: 479px;
-  height: 146px;
-  z-index: 7;
+@media screen and (max-width: 861px) {
+	#header {
+		padding-bottom: 10px;
+	}
+	#description__center {
+		margin-top: -217px;
+	}
+	#shape {
+		top: -31px;
+	}
+	#intro__enter {
+		margin-top: 84px;
+	}
 }
 
+@media (max-width: 767.98px) {
+	#description-1,
+	#description-2 {
+		display: none;
+	}
+	#description__center {
+		margin-top: -126px;
+	}
+	#header {
+		min-width: 250px;
+	}
+	#shape {
+		margin-top: -200px;
+	}
+	#intro__enter {
+		margin-top: -94px;
+	}
+}
 
+@media (max-width: 575.98px) {
+	#shape {
+		display: inline-block;
+		margin-top: 10px;
+	}
+	#description__center {
+		margin-top: -194px;
+	}
+	#header {
+		font-size: 33.2px;
+		text-align: center;
+		padding-bottom: 56px;
+	}
+	#intro__enter {
+		display: inline-block;
+		margin-top: 94px;
+	}
+
+}
+
+@media (max-width: 457px) {
+	#shape {
+		margin-top: -14px;
+	}
+	#intro__enter {
+		display: inline-block;
+		margin-top: 70px;
+	}
+	#header {
+		padding-bottom: 48px;
+	}
+
+}
