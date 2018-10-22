@@ -181,7 +181,7 @@ class Panel extends React.Component {
           <div id="description__center">
             <Row type="flex">
               <Col offset={3} xs={{span:18, align: 'center'}} sm={10} md={14} lg={12}>
-                <h1 id="header" className="animatable">A COMPUTER PROGRAMMER WITH A LOVE FOR DESIGN</h1>
+                <h1 id="header" className="animatable">A COMPUTER PROGRAMMER WITH A LOVE FOR DESIGN.</h1>
               </Col>
             </Row>
 
@@ -202,7 +202,7 @@ class Panel extends React.Component {
                   <br/>
                   Web design created using the latest design tools. Made using professional design concepts. I enjoy making digital and hand made art.</p>
               </Col>
-              <Col xs={{span:18, offset:3}} sm={{span:9, offset:13}} md={{span:9, offset:0}} lg={9} align="top">
+              <Col xs={{span:18, offset:3}} sm={{span:8, offset:13}} md={{span:9, offset:0}} lg={9} align="top" >
                 <img className="animatable" id="shape" src={require("../assets/shape.png")} alt="shape"/>
                 <a className="animatable" id="intro__enter">Enter</a>
               </Col>
