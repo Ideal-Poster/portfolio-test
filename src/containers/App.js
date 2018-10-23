@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
-import Panel from '../components/Panel'
 import 'antd/dist/antd.css';
-
+import './App.css';
+import Panel from '../components/panel/Panel';
+import Gallery from '../components/gallery/Gallery';
 class App extends Component {
 
 
@@ -12,7 +12,10 @@ class App extends Component {
 
   render() {
     return (
-      <Panel></Panel>
+      <div>
+        <Panel></Panel>
+        <Gallery></Gallery>
+      </div>
     );
   }
 }

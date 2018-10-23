@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components/Panel.css';
+import '../panel/Panel.css';
 import anime from 'animejs'
 import { Row, Col } from 'antd';
 
@@ -20,11 +20,10 @@ let debounce = (func, wait, immediate) => {
 
 let winsize = { width: window.innerWidth, height: window.innerHeight }
 
-// this.DOM = { el: document.getElementById('intro__box') }
-
 const divStyle = {
   background: 'blue'
 }
+
 class Panel extends React.Component {
   componentDidMount() {
 		this.DOM = {
@@ -44,9 +43,9 @@ class Panel extends React.Component {
 		this.initEvents();
 
   }
+
   layout() {
     this.DOM.el.style.transform = `scaleX(${winsize.width/this.boxRect.width}) scaleY(${winsize.height/this.boxRect.height})`
-    // console.log(winsize.width/this.boxRect.width)
   }
 
   initEvents() {
@@ -68,7 +67,8 @@ class Panel extends React.Component {
       }
     };
     window.addEventListener('resize', debounce(() => this.onResize(), 10))
-	}
+  }
+
 	close() {
     if ( !this.isOpen || this.isAnimating ) return;
     this.isOpen = false;
@@ -203,7 +203,7 @@ class Panel extends React.Component {
                   Web design created using the latest design tools. Made using professional design concepts. I enjoy making digital and hand made art.</p>
               </Col>
               <Col xs={{span:18, offset:3}} sm={{span:8, offset:13}} md={{span:9, offset:0}} lg={9} align="top" >
-                <img className="animatable" id="shape" src={require("../assets/shape.png")} alt="shape"/>
+                <img className="animatable" id="shape" src={require("../../assets/shape.png")} alt="shape"/>
                 <a className="animatable" id="intro__enter">Enter</a>
               </Col>
             </Row>

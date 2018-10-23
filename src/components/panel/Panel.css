@@ -74,7 +74,7 @@
 	font-weight: 100;
   line-height: 0.965;
 	padding-bottom: 35px;
-	max-width: 600px;
+	max-width: 650px;
 	letter-spacing: -1px;
 }
 
@@ -170,6 +170,18 @@ ul {
 	margin-top: -122px;
 	-webkit-writing-mode: vertical-rl;
 	writing-mode: vertical-rl;
+}
+
+@media screen and (min-width: 1216px) {
+	#description__center {
+		margin-top: -196px;
+	}
+	#shape {
+		top: -94px;
+	}
+	#intro__enter {
+		margin-top: 45px;
+	}
 }
 
 @media screen and (max-width: 991px) {
