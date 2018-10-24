@@ -202,7 +202,7 @@ class Panel extends React.Component {
                   <br/>
                   Web design created using the latest design tools. Made using professional design concepts. I enjoy making digital and hand made art.</p>
               </Col>
-              <Col xs={{span:18, offset:3}} sm={{span:8, offset:13}} md={{span:9, offset:0}} lg={9} align="top" >
+              <Col id="shape__column" xs={{span:18, offset:3}} sm={{span:8, offset:13}} md={{span:10, offset:0}} lg={10} align="top" xl={10} >
                 <img className="animatable" id="shape" src={require("../../assets/shape.png")} alt="shape"/>
                 <a className="animatable" id="intro__enter">Enter</a>
               </Col>

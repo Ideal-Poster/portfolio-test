@@ -73,7 +73,7 @@
   color: rgb(254, 254, 255);
 	font-weight: 100;
   line-height: 0.965;
-	padding-bottom: 35px;
+	padding-bottom: 5vh;
 	max-width: 650px;
 	letter-spacing: -1px;
 }
@@ -85,11 +85,11 @@
 	letter-spacing: -1px;
 	position: fixed;
 	margin-left: -145px;
-	margin-top: 22px;
+	margin-top: 8px;
 }
 
 #shape {
-	top: -118px;
+	top: -133px;
 	position: relative;
 	height: 220px;
 }
@@ -108,7 +108,7 @@
 #description__center {
 	position: fixed;
 	top: 50vh;
-	margin-top: -228px;
+	margin-top: -217px;
   line-height: 1.302;
 }
 
@@ -174,13 +174,13 @@ ul {
 
 @media screen and (min-width: 1216px) {
 	#description__center {
-		margin-top: -196px;
+		margin-top: -176px;
 	}
 	#shape {
-		top: -94px;
+		top: -119px;
 	}
 	#intro__enter {
-		margin-top: 45px;
+		margin-top: 23px;
 	}
 }
 
@@ -188,34 +188,34 @@ ul {
 	#header {
 		max-width: unset;
 		font-size: 47.7px;
-		padding-bottom: 30px;
+		/* padding-bottom: 30px; */
 	}
 	#shape {
-		top: -29px;
+		top:  -10px;
 		height: 180px;
 	}
 	#intro__enter {
 		font-size: 27.6px;
 		margin-left: -118px;
-		margin-top: 86px;
+		margin-top: 105px;
 	}
 	#description__center {
-		margin-top: -193px;
+		margin-top: -186px;
 	}
 }
 
 @media screen and (max-width: 861px) {
 	#header {
-		padding-bottom: 10px;
+		/* padding-bottom: 10px; */
 	}
 	#description__center {
-		margin-top: -217px;
+		margin-top: -221px;
 	}
 	#shape {
-		top: -31px;
+		top: -21px;
 	}
 	#intro__enter {
-		margin-top: 84px;
+		margin-top: 94px;
 	}
 }
 
@@ -232,10 +232,10 @@ ul {
 		font-size: 39.8px;
 	}
 	#shape {
-		margin-top: -137px;
+		top: -211px;
 	}
 	#intro__enter {
-		margin-top: -53px;
+		margin-top: -96px;
 	}
 }
 
@@ -244,17 +244,17 @@ ul {
 		margin-top: -111px;
 	}
 	#shape {
-		margin-top: -157px;
+		top: -230px;
 	}
 	#intro__enter {
-		margin-top: -72px;
+		margin-top: -115px;
 	}
 }
 
 @media (max-width: 575.98px) {
 	#shape {
 		display: inline-block;
-		margin-top: 10px;
+		top:0;
 	}
 	#description__center {
 		margin-top: -194px;
@@ -262,11 +262,11 @@ ul {
 	#header {
 		font-size: 33.2px;
 		text-align: center;
-		padding-bottom: 56px;
+		/* padding-bottom: 56px; */
 	}
 	#intro__enter {
 		display: inline-block;
-		margin-top: 94px;
+		margin-top: 114px;
 	}
 }
 
@@ -276,9 +276,9 @@ ul {
 	}
 	#intro__enter {
 		display: inline-block;
-		margin-top: 70px;
+		margin-top: 100px;
 	}
 	#header {
-		padding-bottom: 48px;
+		/* padding-bottom: 48px; */
 	}
 }
