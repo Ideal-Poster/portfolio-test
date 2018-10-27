@@ -22,6 +22,7 @@ let winsize = { width: window.innerWidth, height: window.innerHeight }
 
 const divStyle = {
   background: 'blue'
+  // height: '100vh'
 }
 
 class Panel extends React.Component {
@@ -49,15 +50,15 @@ class Panel extends React.Component {
   }
 
   initEvents() {
-		this.DOM.enter.addEventListener('click', (ev) => {
-			ev.preventDefault();
-			this.close();
-		});
+		// this.DOM.enter.addEventListener('click', (ev) => {
+		// 	ev.preventDefault();
+		// 	this.close();
+		// });
 
-    this.DOM.logoImg.addEventListener('click', (ev) => {
-      ev.preventDefault();
-      this.open();
-    });
+    // this.DOM.logoImg.addEventListener('click', (ev) => {
+    //   ev.preventDefault();
+    //   this.open();
+    // });
 
 		// Window resize
     this.onResize = () => {
@@ -146,28 +147,10 @@ class Panel extends React.Component {
     return(
       <div id="intro">
         <div id="intro__box"/>
-        <div id="intro__title-wrap">
-
-        	<svg width="20px" height="20px" id="icon--arrowup">
+        	<svg id="icon--arrowup">
             <title>arrow up</title>
             <path d="M24.5 22.973H0L12.25.027z"></path>
           </svg>
-
-          <div id="patch__icon" className="animatable">
-            <p>Ideal Poster
-              <br/>
-              Nerd Services
-            </p>
-          </div>
-
-          <p id="location" className="animatable">Flatbush Brooklyn New York NY 11215</p>
-
-          <a id="email__link"
-            href="mailto:someone@example.com?Subject=Hello%20again"
-            target="_top"
-            className="animatable">
-            Mgourdinedevelopment@gmail.com
-          </a>
 
           <ul id="media__links" className="animatable">
             <li>
@@ -178,39 +161,56 @@ class Panel extends React.Component {
             </li>
           </ul>
 
-          <div id="description__center">
-            <Row type="flex">
-              <Col offset={3} xs={{span:18, align: 'center'}} sm={10} md={14} lg={12}>
-                <h1 id="header" className="animatable">A COMPUTER PROGRAMMER WITH A LOVE FOR DESIGN.</h1>
-              </Col>
-            </Row>
-
-            <Row gutter={18} type="flex" justify="start">
-              <Col xs={9} md={5} lg={5} offset={3} >
-                <p id="description-1" className="animatable">
-                  1. &emsp; Development
-                  <br/>
-                  <br/>
-                  A Fullstack Web developer with experience with  HMTL, CSS, Javascript, Node JS and much more. Experience with REST API’s.
-                </p>
-              </Col>
-
-              <Col xs={9} md={{span:5}} lg={5} >
-                <p id="description-1" className="animatable">
-                  2. &emsp; Design
-                  <br/>
-                  <br/>
-                  Web design created using the latest design tools. Made using professional design concepts. I enjoy making digital and hand made art.</p>
-              </Col>
-              <Col id="shape__column" xs={{span:18, offset:3}} sm={{span:8, offset:13}} md={{span:10, offset:0}} lg={10} align="top" xl={10} >
-                <img className="animatable" id="shape" src={require("../../assets/shape.png")} alt="shape"/>
-                <a className="animatable" id="intro__enter">Enter</a>
-              </Col>
-            </Row>
+          <div id="patch__icon" className="animatable">
+            <p>Ideal Poster
+              <br/>
+              Nerd Services
+            </p>
           </div>
 
-        </div>
-      </div>
+          <a id="email__link"
+            href="mailto:someone@example.com?Subject=Hello%20again"
+            target="_top"
+            className="animatable">
+            Mgourdinedevelopment@gmail.com
+          </a>
+
+          <p id="location" className="animatable">Flatbush Brooklyn New York NY 11215</p>
+
+          <div id="intro__title-wrap">
+            <Row type="flex">
+              <Col offset={3} xs={14} xl={12}>
+                <div id="intro__title-center">
+                  <h1 id="intro__title" className="animatable">A COMPUTER PROGRAMMER WITH A LOVE FOR DESIGN.</h1>
+                </div>
+              </Col>
+            </Row>
+            <div id="descriptions">
+              <Row gutter={18} type="flex" justify="start">
+                <Col offset={3} xs={6} lg={5}>
+                  <p id="description__1" className="animatable">
+                    1. &emsp; Development
+                    <br/>
+                    <br/>
+                    A Fullstack Web developer with experience with  HMTL, CSS, Javascript, Node JS and much more. Experience with REST API’s.
+                  </p>
+                </Col>
+                <Col xs={6} lg={5}>
+                  <p id="description__2" className="animatable">
+                    2. &emsp; Design
+                    <br/>
+                    <br/>
+                    Web design created using the latest design tools. Made using professional design concepts. I enjoy making digital and hand made art.</p>
+                </Col>
+                <Col id="shape__column" xs={7} lg={10} align="middle">
+                  <img class Name="animatable" id="shape" src={require("../../assets/shape.png")} alt="shape"/>
+                  {/* <a className="animatable" id="intro__enter">Enter</a> */}
+                </Col>
+              </Row>
+
+            </div>
+          </div>
+       </div>
     );
   }
 }
