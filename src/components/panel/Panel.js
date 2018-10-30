@@ -50,15 +50,15 @@ class Panel extends React.Component {
   }
 
   initEvents() {
-		// this.DOM.enter.addEventListener('click', (ev) => {
-		// 	ev.preventDefault();
-		// 	this.close();
-		// });
+		this.DOM.enter.addEventListener('click', (ev) => {
+			ev.preventDefault();
+			this.close();
+		});
 
-    // this.DOM.logoImg.addEventListener('click', (ev) => {
-    //   ev.preventDefault();
-    //   this.open();
-    // });
+    this.DOM.logoImg.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      this.open();
+    });
 
 		// Window resize
     this.onResize = () => {
@@ -179,15 +179,15 @@ class Panel extends React.Component {
 
           <div id="intro__title-wrap">
             <Row type="flex">
-              <Col offset={3} xs={14} xl={12}>
+              <Col offset={2} xs={20} md={19}>
                 <div id="intro__title-center">
                   <h1 id="intro__title" className="animatable">A COMPUTER PROGRAMMER WITH A LOVE FOR DESIGN.</h1>
                 </div>
               </Col>
             </Row>
-            <div id="descriptions">
+            <div id="description-row">
               <Row gutter={18} type="flex" justify="start">
-                <Col offset={3} xs={6} lg={5}>
+                <Col offset={2} xs={6}>
                   <p id="description__1" className="animatable">
                     1. &emsp; Development
                     <br/>
@@ -195,16 +195,21 @@ class Panel extends React.Component {
                     A Fullstack Web developer with experience with  HMTL, CSS, Javascript, Node JS and much more. Experience with REST API’s.
                   </p>
                 </Col>
-                <Col xs={6} lg={5}>
+                <Col xs={6}>
                   <p id="description__2" className="animatable">
                     2. &emsp; Design
                     <br/>
                     <br/>
                     Web design created using the latest design tools. Made using professional design concepts. I enjoy making digital and hand made art.</p>
                 </Col>
-                <Col id="shape__column" xs={7} lg={10} align="middle">
-                  <img class Name="animatable" id="shape" src={require("../../assets/shape.png")} alt="shape"/>
-                  {/* <a className="animatable" id="intro__enter">Enter</a> */}
+                <Col id="shape__column" xs={24} sm={24} md={8} align="center">
+                  <img className="animatable" id="shape" src={require("../../assets/shape.png")} alt="shape"/>
+                </Col>
+              </Row>
+              <Row>
+                <Col offset={13} md={9} align="center">
+                  <a className="animatable" id="intro__enter">Enter</a>
+
                 </Col>
               </Row>
 
