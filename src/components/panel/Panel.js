@@ -175,7 +175,9 @@ class Panel extends React.Component {
             Mgourdinedevelopment@gmail.com
           </a>
 
-          <p id="location" className="animatable">Flatbush Brooklyn New York NY 11215</p>
+          <div id="location-wrap">
+            <p id="location" className="animatable">Flatbush Brooklyn New York NY 11215</p>
+          </div>
 
           <div id="intro__title-wrap">
             <Row type="flex">
