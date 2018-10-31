@@ -1,3 +1,11 @@
+.hidden {
+	position: absolute;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}
+
 #intro {
 	font-family: "Proxima Nova";
   font-size: 19.2px;
@@ -9,7 +17,9 @@
 	transform-style: preserve-3d;
 	font-weight: 400;
 	letter-spacing: 0.166px;
-  line-height: 1.406;
+	line-height: 1.406;
+	position: fixed;
+	top: 0;
 }
 
 #intro__box,
@@ -38,6 +48,7 @@
 #intro__title-wrap {
 	/* padding-top: 30px; */
 	position: relative;
+	/* position: fixed; */
 	z-index: 100;
 	height: 100vh;
 }
@@ -80,15 +91,16 @@
 
 #intro__title-center {
 	position: relative;
-  top: 30vh;
+  top: 29vh;
 	-webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+
 }
 
 #description-row {
 	position: absolute;
-	top: 70vh;
+	top: 68vh;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
 	transform: translateY(-50%);

@@ -1,0 +1,11 @@
+.grid {
+	/* position: fixed; */
+  margin: 0 auto;
+  top: 0px;
+}
+
+.grid__item {
+	width: 270px;
+  padding: 10px;
+  background: seagreen;
+}

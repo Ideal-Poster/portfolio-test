@@ -13,8 +13,8 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Gallery className="f"></Gallery>
         <Panel></Panel>
-        <Gallery></Gallery>
       </div>
     );
   }
