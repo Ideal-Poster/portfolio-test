@@ -48,6 +48,7 @@
 	left: 30px;
 	top: 30px;
 	position: fixed;
+	z-index: 500;
 }
 
 #intro__title {
@@ -124,11 +125,14 @@ ul {
 	writing-mode: vertical-rl;
 	text-align: center;
 	padding-top: 16px;
+	padding-right: 1px;
+	width: 20px;
 }
 #location-wrap {
 	position: fixed;
 	transform: translateY(-50%);
-	right: 8px;
+	right: 0;
+	padding-right: 5px;
 }
 #media__links {
 	color: black;

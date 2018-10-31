@@ -148,11 +148,12 @@ class Panel extends React.Component {
       <div id="intro">
         <div id="intro__box"/>
         <div id="intro__title-wrap">
-
-        	<svg id="icon--arrowup">
-            <title>arrow up</title>
-            <path d="M24.5 22.973H0L12.25.027z"></path>
-          </svg>
+          <a href="">
+            <svg id="icon--arrowup">
+              <title>arrow up</title>
+              <path d="M24.5 22.973H0L12.25.027z"></path>
+            </svg>
+          </a>
 
           <ul id="media__links" className="animatable">
             <li>
