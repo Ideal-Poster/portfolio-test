@@ -147,6 +147,8 @@ class Panel extends React.Component {
     return(
       <div id="intro">
         <div id="intro__box"/>
+        <div id="intro__title-wrap">
+
         	<svg id="icon--arrowup">
             <title>arrow up</title>
             <path d="M24.5 22.973H0L12.25.027z"></path>
@@ -179,7 +181,6 @@ class Panel extends React.Component {
             <p id="location" className="animatable">Flatbush Brooklyn New York NY 11215</p>
           </div>
 
-          <div id="intro__title-wrap">
             <Row type="flex">
               <Col offset={2} xs={20} md={19}>
                 <div id="intro__title-center">

@@ -96,6 +96,7 @@
 #description__1,
 #description__2 {
 	margin-top: 30px;
+	/* max-height: 110px; */
 }
 
 ul {
@@ -127,16 +128,17 @@ ul {
 #location-wrap {
 	position: fixed;
 	transform: translateY(-50%);
-	right: 32px;
+	right: 8px;
 }
 #media__links {
 	color: black;
 	position: fixed;
 	list-style: none;
 	left: 0;
-	bottom: 10px;
+	bottom: 6px;
 	z-index: 400;
 	text-align: left;
+	/* line-height: 1.2; */
 }
 
 #media__links li a {
@@ -166,7 +168,7 @@ ul {
 }
 
 #shape {
-	height: 19.4vh;
+	height: 24vh;
 	margin-top: 15px;
 	position: relative;
 	min-height: 195px;
