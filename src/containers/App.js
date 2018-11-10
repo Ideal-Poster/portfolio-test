@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import './App.css';
 import Panel from '../components/panel/Panel';
-import Gallery from '../components/gallery/Gallery';
+import Slideshow from '../components/slideshow/Slideshow';
 class App extends Component {
 
 
@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Gallery></Gallery>
+        <Slideshow></Slideshow>
         <Panel></Panel>
       </div>
     );

@@ -1,0 +1,42 @@
+#gallery {
+	background: seagreen;
+}
+#slideshow {
+	height: 100vh;
+	position: relative;
+	/* overflow: hidden; */
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+	grid-column-gap: 0.5%;
+	grid-template-rows: 100%;
+	grid-template-areas: '... slide ...';
+	background: deeppink;
+	/* min-height: 300px; */
+}
+
+.slide {
+	display: flex;
+	position: relative;
+	height: 100%;
+	/* grid-area: slide; */
+	background: seagreen;
+}
+
+.slide__img {
+	background: gold;
+	border: 5px solid rebeccapurple;
+	/* transform: translateX(50%); */
+}
+
+.center__slide {
+	margin: auto;
+}
+
+.right__slide {
+
+	margin-left: auto;
+	/* margin-right: 0px; */
+}

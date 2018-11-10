@@ -41,7 +41,9 @@ class Panel extends React.Component {
     this.layout();
 
     this.isOpen = true;
-		this.initEvents();
+    this.initEvents();
+
+    this.close();
 
   }
 
