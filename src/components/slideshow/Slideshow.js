@@ -45,7 +45,7 @@ class Slideshow extends React.Component {
     return(
       <div id="gallery">
         <div id="slideshow">
-            <div className="slide">
+            <div className="slide left__slide">
               <img src={require("../../assets/1.png") } className="slide__img"/>
             </div>
             <div className="slide center__slide">

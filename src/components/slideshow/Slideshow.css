@@ -38,7 +38,12 @@
 	margin: auto;
 }
 
+.left__slide {
+	/* transform: translateX(-50%); */
+}
+
 .right__slide {
+	/* transform: translateX(50%); */
 
 	margin-left: auto;
 	/* margin-right: 0px; */
