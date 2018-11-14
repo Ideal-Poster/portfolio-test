@@ -22,22 +22,74 @@ class Slideshow extends React.Component {
     this.slidesTotal = this.slides.length;
     this.current = 1;
 
-    this.currentSlide = this.slides[this.current];
-    this.nextSlide = this.slides[this.current+1 <= this.slidesTotal-1 ? this.current+1 : 0];
-    this.prevSlide = this.slides[this.current-1 >= 0 ? this.current-1 : this.slidesTotal-1];
+
 
     this.setPos();
 
     console.log(this.currentSlide);
     window.addEventListener('resize', () => this.setPos());
 
+    setTimeout(() => {
+      this.navigate('next');
+    }, 1000);
   }
 
   setPos() {
+    this.currentSlide = this.slides[this.current];
+    this.nextSlide = this.slides[this.current+1 <= this.slidesTotal-1 ? this.current+1 : 0];
+    this.prevSlide = this.slides[this.current-1 >= 0 ? this.current-1 : this.slidesTotal-1];
     this.currentSlide.setCurrent();
     this.nextSlide.setRight();
     this.prevSlide.setLeft();
   }
+
+  // Navigate the slideshow.
+  navigate(direction) {
+    // If animating return.
+    if ( this.isAnimating ) return;
+    this.isAnimating = true;
+
+
+    const upcomingPos = direction === 'next' ?
+            this.current < this.slidesTotal-2 ? this.current+2 : Math.abs(this.slidesTotal-2-this.current):
+            this.current >= 2 ? this.current-2 : Math.abs(this.slidesTotal-2+this.current);
+
+    this.upcomingSlide = this.slides[upcomingPos];
+
+    // Update current.
+    this.current = direction === 'next' ?
+            this.current < this.slidesTotal-1 ? this.current+1 : 0 :
+            this.current > 0 ? this.current-1 : this.slidesTotal-1;
+
+    // Move slides (the previous, current, next and upcoming slide).
+    this.prevSlide.moveToPosition({position: direction === 'next' ? -2 : 0}).then(() => {
+        if ( direction === 'next' ) {
+            this.prevSlide.hide();
+        }
+    });
+
+    this.currentSlide.moveToPosition({position: direction === 'next' ? -1 : 1 });
+
+    this.nextSlide.moveToPosition({position: direction === 'next' ? 0 : 2, delay: direction === 'next' ? 0 : 0 }).then(() => {
+        if ( direction === 'prev' ) {
+            this.nextSlide.hide();
+        }
+    });
+
+    // if ( direction === 'next' ) {
+    //     this.nextSlide.showTexts();
+    // }
+    // else {
+    //     this.prevSlide.showTexts();
+    // }
+
+    this.upcomingSlide.moveToPosition({position: direction === 'next' ? 1 : -1, from: direction === 'next' ? 2 : -2 }).then(() => {
+        // Reset classes.
+        [this.nextSlide,this.currentSlide,this.prevSlide].forEach(slide => slide.reset());
+        this.render();
+        this.isAnimating = false;
+    });
+}
 
   render() {
     return(
@@ -52,13 +104,13 @@ class Slideshow extends React.Component {
             <div className="slide right__slide">
               <img src={require("../../assets/1.png") } className="slide__img"/>
             </div>
+            <div className="slide">
+              <img src={require("../../assets/1.png") } className="slide__img"/>
+            </div>
             {/* <div className="slide">
               <img src={require("../../assets/1.png") } className="slide__img"/>
-            </div>
-            <div className="slide">
-              <img src={require("../../assets/1.png") } className="slide__img"/>
-            </div>
-            <div className="slide">
+            </div> */}
+            {/* <div className="slide">
               <img src={require("../../assets/1.png") } className="slide__img"/>
             </div> */}
         </div>
