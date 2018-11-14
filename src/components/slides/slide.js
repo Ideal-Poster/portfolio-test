@@ -9,13 +9,13 @@ window.addEventListener('resize', calcWinsize);
 
 
 class Slide extends React.Component {
-  constructor() {
+  constructor(el) {
     super();
-    this.DOM = {};
+    this.DOM = {el: el};
     // The image wrap element.
-    this.DOM.imgWrap = document.querySelector('.slide__img-wrap');
+    this.DOM.imgWrap = this.DOM.el;
     // The image element.
-    this.DOM.img = this.DOM.imgWrap.querySelector('.slide__img');
+    // this.DOM.img = this.DOM.imgWrap.querySelector('.slide__img');
     // The texts: the parent wrap, title, number and side text.
 
     this.calcSizes();
@@ -29,7 +29,7 @@ class Slide extends React.Component {
   calcSizes() {
     this.width = (this.DOM.imgWrap.offsetWidth);
     this.height = (this.DOM.imgWrap.offsetHeight);
-}
+  }
 
   // Gets the transforms per slide position.
   calcTransforms() {
@@ -44,9 +44,9 @@ class Slide extends React.Component {
     */
     this.transforms = [
       {x: -1*(winsize.width/2+this.width), y: 0, rotation: 0},
-      {x: -1*((winsize.width/2 - this.width/3) + 200), y: 0, rotation: 0},
+      {x: (this.width / 4) * -3, y: 0, rotation: 0},
       {x: 0, y: 0, rotation: 0},
-      {x: ((winsize.width/2-this.width/3) + 200 ), y: 0, rotation: 0},
+      {x: (this.width / 4) * 3, y: 0, rotation: 0},
       {x: winsize.width/2+this.width, y: 0, rotation: 0},
       {x: -1*(winsize.width/2 - this.width/2 - winsize.width*0.075), y: 0, rotation: 0}
     ];

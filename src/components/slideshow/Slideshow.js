@@ -14,31 +14,29 @@ class Slideshow extends React.Component {
 
   componentDidMount() {
     this.DOM = {};
-    this.DOM.slide = document.querySelector('.slide');
-    this.DOM.slides = document.querySelectorAll('.slide');
-    console.log(
+    // this.DOM.slide = document.querySelector('.slide');
 
-      -1 * (winsize.width /4)
-    );
-    console.log(this.DOM.slides);
+    this.slides = [];
+    document.querySelectorAll('.slide').forEach(slideEl => this.slides.push(new Slide(slideEl)));
 
-    window.addEventListener('resize', () => {
+    this.slidesTotal = this.slides.length;
+    this.current = 1;
 
-      // TweenMax.set(this.DOM.slides[0], {
-      //   x: -winsize.width/2,
-      //   y: 0
-      // });
+    this.currentSlide = this.slides[this.current];
+    this.nextSlide = this.slides[this.current+1 <= this.slidesTotal-1 ? this.current+1 : 0];
+    this.prevSlide = this.slides[this.current-1 >= 0 ? this.current-1 : this.slidesTotal-1];
 
-      // TweenMax.set(this.DOM.slides[1], {
-      //   x: winsize.width/2,
-      //   y: 0
-      // });
+    this.setPos();
 
-      // TweenMax.set(this.DOM.slides[2], {
-      //   x: winsize.width/10 + 250,
-      //   y: winsize.height / 2
-      // });
-    })
+    console.log(this.currentSlide);
+    window.addEventListener('resize', () => this.setPos());
+
+  }
+
+  setPos() {
+    this.currentSlide.setCurrent();
+    this.nextSlide.setRight();
+    this.prevSlide.setLeft();
   }
 
   render() {

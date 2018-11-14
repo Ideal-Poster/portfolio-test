@@ -24,6 +24,7 @@
 	width: 100%;
 	/* grid-area: slide; */
 	background: seagreen;
+	/* z-index: 100; */
 }
 
 .slide__img {
