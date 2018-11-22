@@ -35,11 +35,11 @@ class Slide extends React.Component {
   calcTransforms() {
     /*
     Each position corresponds to the position of a given slide:
-    0: left top corner outside the viewport
-    1: left top corner (prev slide position)
+    0: left outside the viewport
+    1: left (prev slide position)
     2: center (current slide position)
-    3: right bottom corner (next slide position)
-    4: right bottom corner outside the viewport
+    3: right (next slide position)
+    4: right outside the viewport
     5: left side, for when the content is shown
     */
     this.transforms = [
@@ -126,13 +126,26 @@ class Slide extends React.Component {
       // Position it on the left position.
       this.position(isContentOpen ? 0 : 1);
   }
+  setLeftOutView(isContentOpen) {
+    this.isRight = this.isCurrent = false;
+    this.isLeft = true;
+    // this.DOM.el.classList.add('slide--visible');
+    // Position it on the left position.
+    this.position(0);
+}
   // Position the slide on the right side.
   setRight(isContentOpen) {
       this.isLeft = this.isCurrent = false;
       this.isRight = true;
       // this.DOM.el.classList.add('slide--visible');
       // Position it on the right position.
-      this.position(isContentOpen ? 4 : 3);
+      this.position(3);
+  }
+  setRightOutView() {
+    this.isLeft = this.isCurrent = false;
+    this.isRight = true;
+
+    this.position(4);
   }
   // Check if the slide is positioned on the right side (if it´s the next slide in the slideshow).
   isPositionedRight() {

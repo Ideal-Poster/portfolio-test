@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div>
         <Slideshow></Slideshow>
-        <Panel></Panel>
+        {/* <Panel></Panel> */}
       </div>
     );
   }
