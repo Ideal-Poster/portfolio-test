@@ -21,6 +21,7 @@ class Slideshow extends React.Component {
 
     this.slidesTotal = this.slides.length;
     this.current = 0;
+    this.isAnimated = false;
 
     this.setPos();
     window.addEventListener('resize', () => this.setPos());
@@ -47,48 +48,52 @@ class Slideshow extends React.Component {
     if (this.prevSlide) this.prevSlide.setLeft();
     if (this.prevOutView) this.prevOutView.setLeftOutView();
     if (this.prevOutView2) this.prevOutView2.setLeftOutView();
-
   }
 
   // Navigate the slideshow.
   navigate(direction) {
     // If animating return.
-    // if ( this.isAnimating ) return;
-    // this.isAnimating = true;
+    if ( !this.isAnimating ) {
+      this.isAnimating = true;
 
-    const upcomingPos = direction === 'next' ? this.current + 1 : this.current - 1;
-    this.upcomingSlide = this.slides[upcomingPos];
+      const upcomingPos = direction === 'next' ? this.current + 1 : this.current - 1;
+      this.upcomingSlide = this.slides[upcomingPos];
 
-    // Move previous slide to current or out of view left
-    if (this.prevSlide) {
-      this.prevSlide.moveToPosition({ position: direction === 'next' ? -2 : 0 });
+      // Move previous slide to current or out of view left
+      if (this.prevSlide) {
+        this.prevSlide.moveToPosition({ position: direction === 'next' ? -2 : 0 });
+      }
+
+      // Slide current slide forwards or backwards
+      this.currentSlide.moveToPosition({ position: direction === 'next' ? -1 : 1 }).then(() => {
+        this.setPos();
+        this.isAnimating = false;
+      });
+
+      // Slide next slide to current or out of view right
+      if (this.nextSlide) {
+        this.nextSlide.moveToPosition({ position: direction === 'next' ? 0 : 2 });
+      }
+
+      // Slide into view right
+      if (this.nextOutView) {
+        this.nextOutView.moveToPosition({ position: direction === 'next' ? 1 : 2});
+      }
+
+      if (this.prevOutView) {
+        this.prevOutView.moveToPosition({ position: direction === 'next' ? -2 : -1});
+      }
+
+      // Update Current
+      this.current = (direction === 'next') ?
+      // stop next counter if at the end of slides
+      this.current <= this.slides.length-2 ? this.current+1 : this.current :
+      // stop prev counter id at beginning of slides
+      this.current > 0 ? this.current-1 : this.current;
     }
+  }
 
-    // Slide current slide forwards or backwards
-    this.currentSlide.moveToPosition({ position: direction === 'next' ? -1 : 1 }).then(() => {
-      this.setPos();
-    });
-
-    // Slide next slide to current or out of view right
-    if (this.nextSlide) {
-      this.nextSlide.moveToPosition({ position: direction === 'next' ? 0 : 2 });
-    }
-
-    // Slide into view right
-    if (this.nextOutView) {
-      this.nextOutView.moveToPosition({ position: direction === 'next' ? 1 : 2});
-    }
-
-    if (this.prevOutView) {
-      this.prevOutView.moveToPosition({ position: direction === 'next' ? -2 : -1});
-    }
-
-    // Update Current
-    this.current = (direction === 'next') ?
-    // stop next counter if at the end of slides
-    this.current <= this.slides.length-2 ? this.current+1 : this.current :
-    // stop prev counter id at beginning of slides
-    this.current > 0 ? this.current-1 : this.current;
+  showContent() {
 
   }
 
@@ -116,14 +121,10 @@ class Slideshow extends React.Component {
             </div> */}
         </div>
         <button id="prev" onClick={
-          () => {
-            if (!(this.current === 0)) this.navigate('prev')
-          }
+          () => { if (!(this.current === 0)) this.navigate('prev') }
         }>Prev</button>
         <button id="next" onClick={
-          () => {
-           if (!(this.current === this.slides.length-1)) this.navigate('next')
-          }
+          () => { if (!(this.current === this.slides.length-1)) this.navigate('next') }
         } >Next</button>
       </div>
     );
