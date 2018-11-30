@@ -114,6 +114,8 @@ class Slide extends React.Component {
   // Sets it as current.
   setCurrent(isContentOpen) {
     this.isCurrent = true;
+    this.isLeft = false;
+    this.isRight = false;
     // this.DOM.el.classList.add('slide--current', 'slide--visible');
     // Position it on the current´s position.
     this.position(isContentOpen ? 5 : 2);

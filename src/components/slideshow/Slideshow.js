@@ -2,8 +2,8 @@ import  React from 'react';
 import '../slideshow/Slideshow.css';
 // import anime from 'animejs';
 import TweenMax from 'gsap';
-import Slide from '../slides/slide';
-
+import Slide from '../slides/Slide';
+import Content from '../content/Content';
 
 let winsize;
 const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
@@ -19,16 +19,41 @@ class Slideshow extends React.Component {
     this.slides = [];
     document.querySelectorAll('.slide').forEach(slideEl => this.slides.push(new Slide(slideEl)));
 
+    this.contents = [];
+    document.querySelectorAll('.content > .content__item').forEach(contentEl => this.contents.push(new Content(contentEl)));
+
+
     this.slidesTotal = this.slides.length;
     this.current = 0;
     this.isAnimated = false;
 
     this.setPos();
     window.addEventListener('resize', () => this.setPos());
+
+    this.init();
+
+    // this.currentSlide.showContent()
   }
 
   init() {
+    this.clickFn = (slide) => {
+      if ( slide.isPositionedRight() ) {
+        this.navigate('next');
+      }
+      else if ( slide.isPositionedLeft() ) {
+        this.navigate('prev');
+      }
+      else if (slide.isPositionedCenter()) {
+        this.showContent();
+      }
+    };
+    for (let slide of this.slides) {
+      slide.DOM.imgWrap.addEventListener('click', () => {
+        this.clickFn(slide);
+        console.log(slide.isPositionedCenter());
 
+      });
+    }
   }
 
   setPos() {
@@ -77,11 +102,12 @@ class Slideshow extends React.Component {
 
       // Slide into view right
       if (this.nextOutView) {
-        this.nextOutView.moveToPosition({ position: direction === 'next' ? 1 : 2});
+        this.nextOutView.moveToPosition({ position: direction === 'next' ? 1 : 2 });
       }
 
+      // Slide into view left
       if (this.prevOutView) {
-        this.prevOutView.moveToPosition({ position: direction === 'next' ? -2 : -1});
+        this.prevOutView.moveToPosition({ position: direction === 'next' ? -2 : -1 });
       }
 
       // Update Current
@@ -120,12 +146,27 @@ class Slideshow extends React.Component {
               <img src={require("../../assets/1.png") } className="slide__img"/>
             </div> */}
         </div>
-        <button id="prev" onClick={
-          () => { if (!(this.current === 0)) this.navigate('prev') }
-        }>Prev</button>
-        <button id="next" onClick={
-          () => { if (!(this.current === this.slides.length-1)) this.navigate('next') }
-        } >Next</button>
+
+        <div class="content">
+          <div class="content__item">
+            <span class="content__number">1</span>
+            <h3 class="content__title">Automation</h3>
+            <h4 class="content__subtitle">A tree needs to be your friend if you're going to paint him</h4>
+            <div class="content__text">Just let this happen. We just let this flow right out of our minds. Just relax and let it flow. That easy. Let's put some happy little clouds in our world. It's a very cold picture, I may have to go get my coat. It’s about to freeze me to death. This is gonna be a happy little seascape. Let's go up in here, and start having some fun The least little bit can do so much. Work on one thing at a time. Don't get carried away - we have plenty of time. Put your feelings into it, your heart, it's your world. These trees are so much fun. I get started on them and I have a hard time stopping.</div>
+          </div>
+          <div class="content__item">
+            <span class="content__number">2</span>
+            <h3 class="content__title">Machines</h3>
+            <h4 class="content__subtitle">This is probably the greatest thing to happen in my life</h4>
+            <div class="content__text">We're not trying to teach you a thing to copy. We're just here to teach you a technique, then let you loose into the world. Now, we're going to fluff this cloud. We don't have anything but happy trees here. Let's do that again. Use what you see, don't plan it. Let's go up in here, and start having some fun The least little bit can do so much. Work on one thing at a time. Don't get carried away - we have plenty of time. Put your feelings into it, your heart, it's your world. These trees are so much fun. I get started on them and I have a hard time stopping.</div>
+          </div>
+          <div class="content__item">
+            <span class="content__number">3</span>
+            <h3 class="content__title">Coexistence</h3>
+            <h4 class="content__subtitle">The only guide is your heart</h4>
+            <div class="content__text">Let's go up in here, and start having some fun The least little bit can do so much. Work on one thing at a time. Don't get carried away - we have plenty of time. Put your feelings into it, your heart, it's your world. These trees are so much fun. I get started on them and I have a hard time stopping. But we're not there yet, so we don't need to worry about it. Now let's put some happy little clouds in here. What the devil. A thin paint will stick to a thick paint. I'm going to mix up a little color. </div>
+          </div>
+        </div>
       </div>
     );
   }
