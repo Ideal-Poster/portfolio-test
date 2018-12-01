@@ -122,44 +122,52 @@ class Slide extends React.Component {
   }
   // Position the slide on the left side.
   setLeft(isContentOpen) {
-      this.isRight = this.isCurrent = false;
-      this.isLeft = true;
-      // this.DOM.el.classList.add('slide--visible');
-      // Position it on the left position.
-      this.position(isContentOpen ? 0 : 1);
+    this.isCurrent = false;
+    this.isRight = this.isCurrent = false;
+    this.isLeft = true;
+    // this.DOM.el.classList.add('slide--visible');
+    // Position it on the left position.
+    this.position(isContentOpen ? 0 : 1);
   }
   setLeftOutView(isContentOpen) {
+    this.isCurrent = false;
     this.isRight = this.isCurrent = false;
     this.isLeft = true;
     // this.DOM.el.classList.add('slide--visible');
     // Position it on the left position.
     this.position(0);
-}
+  }
   // Position the slide on the right side.
   setRight(isContentOpen) {
-      this.isLeft = this.isCurrent = false;
-      this.isRight = true;
-      // this.DOM.el.classList.add('slide--visible');
-      // Position it on the right position.
-      this.position(3);
+    this.isCurrent = false;
+    this.isLeft = this.isCurrent = false;
+    this.isRight = true;
+    // this.DOM.el.classList.add('slide--visible');
+    // Position it on the right position.
+    this.position(3);
   }
   setRightOutView() {
+    this.isCurrent = false;
     this.isLeft = this.isCurrent = false;
     this.isRight = true;
 
     this.position(4);
   }
+
+  setContentOpen() {
+    this.position(5);
+  }
   // Check if the slide is positioned on the right side (if it´s the next slide in the slideshow).
   isPositionedRight() {
-      return this.isRight;
+    return this.isRight;
   }
   // Check if the slide is positioned on the left side (if it´s the previous slide in the slideshow).
   isPositionedLeft() {
-      return this.isLeft;
+    return this.isLeft;
   }
   // Check if the slide is the current one.
   isPositionedCenter() {
-      return this.isCurrent;
+    return this.isCurrent;
   }
   // Reset classes and state.
   reset() {
@@ -167,7 +175,7 @@ class Slide extends React.Component {
     this.DOM.el.classList = 'slide';
   }
   hide() {
-      TweenMax.set(this.DOM.imgWrap, {x:0, y:0, rotationX:0, rotationY:0, rotationZ:0, opacity:0});
+    TweenMax.set(this.DOM.imgWrap, {x:0, y:0, rotationX:0, rotationY:0, rotationZ:0, opacity:0});
   }
 }
 export default Slide;

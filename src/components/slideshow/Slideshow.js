@@ -1,7 +1,7 @@
 import  React from 'react';
 import '../slideshow/Slideshow.css';
 // import anime from 'animejs';
-import TweenMax from 'gsap';
+import {TweenMax, Power4} from 'gsap';
 import Slide from '../slides/Slide';
 import Content from '../content/Content';
 
@@ -26,6 +26,7 @@ class Slideshow extends React.Component {
     this.slidesTotal = this.slides.length;
     this.current = 0;
     this.isAnimated = false;
+    this.isContentOpen = false;
 
     this.setPos();
     window.addEventListener('resize', () => this.setPos());
@@ -45,13 +46,12 @@ class Slideshow extends React.Component {
       }
       else if (slide.isPositionedCenter()) {
         this.showContent();
+
       }
     };
     for (let slide of this.slides) {
       slide.DOM.imgWrap.addEventListener('click', () => {
         this.clickFn(slide);
-        console.log(slide.isPositionedCenter());
-
       });
     }
   }
@@ -65,14 +65,33 @@ class Slideshow extends React.Component {
     this.prevOutView = this.slides[this.current-2];
     this.prevOutView2 = this.slides[this.current-3];
 
+    if (!this.isContentOpen) {
+      this.currentSlide.setCurrent()
+      if (this.nextSlide) this.nextSlide.setRight();
+      if (this.nextOutView) this.nextOutView.setRightOutView();
+      if (this.nextOutView2) this.nextOutView2.setRightOutView();
+      if (this.prevSlide) this.prevSlide.setLeft();
+      if (this.prevOutView) this.prevOutView.setLeftOutView();
+      if (this.prevOutView2) this.prevOutView2.setLeftOutView();
+    }
 
-    this.currentSlide.setCurrent()
-    if (this.nextSlide) this.nextSlide.setRight();
-    if (this.nextOutView) this.nextOutView.setRightOutView();
-    if (this.nextOutView2) this.nextOutView2.setRightOutView();
-    if (this.prevSlide) this.prevSlide.setLeft();
-    if (this.prevOutView) this.prevOutView.setLeftOutView();
-    if (this.prevOutView2) this.prevOutView2.setLeftOutView();
+    if (this.isContentOpen) {
+      this.currentSlide.setContentOpen();
+
+      this.slides.forEach(slide => {
+        if (!slide.isCurrent && slide) {
+          slide.hide();
+        }
+      });
+      // if (this.nextSlide) this.nextSlide.hide();
+      // if (this.nextOutView) this.nextOutView.hide();
+      // if (this.nextOutView2) this.nextOutView2.hide();
+      // if (this.prevSlide) this.prevSlide.hide();
+      // if (this.prevOutView) this.prevOutView.hide();
+      // if (this.prevOutView2) this.prevOutView2.hide();
+    }
+
+
   }
 
   // Navigate the slideshow.
@@ -120,8 +139,54 @@ class Slideshow extends React.Component {
   }
 
   showContent() {
-
+    // if ( this.isContentOpen || this.isAnimating ) return;
+    // allowTilt = false;
+    this.isContentOpen = true;
+    // this.DOM.el.classList.add('slideshow--previewopen');
+    // TweenMax.to(this.DOM.deco, .8, {
+    //     ease: Power4.easeInOut,
+    //     scaleX: winsize.width/this.DOM.deco.offsetWidth,
+    //     scaleY: winsize.height/this.DOM.deco.offsetHeight,
+    //     x: -20,
+    //     y: 20
+    // });
+    // Move away right/left slides.
+    if (this.prevSlide) this.prevSlide.moveToPosition({position: -2});
+    if (this.nextSlide) this.nextSlide.moveToPosition({position: 2});
+    // Position the current slide and reset its image scale value.
+    this.currentSlide.moveToPosition({position: 3, resetImageScale: true});
+    // Show content and back arrow (to close the content).
+    // this.contents[this.current].show();
+    // Hide texts.
+    // this.currentSlide.hideTexts(true);
   }
+
+  hideContent() {
+    // if ( !this.isContentOpen || this.isAnimating ) return;
+
+    // this.DOM.el.classList.remove('slideshow--previewopen');
+
+    // Hide content.
+    // this.contents[this.current].hide();
+
+    // TweenMax.to(this.DOM.deco, .8, {
+        // ease: Power4.easeInOut,
+        // scaleX: 1,
+        // scaleY: 1,
+        // x: 0,
+        // y: 0
+    // });
+    // Move in right/left slides.
+    if (this.prevSlide) this.prevSlide.moveToPosition({position: -1});
+    if (this.nextSlide) this.nextSlide.moveToPosition({position: 1});
+    // Position the current slide.
+    this.currentSlide.moveToPosition({position: 0}).then(() => {
+        // allowTilt = true;
+        this.isContentOpen = false;
+    });
+    // Show texts.
+    // this.currentSlide.showTexts();
+}
 
   render() {
     return(
@@ -146,6 +211,9 @@ class Slideshow extends React.Component {
               <img src={require("../../assets/1.png") } className="slide__img"/>
             </div> */}
         </div>
+        <button onClick={
+         ()=> { this.hideContent(); }
+        }>button</button>
 
         <div class="content">
           <div class="content__item">
@@ -167,6 +235,8 @@ class Slideshow extends React.Component {
             <div class="content__text">Let's go up in here, and start having some fun The least little bit can do so much. Work on one thing at a time. Don't get carried away - we have plenty of time. Put your feelings into it, your heart, it's your world. These trees are so much fun. I get started on them and I have a hard time stopping. But we're not there yet, so we don't need to worry about it. Now let's put some happy little clouds in here. What the devil. A thin paint will stick to a thick paint. I'm going to mix up a little color. </div>
           </div>
         </div>
+
+
       </div>
     );
   }
