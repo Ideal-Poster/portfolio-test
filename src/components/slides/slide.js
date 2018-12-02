@@ -1,12 +1,11 @@
 import  React from 'react';
 import { TweenMax, Power4 } from 'gsap';
-
+import debounce from '../../utils/debounce';
 // Window sizes.
 let winsize;
 const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
 calcWinsize();
-window.addEventListener('resize', calcWinsize);
-
+window.addEventListener('resize', debounce(calcWinsize, 10));
 
 class Slide extends React.Component {
   constructor(el) {
@@ -57,7 +56,7 @@ class Slide extends React.Component {
         this.calcSizes();
         this.calcTransforms();
     };
-    window.addEventListener('resize', this.resizeFn);
+    window.addEventListener('resize', debounce(this.resizeFn, 10));
   }
 
   position(pos) {

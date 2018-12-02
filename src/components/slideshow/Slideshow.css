@@ -13,7 +13,7 @@
 	grid-column-gap: 0%;
 	grid-template-rows: 100%;
 	grid-template-areas: '... slide ...';
-	background: deeppink;
+	/* background: deeppink; */
 	/* min-height: 300px; */
 }
 
@@ -31,7 +31,7 @@
 
 .slide__img {
 	background: gold;
-	border: 5px solid rebeccapurple;
+	/* border: 5px solid rebeccapurple; */
 	/* transform: translateX(50%); */
 	width: 100%;
 	height: 100%;

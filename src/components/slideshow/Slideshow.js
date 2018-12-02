@@ -1,14 +1,16 @@
 import  React from 'react';
 import '../slideshow/Slideshow.css';
 // import anime from 'animejs';
-import {TweenMax, Power4} from 'gsap';
+import { TweenMax, Power4 } from 'gsap';
 import Slide from '../slides/Slide';
 import Content from '../content/Content';
+import debounce from '../../utils/debounce';
+
 
 let winsize;
 const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
 calcWinsize();
-window.addEventListener('resize', calcWinsize);
+window.addEventListener('resize', debounce(calcWinsize, 10));
 
 class Slideshow extends React.Component {
 
@@ -29,7 +31,7 @@ class Slideshow extends React.Component {
     this.isContentOpen = false;
 
     this.setPos();
-    window.addEventListener('resize', () => this.setPos());
+    window.addEventListener('resize', () => debounce(this.setPos(), 10));
 
     this.init();
 
@@ -73,9 +75,7 @@ class Slideshow extends React.Component {
       if (this.prevSlide) this.prevSlide.setLeft();
       if (this.prevOutView) this.prevOutView.setLeftOutView();
       if (this.prevOutView2) this.prevOutView2.setLeftOutView();
-    }
-
-    if (this.isContentOpen) {
+    } else {
       this.currentSlide.setContentOpen();
 
       this.slides.forEach(slide => {
