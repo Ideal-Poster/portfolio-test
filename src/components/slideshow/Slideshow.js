@@ -193,6 +193,8 @@ class Slideshow extends React.Component {
       <div id="gallery">
         <div id="slideshow">
             <div className="slide slide1">
+              <div class="color-overlay"></div>
+              <div class="white-overlay"></div>
               <img src={require("../../assets/1.png") } className="slide__img"/>
             </div>
             <div className="slide slide2">
