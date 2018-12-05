@@ -34,7 +34,7 @@ class Slideshow extends React.Component {
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
 
     this.init();
-    this.showImage();
+    // this.showImage();
     // this.currentSlide.showContent()
   }
 
@@ -165,28 +165,6 @@ class Slideshow extends React.Component {
     });
     // Show texts.
     // this.currentSlide.showTexts();
-}
-
-showImage() {
-  let whiteOverlay = document.getElementById('white-overlay');
-  let colorOverlay = document.getElementById('color-overlay');
-
-  whiteOverlay.style.transformOrigin = "left 50% 0px";
-  colorOverlay.style.transformOrigin = "left 50% 0px";
-
-
-  TweenMax.to(whiteOverlay, 1, {scaleX: 0, ease: Power4.easeInOut});
-
-
-  TweenMax.fromTo(
-    colorOverlay,
-    1,
-    {scaleX: 1},
-    { scaleX: 0,
-      ease: Power4.easeInOut,
-      delay: 0.2
-      // onComplete: ()=> { whiteOverlay.style.transformOrigin = "left 50% 0px"; }
-    });
   }
 
   render() {
@@ -199,12 +177,18 @@ showImage() {
               <img src={require("../../assets/1.png") } className="slide__img"/>
             </div>
             <div className="slide slide2">
+              <div id="color-overlay"/>
+              <div id="white-overlay"/>
               <img src={require("../../assets/2.png") } className="slide__img"/>
             </div>
             <div className="slide slide3">
+              <div id="color-overlay"/>
+              <div id="white-overlay"/>
               <img src={require("../../assets/3.png") } className="slide__img"/>
             </div>
             <div className="slide slide4">
+              <div id="color-overlay"/>
+              <div id="white-overlay"/>
               <img src={require("../../assets/4.png") } className="slide__img"/>
             </div>
             {/* <div className="slide">
