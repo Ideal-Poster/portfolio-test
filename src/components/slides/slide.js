@@ -111,26 +111,26 @@ class Slide extends React.Component {
     });
   }
 
-ImageTransition() {
-  let whiteOverlay = this.DOM.el.childNodes[1];
-  let colorOverlay = this.DOM.el.childNodes[0];
+  ImageTransition() {
+    let whiteOverlay = this.DOM.el.childNodes[1];
+    let colorOverlay = this.DOM.el.childNodes[0];
 
-  whiteOverlay.style.transformOrigin = "left 50% 0px";
-  colorOverlay.style.transformOrigin = "left 50% 0px";
+    whiteOverlay.style.transformOrigin = "left 50% 0px";
+    colorOverlay.style.transformOrigin = "left 50% 0px";
 
 
-  TweenMax.to(whiteOverlay, 1, {scaleX: 0, ease: Power4.easeInOut});
-  TweenMax.fromTo(
-    colorOverlay,
-    1,
-    {scaleX: 1},
-    { scaleX: 0,
-      ease: Power4.easeInOut,
-      delay: 0.2
-      // onComplete: ()=> { whiteOverlay.style.transformOrigin = "left 50% 0px"; }
-    }
-  );
-}
+    TweenMax.to(whiteOverlay, 1, {scaleX: 0, ease: Power4.easeInOut});
+    TweenMax.fromTo(
+      colorOverlay,
+      1,
+      {scaleX: 1},
+      { scaleX: 0,
+        ease: Power4.easeInOut,
+        delay: 0.2
+        // onComplete: ()=> { whiteOverlay.style.transformOrigin = "left 50% 0px"; }
+      }
+    );
+  }
 
   // Sets it as current.
   setCurrent(isContentOpen) {
