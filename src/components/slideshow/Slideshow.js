@@ -34,7 +34,7 @@ class Slideshow extends React.Component {
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
 
     this.init();
-
+    this.showImage();
     // this.currentSlide.showContent()
   }
 
@@ -48,7 +48,6 @@ class Slideshow extends React.Component {
       }
       else if (slide.isPositionedCenter()) {
         this.showContent();
-
       }
     };
     for (let slide of this.slides) {
@@ -78,17 +77,12 @@ class Slideshow extends React.Component {
     } else {
       this.currentSlide.setContentOpen();
 
-      this.slides.forEach(slide => {
-        if (!slide.isCurrent && slide) {
-          slide.hide();
-        }
-      });
-      // if (this.nextSlide) this.nextSlide.hide();
-      // if (this.nextOutView) this.nextOutView.hide();
-      // if (this.nextOutView2) this.nextOutView2.hide();
-      // if (this.prevSlide) this.prevSlide.hide();
-      // if (this.prevOutView) this.prevOutView.hide();
-      // if (this.prevOutView2) this.prevOutView2.hide();
+      if (this.nextSlide) this.nextSlide.setRightOutView();
+      if (this.nextOutView) this.nextOutView.setRightOutView();
+      if (this.nextOutView2) this.nextOutView2.setRightOutView();
+      if (this.prevSlide) this.prevSlide.setLeftOutView();
+      if (this.prevOutView) this.prevOutView.setLeftOutView();
+      if (this.prevOutView2) this.prevOutView2.setLeftOutView();
     }
 
 
@@ -162,39 +156,46 @@ class Slideshow extends React.Component {
   }
 
   hideContent() {
-    // if ( !this.isContentOpen || this.isAnimating ) return;
-
-    // this.DOM.el.classList.remove('slideshow--previewopen');
-
-    // Hide content.
-    // this.contents[this.current].hide();
-
-    // TweenMax.to(this.DOM.deco, .8, {
-        // ease: Power4.easeInOut,
-        // scaleX: 1,
-        // scaleY: 1,
-        // x: 0,
-        // y: 0
-    // });
     // Move in right/left slides.
     if (this.prevSlide) this.prevSlide.moveToPosition({position: -1});
     if (this.nextSlide) this.nextSlide.moveToPosition({position: 1});
     // Position the current slide.
     this.currentSlide.moveToPosition({position: 0}).then(() => {
-        // allowTilt = true;
         this.isContentOpen = false;
     });
     // Show texts.
     // this.currentSlide.showTexts();
 }
 
+showImage() {
+  let whiteOverlay = document.getElementById('white-overlay');
+  let colorOverlay = document.getElementById('color-overlay');
+
+  whiteOverlay.style.transformOrigin = "left 50% 0px";
+  colorOverlay.style.transformOrigin = "left 50% 0px";
+
+
+  TweenMax.to(whiteOverlay, 1, {scaleX: 0, ease: Power4.easeInOut});
+
+
+  TweenMax.fromTo(
+    colorOverlay,
+    1,
+    {scaleX: 1},
+    { scaleX: 0,
+      ease: Power4.easeInOut,
+      delay: 0.2
+      // onComplete: ()=> { whiteOverlay.style.transformOrigin = "left 50% 0px"; }
+    });
+  }
+
   render() {
     return(
       <div id="gallery">
         <div id="slideshow">
             <div className="slide slide1">
-              <div class="color-overlay"></div>
-              <div class="white-overlay"></div>
+              <div id="color-overlay"/>
+              <div id="white-overlay"/>
               <img src={require("../../assets/1.png") } className="slide__img"/>
             </div>
             <div className="slide slide2">
@@ -237,8 +238,6 @@ class Slideshow extends React.Component {
             <div class="content__text">Let's go up in here, and start having some fun The least little bit can do so much. Work on one thing at a time. Don't get carried away - we have plenty of time. Put your feelings into it, your heart, it's your world. These trees are so much fun. I get started on them and I have a hard time stopping. But we're not there yet, so we don't need to worry about it. Now let's put some happy little clouds in here. What the devil. A thin paint will stick to a thick paint. I'm going to mix up a little color. </div>
           </div>
         </div>
-
-
       </div>
     );
   }

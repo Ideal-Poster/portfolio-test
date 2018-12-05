@@ -5,7 +5,7 @@ import debounce from '../../utils/debounce';
 let winsize;
 const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
 calcWinsize();
-window.addEventListener('resize', debounce(calcWinsize, 10));
+window.addEventListener('resize', debounce(calcWinsize, 5));
 
 class Slide extends React.Component {
   constructor(el) {
@@ -43,9 +43,9 @@ class Slide extends React.Component {
     */
     this.transforms = [
       {x: -1*(winsize.width/2+this.width), y: 0, rotation: 0},
-      {x: -1*(winsize.width/2), y: 0, rotation: 0},
+      {x: -1*(winsize.width/1.7), y: 0, rotation: 0},
       {x: 0, y: 0, rotation: 0},
-      {x: (winsize.width/2), y: 0, rotation: 0},
+      {x: (winsize.width/1.7), y: 0, rotation: 0},
       {x: winsize.width/2+this.width, y: 0, rotation: 0},
       {x: -1*(winsize.width/2 - this.width/2 - winsize.width*0.075), y: 0, rotation: 0}
     ];
@@ -56,7 +56,7 @@ class Slide extends React.Component {
         this.calcSizes();
         this.calcTransforms();
     };
-    window.addEventListener('resize', debounce(this.resizeFn, 10));
+    window.addEventListener('resize', debounce(this.resizeFn, 5));
   }
 
   position(pos) {
@@ -81,7 +81,7 @@ class Slide extends React.Component {
         2: right bottom corner outside the viewport
         3: left side, for when the content is shown
         */
-        TweenMax.to(this.DOM.imgWrap, .8, {
+        TweenMax.to(this.DOM.imgWrap, 1.2, {
             ease: Power4.easeInOut,
             delay: settings.delay || 0,
             startAt: settings.from !== undefined ? {

@@ -1,5 +1,5 @@
 #gallery {
-	background: seagreen;
+	/* background: seagreen; */
 }
 #slideshow {
 	height: 100vh;
@@ -22,7 +22,7 @@
 	height: 100%;
 	width: 100%;
 	grid-area: slide;
-	background: seagreen;
+	/* background: seagreen; */
 	/* z-index: 100; */
 	/* min-height: 300px; */
 	position: relative;
@@ -44,28 +44,29 @@
 	height: 100%;
 }
 
-.color-overlay,
-.white-overlay {
-    position: absolute;
-    z-index: 2;
-    transform-origin: right;
+#color-overlay,
+#white-overlay {
+	position: absolute;
+	z-index: 2;
+	transform-origin: right;
 }
 
-.color-overlay {
-    background-color: #05203e;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+#color-overlay {
+	/* background-color: #05203e; */
+	background-color: black;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
 
-.white-overlay {
-    display: block;
-    top: -1px;
-    right: -1px;
-    bottom: -1px;
-    left: -1px;
-    background-color: #fff;
+#white-overlay {
+	display: block;
+	top: -1px;
+	right: -1px;
+	bottom: -1px;
+	left: -1px;
+	background-color: #fff;
 }
 
 .center__slide {
