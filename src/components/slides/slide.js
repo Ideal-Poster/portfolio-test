@@ -23,7 +23,7 @@ class Slide extends React.Component {
     this.calcTransforms();
     // Init/Bind events.
     this.initEvents();
-    this.ImageTransition();
+    // this.slideTransition();
   }
 
   calcSizes() {
@@ -111,7 +111,7 @@ class Slide extends React.Component {
     });
   }
 
-  ImageTransition() {
+  TransitionEffect() {
     let whiteOverlay = this.DOM.el.childNodes[1];
     let colorOverlay = this.DOM.el.childNodes[0];
 
@@ -130,6 +130,21 @@ class Slide extends React.Component {
         // onComplete: ()=> { whiteOverlay.style.transformOrigin = "left 50% 0px"; }
       }
     );
+  }
+
+  fadeIn() {
+    TweenMax.from(this.DOM.el, 1, {
+      // opacity: 0,
+      y: 120, // move from 100px down to the current position
+      // autoAlpha: 0, // fade in from opacity 0 to the current
+      ease: Power4.easeOut
+    })
+    // TweenMax.from(this.Dom.el.childNodes)
+
+    TweenMax.to(this.DOM.el.childNodes[0], 1, {
+      opacity: 1
+    })
+
   }
 
   // Sets it as current.

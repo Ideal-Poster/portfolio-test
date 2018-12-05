@@ -20,6 +20,11 @@ class Slideshow extends React.Component {
 
     this.slides = [];
     document.querySelectorAll('.slide').forEach(slideEl => this.slides.push(new Slide(slideEl)));
+    this.slides.forEach((slide, i) => {
+      setTimeout(() => {
+        slide.fadeIn();
+      }, i * 500);
+    });
 
     this.contents = [];
     document.querySelectorAll('.content > .content__item').forEach(contentEl => this.contents.push(new Content(contentEl)));
@@ -84,8 +89,6 @@ class Slideshow extends React.Component {
       if (this.prevOutView) this.prevOutView.setLeftOutView();
       if (this.prevOutView2) this.prevOutView2.setLeftOutView();
     }
-
-
   }
 
   // Navigate the slideshow.
@@ -172,23 +175,23 @@ class Slideshow extends React.Component {
       <div id="gallery">
         <div id="slideshow">
             <div className="slide slide1">
-              <div id="color-overlay"/>
-              <div id="white-overlay"/>
+              {/* <div id="color-overlay"/> */}
+              {/* <div id="white-overlay"/> */}
               <img src={require("../../assets/1.png") } className="slide__img"/>
             </div>
             <div className="slide slide2">
-              <div id="color-overlay"/>
-              <div id="white-overlay"/>
+              {/* <div id="color-overlay"/> */}
+              {/* <div id="white-overlay"/> */}
               <img src={require("../../assets/2.png") } className="slide__img"/>
             </div>
             <div className="slide slide3">
-              <div id="color-overlay"/>
-              <div id="white-overlay"/>
+              {/* <div id="color-overlay"/> */}
+              {/* <div id="white-overlay"/> */}
               <img src={require("../../assets/3.png") } className="slide__img"/>
             </div>
             <div className="slide slide4">
-              <div id="color-overlay"/>
-              <div id="white-overlay"/>
+              {/* <div id="color-overlay"/> */}
+              {/* <div id="white-overlay"/> */}
               <img src={require("../../assets/4.png") } className="slide__img"/>
             </div>
             {/* <div className="slide">
