@@ -3,10 +3,9 @@ import '../slideshow/Slideshow.css';
 // import anime from 'animejs';
 import { TweenMax, Power4, Expo } from 'gsap';
 import Slide from '../slides/Slide';
-import Nearby from '../nearby/Nearby';
-
 import Content from '../content/Content';
-import debounce from 'lodash';
+import debounce from '../utils/debounce';
+
 
 
 let winsize;
@@ -19,86 +18,43 @@ const lineEq = (y2, y1, x2, x1, currentVal) => {
   var m = (y2 - y1) / (x2 - x1), b = y1 - m * x1;
   return m * currentVal + b;
 };
-
 const distanceThreshold = {min: 0, max: 200};
 // translate goes from -80% to -60% (prevEl) and from 80% to 60% (this.nextSlide.DOM.el)
 const translateIntervalPrev = {from: -176, to: -160}
 const translateIntervalNext = {from: 176, to: 160};
 const translateIntervalCurrent = {from: 0, to: 5};
 const opacityInterval = {from: 0.2, to: 1};
-
 let onprev;
 let onnext;
-
-
-
 class Slideshow extends React.Component {
 
   componentDidMount() {
     this.DOM = {};
-    this.current = 0;
-    this.isAnimating = false;
-    this.isContentOpen = false;
+    // this.DOM.slide = document.querySelector('.slide');
 
     this.slides = [];
     document.querySelectorAll('.slide').forEach(slideEl => this.slides.push(new Slide(slideEl)));
     this.slides.forEach((slide, i) => {
       setTimeout(() => {
         slide.fadeIn();
-      }, i * 400);
+      }, i * 500);
     });
 
     this.contents = [];
     document.querySelectorAll('.content > .content__item').forEach(contentEl => this.contents.push(new Content(contentEl)));
 
+
+    this.slidesTotal = this.slides.length;
+    this.current = 0;
+    this.isAnimated = false;
+    this.isContentOpen = false;
+
     this.setPos();
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
 
     this.init();
-
-
-    let nearby = new Nearby(this.nextSlide.DOM.el, {
-      onProgress: (distance) => {
-        onnext = distance <= distanceThreshold.max && distance >= distanceThreshold.min;
-
-        // if ( !onprev ) {
-        if (this.nextSlide) {
-          const tx = lineEq(translateIntervalNext.from, translateIntervalNext.to, distanceThreshold.max, distanceThreshold.min, distance);
-          const o = lineEq(opacityInterval.from, opacityInterval.to, distanceThreshold.max, distanceThreshold.min, distance);
-          TweenMax.to(this.nextSlide.DOM.el, 1, {
-              x: Math.min(Math.max(translateIntervalNext.to,tx),translateIntervalNext.from)+'%',
-              ease: Power4.easeOut
-          });
-          TweenMax.to(this.nextSlide.DOM.el, .5, {
-              opacity: Math.max(o,opacityInterval.from),
-              ease: Expo.easeOut
-          });
-        }
-
-        if (this.currentSlide) {
-          // also animate current and prevEl..
-          const txCurr = lineEq(translateIntervalCurrent.from, -1*translateIntervalCurrent.to, distanceThreshold.max, distanceThreshold.min, distance);
-          const oCurr = lineEq(opacityInterval.to, opacityInterval.from, distanceThreshold.max, distanceThreshold.min, distance);
-          TweenMax.to(this.currentSlide.DOM.el, 1, {
-              x: Math.max(Math.min(translateIntervalCurrent.from,txCurr),-1*translateIntervalCurrent.to)+'%',
-              ease: Power4.easeOut
-          });
-          TweenMax.to(this.currentSlide.DOM.el, .5, {
-              opacity: Math.max(oCurr,opacityInterval.from),
-              ease: Expo.easeOut
-          });
-        }
-
-        if (this.prevSlide) {
-          const txPrev = lineEq(translateIntervalPrev.from, translateIntervalPrev.from-10, distanceThreshold.max, distanceThreshold.min, distance);
-          TweenMax.to(this.prevSlide.DOM.el, 1, {
-              x: Math.max(Math.min(translateIntervalPrev.from,txPrev),translateIntervalPrev.from-10)+'%',
-              ease: Power4.easeOut
-          });
-        }
-      }
-    });
-
+    this.hideImage();
+    // this.currentSlide.showContent()
   }
 
   init() {
@@ -165,14 +121,13 @@ class Slideshow extends React.Component {
 
       // Slide current slide forwards or backwards
       this.currentSlide.moveToPosition({ position: direction === 'next' ? -1 : 1 }).then(() => {
-        this.setPos();
         this.isAnimating = false;
-        // window.removeEventListener('mousemove', thing.mousemoveFn);
+        this.setPos();
       });
 
       // Slide next slide to current or out of view right
       if (this.nextSlide) {
-        this.nextSlide.moveToPosition({ position: direction === 'next' ? 0 : 2 });
+        this.nextSlide.moveToPosition({ position: direction === 'next' ? 0 : 2 })
       }
 
       // Slide into view right
@@ -186,30 +141,61 @@ class Slideshow extends React.Component {
       }
 
       // Update Current
-      this.current = (direction === 'next') ?
-      // stop next counter if at the end of slides
-      this.current <= this.slides.length-2 ? this.current+1 : this.current :
-      // stop prev counter id at beginning of slides
-      this.current > 0 ? this.current-1 : this.current;
+      this.current = direction === 'next' ? this.current+1 : this.current-1;
+
+
+      console.log(this.current);
+
     }
   }
 
   showContent() {
+    // if ( this.isContentOpen || this.isAnimating ) return;
+    // allowTilt = false;
     this.isContentOpen = true;
+    // this.DOM.el.classList.add('slideshow--previewopen');
+    // TweenMax.to(this.DOM.deco, .8, {
+    //     ease: Power4.easeInOut,
+    //     scaleX: winsize.width/this.DOM.deco.offsetWidth,
+    //     scaleY: winsize.height/this.DOM.deco.offsetHeight,
+    //     x: -20,
+    //     y: 20
+    // });
+    // Move away right/left slides.
     if (this.prevSlide) this.prevSlide.moveToPosition({position: -2});
     if (this.nextSlide) this.nextSlide.moveToPosition({position: 2});
     // Position the current slide and reset its image scale value.
     this.currentSlide.moveToPosition({position: 3, resetImageScale: true});
+    // Show content and back arrow (to close the content).
+    // this.contents[this.current].show();
+    // Hide texts.
+    // this.currentSlide.hideTexts(true);
   }
 
   hideContent() {
     // Move in right/left slides.
     if (this.prevSlide) this.prevSlide.moveToPosition({position: -1});
     if (this.nextSlide) this.nextSlide.moveToPosition({position: 1});
-    // Position the caurrent slide.
+    // Position the current slide.
     this.currentSlide.moveToPosition({position: 0}).then(() => {
-      this.isContentOpen = false;
+        this.isContentOpen = false;
     });
+    // Show texts.
+    // this.currentSlide.showTexts();
+  }
+
+
+  hideImage() {
+    let whiteOverlay = document.getElementById(this.currentSlide.DOM.el.childNodes[1].id);
+    let colorOverlay = document.getElementById('color-overlay');
+
+    console.log(this.currentSlide.DOM.el.childNodes[1].id);
+
+
+
+    whiteOverlay.style.transformOrigin = "left 0% 0px";
+    TweenMax.to(whiteOverlay, 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
+    // console.log('hello');
   }
 
   render() {
@@ -217,24 +203,21 @@ class Slideshow extends React.Component {
       <div id="gallery">
         <div id="slideshow">
             <div className="slide slide1">
-              {/* <div id="color-overlay"/> */}
-              {/* <div id="white-overlay"/> */}
               <img src={require("../../assets/1.png") } className="slide__img"/>
-            </div>
-            <div className="slide slide2 nextSlide">
               {/* <div id="color-overlay"/> */}
-              {/* <div id="white-overlay"/> */}
-              <img src={require("../../assets/2.png") } className="slide__img nextSlide"/>
+              <div id="overlay"/>
+            </div>
+            <div className="slide slide2">
+              <img src={require("../../assets/2.png") } className="slide__img"/>
+              <div class="white-overlay" id="cover2"/>
             </div>
             <div className="slide slide3">
-              {/* <div id="color-overlay"/> */}
-              {/* <div id="white-overlay"/> */}
               <img src={require("../../assets/3.png") } className="slide__img"/>
+              <div class="white-overlay"/>
             </div>
             <div className="slide slide4">
-              {/* <div id="color-overlay"/> */}
-              {/* <div id="white-overlay"/> */}
               <img src={require("../../assets/4.png") } className="slide__img"/>
+              {/* <div id="white-overlay"/> */}
             </div>
             {/* <div className="slide">
               <img src={require("../../assets/1.png") } className="slide__img"/>
@@ -243,7 +226,9 @@ class Slideshow extends React.Component {
               <img src={require("../../assets/1.png") } className="slide__img"/>
             </div> */}
         </div>
-        <button onClick={ ()=> { this.hideContent(); } }>button</button>
+        <button onClick={
+         ()=> { this.hideContent(); }
+        }>button</button>
 
         <div class="content">
           <div class="content__item">

@@ -1,6 +1,6 @@
 import  React from 'react';
 import { TweenMax, Power4 } from 'gsap';
-import debounce from 'lodash';
+import debounce from '../utils/debounce';
 // Window sizes.
 let winsize;
 const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
@@ -43,11 +43,11 @@ class Slide extends React.Component {
     5: left side, for when the content is shown
     */
     this.transforms = [
-      {x: -1*(winsize.width/2+this.width), y: 0, rotation: 0},
+      {x: -1*(winsize.width+this.width), y: 0, rotation: 0},
       {x: -1*(winsize.width/1.7), y: 0, rotation: 0},
       {x: 0, y: 0, rotation: 0},
       {x: (winsize.width/1.7), y: 0, rotation: 0},
-      {x: winsize.width/2+this.width, y: 0, rotation: 0},
+      {x: winsize.width+this.width, y: 0, rotation: 0},
       {x: -1*(winsize.width/2 - this.width/2 - winsize.width*0.075), y: 0, rotation: 0}
     ];
   }
@@ -82,7 +82,7 @@ class Slide extends React.Component {
         2: right bottom corner outside the viewport
         3: left side, for when the content is shown
         */
-        TweenMax.to(this.DOM.imgWrap, 1.15, {
+        TweenMax.to(this.DOM.imgWrap, 1.2, {
             ease: Power4.easeInOut,
             delay: settings.delay || 0,
             startAt: settings.from !== undefined ? {
@@ -117,6 +117,7 @@ class Slide extends React.Component {
 
     whiteOverlay.style.transformOrigin = "left 50% 0px";
     colorOverlay.style.transformOrigin = "left 50% 0px";
+
 
     TweenMax.to(whiteOverlay, 1, {scaleX: 0, ease: Power4.easeInOut});
     TweenMax.fromTo(
