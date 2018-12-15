@@ -145,8 +145,9 @@ class Slide extends React.Component {
   hideTitle() {
     TweenMax.to(this.DOM.texts.title, 1.2, {
       ease: Power4.easeInOut,
+
       opacity: 0,
-      top: '-75%'
+      top: '-25%'
     })
   }
 

@@ -48,7 +48,7 @@ class Slideshow extends React.Component {
     }
   }
 
-  setPos() {
+  updateSlides() {
     this.nextOutView2 = this.slides[this.current + 3];
     this.nextOutView = this.slides[this.current+2];
     this.nextSlide = this.slides[this.current+1];
@@ -56,6 +56,11 @@ class Slideshow extends React.Component {
     this.prevSlide = this.slides[this.current-1];
     this.prevOutView = this.slides[this.current-2];
     this.prevOutView2 = this.slides[this.current-3];
+  }
+
+  setPos() {
+
+    this.updateSlides();
 
     if (!this.isContentOpen) {
       this.currentSlide.setCurrent()
@@ -92,15 +97,17 @@ class Slideshow extends React.Component {
 
       // Slide current slide forwards or backwards
       this.currentSlide.hideTitle();
+
       this.currentSlide.moveToPosition({ position: direction === 'next' ? -1 : 1 }).then(() => {
         this.isAnimating = false;
         this.setPos();
       });
 
       // Slide next slide to current or out of view right
+
       if (this.nextSlide) {
-        this.nextSlide.moveToPosition({ position: direction === 'next' ? 0 : 2 })
-      }
+        this.nextSlide.moveToPosition({ position: direction === 'next' ? 0 : 2 });
+      };
 
       // Slide into view right
       if (this.nextOutView) {
@@ -114,7 +121,9 @@ class Slideshow extends React.Component {
 
       // Update Current
       this.current = direction === 'next' ? this.current+1 : this.current-1;
-
+      
+      this.updateSlides();
+      this.currentSlide.showTitle();
 
       console.log(this.current);
 
