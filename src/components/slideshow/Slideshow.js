@@ -4,25 +4,6 @@ import Slide from '../slides/Slide';
 import Content from '../content/Content';
 import debounce from '../utils/debounce';
 
-let winsize;
-const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
-calcWinsize();
-window.addEventListener('resize', debounce(calcWinsize, 10));
-
-const lineEq = (y2, y1, x2, x1, currentVal) => {
-  // y = mx + b
-  var m = (y2 - y1) / (x2 - x1), b = y1 - m * x1;
-  return m * currentVal + b;
-};
-// const distanceThreshold = {min: 0, max: 200};
-// translate goes from -80% to -60% (prevEl) and from 80% to 60% (this.nextSlide.DOM.el)
-// const translateIntervalPrev = {from: -176, to: -160}
-// const translateIntervalNext = {from: 176, to: 160};
-// const translateIntervalCurrent = {from: 0, to: 5};
-// const opacityInterval = {from: 0.2, to: 1};
-// let onprev;
-// let onnext;
-
 class Slideshow extends React.Component {
 
   componentDidMount() {
