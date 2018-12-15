@@ -20,13 +20,13 @@ class Slideshow extends React.Component {
     this.current = 0;
     this.isAnimated = false;
     this.isContentOpen = false;
-
     this.setPos();
     this.init();
     this.revealSlides();
+
     setTimeout(() => {
       this.currentSlide.showTitle();
-    }, 1000);
+    }, 500);
   }
 
   init() {
@@ -121,7 +121,7 @@ class Slideshow extends React.Component {
 
       // Update Current
       this.current = direction === 'next' ? this.current+1 : this.current-1;
-      
+
       this.updateSlides();
       this.currentSlide.showTitle();
 
@@ -150,6 +150,7 @@ class Slideshow extends React.Component {
     // if (this.nextSlide) this.nextSlide.moveToPosition({position: 2});
     // this.currentSlide.moveToPosition({position: 3, resetImageScale: true});
     this.coverSlides();
+    this.currentSlide.hideTitleUp();
   }
 
   render() {

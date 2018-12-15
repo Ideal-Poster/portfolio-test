@@ -23,7 +23,6 @@
 
 }
 
-
 .slide > img {
 	display: block;
 	width: 100%;
@@ -43,6 +42,8 @@
 	top: -25%;
 	color: #d04887;
 	opacity: 0;
+	transform: translateX(-50%);
+	z-index: 100;
 }
 
 

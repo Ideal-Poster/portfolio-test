@@ -133,6 +133,7 @@ class Slide extends React.Component {
     TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
   }
 
+
   showTitle() {
     TweenMax.set(this.DOM.texts.title,{ top: '-25%', opacity: 0 })
     TweenMax.to(this.DOM.texts.title, 1.2, {
@@ -145,9 +146,16 @@ class Slide extends React.Component {
   hideTitle() {
     TweenMax.to(this.DOM.texts.title, 1.2, {
       ease: Power4.easeInOut,
-
       opacity: 0,
       top: '-25%'
+    })
+  }
+
+  hideTitleUp() {
+    TweenMax.to(this.DOM.texts.title, 1.2, {
+      ease: Power4.easeInOut,
+      opacity: 0,
+      top: '-75%'
     })
   }
 
