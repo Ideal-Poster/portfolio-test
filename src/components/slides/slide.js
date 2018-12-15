@@ -111,27 +111,6 @@ class Slide extends React.Component {
     });
   }
 
-  TransitionEffect() {
-    let whiteOverlay = this.DOM.el.childNodes[1];
-    let colorOverlay = this.DOM.el.childNodes[0];
-
-    whiteOverlay.style.transformOrigin = "left 50% 0px";
-    colorOverlay.style.transformOrigin = "left 50% 0px";
-
-
-    TweenMax.to(whiteOverlay, 1, {scaleX: 0, ease: Power4.easeInOut});
-    TweenMax.fromTo(
-      colorOverlay,
-      1,
-      {scaleX: 1},
-      { scaleX: 0,
-        ease: Power4.easeInOut,
-        delay: 0.2
-        // onComplete: ()=> { whiteOverlay.style.transformOrigin = "left 50% 0px"; }
-      }
-    );
-  }
-
   fadeIn() {
     TweenMax.from(this.DOM.el, 1, {
       // opacity: 0,
@@ -144,7 +123,13 @@ class Slide extends React.Component {
     TweenMax.to(this.DOM.el.childNodes[0], 1, {
       opacity: 1
     })
+  }
 
+  cover() {
+    console.log(this.DOM.el.childNodes[1]);
+
+    this.DOM.el.childNodes[1].style.transformOrigin = "left 0% 0px";
+    TweenMax.to(this.DOM.el.childNodes[1], 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
   }
 
   // Sets it as current.
@@ -165,6 +150,7 @@ class Slide extends React.Component {
     // Position it on the left position.
     this.position(isContentOpen ? 0 : 1);
   }
+
   setLeftOutView(isContentOpen) {
     this.isCurrent = false;
     this.isRight = this.isCurrent = false;
@@ -182,6 +168,7 @@ class Slide extends React.Component {
     // Position it on the right position.
     this.position(3);
   }
+
   setRightOutView() {
     this.isCurrent = false;
     this.isLeft = this.isCurrent = false;
@@ -210,6 +197,7 @@ class Slide extends React.Component {
     this.isRight = this.isLeft = this.isCurrent = false;
     this.DOM.el.classList = 'slide';
   }
+
   hide() {
     TweenMax.set(this.DOM.imgWrap, {x:0, y:0, rotationX:0, rotationY:0, rotationZ:0, opacity:0});
   }

@@ -1,12 +1,10 @@
 import  React from 'react';
 import '../slideshow/Slideshow.css';
-// import anime from 'animejs';
+
 import { TweenMax, Power4, Expo } from 'gsap';
 import Slide from '../slides/Slide';
 import Content from '../content/Content';
 import debounce from '../utils/debounce';
-
-
 
 let winsize;
 const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
@@ -30,31 +28,22 @@ class Slideshow extends React.Component {
 
   componentDidMount() {
     this.DOM = {};
-    // this.DOM.slide = document.querySelector('.slide');
 
     this.slides = [];
     document.querySelectorAll('.slide').forEach(slideEl => this.slides.push(new Slide(slideEl)));
-    this.slides.forEach((slide, i) => {
-      setTimeout(() => {
-        slide.fadeIn();
-      }, i * 500);
-    });
 
     this.contents = [];
     document.querySelectorAll('.content > .content__item').forEach(contentEl => this.contents.push(new Content(contentEl)));
 
-
+    window.addEventListener('resize', () => debounce(this.setPos(), 10));
     this.slidesTotal = this.slides.length;
     this.current = 0;
     this.isAnimated = false;
     this.isContentOpen = false;
 
     this.setPos();
-    window.addEventListener('resize', () => debounce(this.setPos(), 10));
-
     this.init();
-    this.hideImage();
-    // this.currentSlide.showContent()
+    this.revealSlides();
   }
 
   init() {
@@ -66,7 +55,7 @@ class Slideshow extends React.Component {
         this.navigate('prev');
       }
       else if (slide.isPositionedCenter()) {
-        this.showContent();
+        // this.showContent();
       }
     };
     for (let slide of this.slides) {
@@ -104,7 +93,6 @@ class Slideshow extends React.Component {
       if (this.prevOutView2) this.prevOutView2.setLeftOutView();
     }
   }
-
   // Navigate the slideshow.
   navigate(direction) {
     // If animating return.
@@ -149,53 +137,12 @@ class Slideshow extends React.Component {
     }
   }
 
-  showContent() {
-    // if ( this.isContentOpen || this.isAnimating ) return;
-    // allowTilt = false;
-    this.isContentOpen = true;
-    // this.DOM.el.classList.add('slideshow--previewopen');
-    // TweenMax.to(this.DOM.deco, .8, {
-    //     ease: Power4.easeInOut,
-    //     scaleX: winsize.width/this.DOM.deco.offsetWidth,
-    //     scaleY: winsize.height/this.DOM.deco.offsetHeight,
-    //     x: -20,
-    //     y: 20
-    // });
-    // Move away right/left slides.
-    if (this.prevSlide) this.prevSlide.moveToPosition({position: -2});
-    if (this.nextSlide) this.nextSlide.moveToPosition({position: 2});
-    // Position the current slide and reset its image scale value.
-    this.currentSlide.moveToPosition({position: 3, resetImageScale: true});
-    // Show content and back arrow (to close the content).
-    // this.contents[this.current].show();
-    // Hide texts.
-    // this.currentSlide.hideTexts(true);
-  }
-
-  hideContent() {
-    // Move in right/left slides.
-    if (this.prevSlide) this.prevSlide.moveToPosition({position: -1});
-    if (this.nextSlide) this.nextSlide.moveToPosition({position: 1});
-    // Position the current slide.
-    this.currentSlide.moveToPosition({position: 0}).then(() => {
-        this.isContentOpen = false;
+  revealSlides() {
+    this.slides.forEach((slide, i) => {
+      setTimeout(() => {
+        slide.fadeIn();
+      }, i * 500);
     });
-    // Show texts.
-    // this.currentSlide.showTexts();
-  }
-
-
-  hideImage() {
-    let whiteOverlay = document.getElementById(this.currentSlide.DOM.el.childNodes[1].id);
-    let colorOverlay = document.getElementById('color-overlay');
-
-    console.log(this.currentSlide.DOM.el.childNodes[1].id);
-
-
-
-    whiteOverlay.style.transformOrigin = "left 0% 0px";
-    TweenMax.to(whiteOverlay, 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
-    // console.log('hello');
   }
 
   render() {
