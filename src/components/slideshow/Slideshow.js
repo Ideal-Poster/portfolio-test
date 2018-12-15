@@ -55,7 +55,7 @@ class Slideshow extends React.Component {
         this.navigate('prev');
       }
       else if (slide.isPositionedCenter()) {
-        // this.showContent();
+        this.showContent();
       }
     };
     for (let slide of this.slides) {
@@ -145,6 +145,21 @@ class Slideshow extends React.Component {
     });
   }
 
+  coverSlides() {
+    this.currentSlide.cover();
+    if (this.prevSlide) setTimeout(() => this.prevSlide.cover(), 200);
+    if (this.nextSlide) setTimeout(() => this.nextSlide.cover(), 400);
+  }
+
+  showContent() {
+    this.isContentOpen = true;
+    // if (this.prevSlide) this.prevSlide.moveToPosition({position: -2});
+    // if (this.nextSlide) this.nextSlide.moveToPosition({position: 2});
+    // this.currentSlide.moveToPosition({position: 3, resetImageScale: true});
+    this.coverSlides();
+
+  }
+
   render() {
     return(
       <div id="gallery">
@@ -156,7 +171,7 @@ class Slideshow extends React.Component {
             </div>
             <div className="slide slide2">
               <img src={require("../../assets/2.png") } className="slide__img"/>
-              <div class="white-overlay" id="cover2"/>
+              <div id="overlay"/>
             </div>
             <div className="slide slide3">
               <img src={require("../../assets/3.png") } className="slide__img"/>
