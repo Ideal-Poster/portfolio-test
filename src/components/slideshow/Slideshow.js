@@ -24,6 +24,9 @@ class Slideshow extends React.Component {
     this.setPos();
     this.init();
     this.revealSlides();
+    setTimeout(() => {
+      this.currentSlide.showTitle();
+    }, 1000);
   }
 
   init() {
@@ -88,6 +91,7 @@ class Slideshow extends React.Component {
       }
 
       // Slide current slide forwards or backwards
+      this.currentSlide.hideTitle();
       this.currentSlide.moveToPosition({ position: direction === 'next' ? -1 : 1 }).then(() => {
         this.isAnimating = false;
         this.setPos();
@@ -143,30 +147,29 @@ class Slideshow extends React.Component {
     return(
       <div id="gallery">
         <div id="slideshow">
-            <div className="slide slide1">
-              <img src={require("../../assets/1.png") } className="slide__img"/>
-              {/* <div id="color-overlay"/> */}
-              <div class="overlay"/>
-            </div>
-            <div className="slide slide2">
-              <img src={require("../../assets/2.png") } className="slide__img"/>
-              <div class="overlay"/>
-            </div>
-            <div className="slide slide3">
-              <img src={require("../../assets/3.png") } className="slide__img"/>
-              <div class="overlay"/>
+          <div className="slide slide1">
+            <img src={require("../../assets/1.png") } className="slide__img"/>
+            <div class="overlay"/>
+            <h3 class="slide__title">Automation</h3>
+          </div>
 
-            </div>
-            <div className="slide slide4">
-              <img src={require("../../assets/4.png") } className="slide__img"/>
-              <div class="overlay"/>
-            </div>
-            {/* <div className="slide">
-              <img src={require("../../assets/1.png") } className="slide__img"/>
-            </div> */}
-            {/* <div className="slide">
-              <img src={require("../../assets/1.png") } className="slide__img"/>
-            </div> */}
+          <div className="slide slide2">
+            <img src={require("../../assets/2.png") } className="slide__img"/>
+            <div class="overlay"/>
+            <h3 class="slide__title">Automation</h3>
+          </div>
+
+          <div className="slide slide3">
+            <img src={require("../../assets/3.png") } className="slide__img"/>
+            <div class="overlay"/>
+            <h3 class="slide__title">Automation</h3>
+          </div>
+
+          <div className="slide slide4">
+            <img src={require("../../assets/4.png") } className="slide__img"/>
+            <div class="overlay"/>
+            <h3 class="slide__title">Automation</h3>
+          </div>
         </div>
         <button onClick={
          ()=> { this.hideContent(); }

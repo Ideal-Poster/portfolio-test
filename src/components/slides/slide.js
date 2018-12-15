@@ -19,6 +19,9 @@ class Slide extends React.Component {
     // Slide cover
     this.DOM.cover = this.DOM.imgWrap.querySelector('.overlay');
     // The texts: the parent wrap, title, number and side text.
+    this.DOM.texts = {
+      title: this.DOM.el.querySelector('.slide__title')
+    };
     this.calcSizes();
     // And also the transforms needed per position.
     // We have 5 different possible positions for a slide: center, bottom right, top left and outside the viewport (top left or bottom right).
@@ -26,6 +29,7 @@ class Slide extends React.Component {
     // Init/Bind events.
     this.initEvents();
     // this.slideTransition();
+    console.log(this.DOM.texts);
   }
 
   calcSizes() {
@@ -127,6 +131,23 @@ class Slide extends React.Component {
   cover() {
     this.DOM.cover.style.transformOrigin = "left 0% 0px";
     TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
+  }
+
+  showTitle() {
+    TweenMax.set(this.DOM.texts.title,{ top: '-25%', opacity: 0 })
+    TweenMax.to(this.DOM.texts.title, 1.2, {
+      ease: Power4.easeInOut,
+      opacity: 1,
+      top: '-50%'
+    })
+  }
+
+  hideTitle() {
+    TweenMax.to(this.DOM.texts.title, 1.2, {
+      ease: Power4.easeInOut,
+      opacity: 0,
+      top: '-75%'
+    })
   }
 
   // Sets it as current.

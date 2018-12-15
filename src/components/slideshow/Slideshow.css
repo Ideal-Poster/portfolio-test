@@ -37,6 +37,15 @@
 	opacity: 0;
 }
 
+.slide__title {
+	display: inline-block;
+	position: relative;
+	top: -25%;
+	color: #d04887;
+	opacity: 0;
+}
+
+
 #color-overlay,
 .overlay {
 	position: absolute;
