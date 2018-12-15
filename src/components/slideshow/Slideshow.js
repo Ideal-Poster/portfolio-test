@@ -157,7 +157,6 @@ class Slideshow extends React.Component {
     // if (this.nextSlide) this.nextSlide.moveToPosition({position: 2});
     // this.currentSlide.moveToPosition({position: 3, resetImageScale: true});
     this.coverSlides();
-
   }
 
   render() {
@@ -175,11 +174,12 @@ class Slideshow extends React.Component {
             </div>
             <div className="slide slide3">
               <img src={require("../../assets/3.png") } className="slide__img"/>
-              <div class="white-overlay"/>
+              <div id="overlay"/>
+
             </div>
             <div className="slide slide4">
               <img src={require("../../assets/4.png") } className="slide__img"/>
-              {/* <div id="white-overlay"/> */}
+              <div id="overlay"/>
             </div>
             {/* <div className="slide">
               <img src={require("../../assets/1.png") } className="slide__img"/>
