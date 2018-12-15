@@ -1,7 +1,5 @@
 import  React from 'react';
 import '../slideshow/Slideshow.css';
-
-import { TweenMax, Power4, Expo } from 'gsap';
 import Slide from '../slides/Slide';
 import Content from '../content/Content';
 import debounce from '../utils/debounce';
@@ -16,14 +14,15 @@ const lineEq = (y2, y1, x2, x1, currentVal) => {
   var m = (y2 - y1) / (x2 - x1), b = y1 - m * x1;
   return m * currentVal + b;
 };
-const distanceThreshold = {min: 0, max: 200};
+// const distanceThreshold = {min: 0, max: 200};
 // translate goes from -80% to -60% (prevEl) and from 80% to 60% (this.nextSlide.DOM.el)
-const translateIntervalPrev = {from: -176, to: -160}
-const translateIntervalNext = {from: 176, to: 160};
-const translateIntervalCurrent = {from: 0, to: 5};
-const opacityInterval = {from: 0.2, to: 1};
-let onprev;
-let onnext;
+// const translateIntervalPrev = {from: -176, to: -160}
+// const translateIntervalNext = {from: 176, to: 160};
+// const translateIntervalCurrent = {from: 0, to: 5};
+// const opacityInterval = {from: 0.2, to: 1};
+// let onprev;
+// let onnext;
+
 class Slideshow extends React.Component {
 
   componentDidMount() {
@@ -166,20 +165,20 @@ class Slideshow extends React.Component {
             <div className="slide slide1">
               <img src={require("../../assets/1.png") } className="slide__img"/>
               {/* <div id="color-overlay"/> */}
-              <div id="overlay"/>
+              <div class="overlay"/>
             </div>
             <div className="slide slide2">
               <img src={require("../../assets/2.png") } className="slide__img"/>
-              <div id="overlay"/>
+              <div class="overlay"/>
             </div>
             <div className="slide slide3">
               <img src={require("../../assets/3.png") } className="slide__img"/>
-              <div id="overlay"/>
+              <div class="overlay"/>
 
             </div>
             <div className="slide slide4">
               <img src={require("../../assets/4.png") } className="slide__img"/>
-              <div id="overlay"/>
+              <div class="overlay"/>
             </div>
             {/* <div className="slide">
               <img src={require("../../assets/1.png") } className="slide__img"/>

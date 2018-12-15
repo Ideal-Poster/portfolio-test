@@ -1,6 +1,7 @@
 import  React from 'react';
 import { TweenMax, Power4 } from 'gsap';
 import debounce from '../utils/debounce';
+
 // Window sizes.
 let winsize;
 const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
@@ -14,9 +15,10 @@ class Slide extends React.Component {
     // The image wrap element.
     this.DOM.imgWrap = this.DOM.el;
     // The image element.
-    // this.DOM.img = this.DOM.imgWrap.querySelector('.slide__img');
+    this.DOM.img = this.DOM.imgWrap.querySelector('.slide__img');
+    // Slide cover
+    this.DOM.cover = this.DOM.imgWrap.querySelector('.overlay');
     // The texts: the parent wrap, title, number and side text.
-
     this.calcSizes();
     // And also the transforms needed per position.
     // We have 5 different possible positions for a slide: center, bottom right, top left and outside the viewport (top left or bottom right).
@@ -113,23 +115,18 @@ class Slide extends React.Component {
 
   fadeIn() {
     TweenMax.from(this.DOM.el, 1, {
-      // opacity: 0,
-      y: 120, // move from 100px down to the current position
-      // autoAlpha: 0, // fade in from opacity 0 to the current
+      y: 120,
       ease: Power4.easeOut
-    })
-    // TweenMax.from(this.Dom.el.childNodes)
+    });
 
-    TweenMax.to(this.DOM.el.childNodes[0], 1, {
+    TweenMax.to(this.DOM.img, 1, {
       opacity: 1
-    })
+    });
   }
 
   cover() {
-    console.log(this.DOM.el.childNodes[1]);
-
-    this.DOM.el.childNodes[1].style.transformOrigin = "left 0% 0px";
-    TweenMax.to(this.DOM.el.childNodes[1], 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
+    this.DOM.cover.style.transformOrigin = "left 0% 0px";
+    TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
   }
 
   // Sets it as current.

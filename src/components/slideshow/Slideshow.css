@@ -38,7 +38,7 @@
 }
 
 #color-overlay,
-#overlay {
+.overlay {
 	position: absolute;
 	z-index: 2;
 	transform-origin: right;
@@ -52,7 +52,7 @@
 	left: 0;
 }
 
-#overlay {
+.overlay {
 	display: block;
 	/* top: -1px; */
 	right: -1px;
