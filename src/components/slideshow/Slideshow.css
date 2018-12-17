@@ -3,11 +3,13 @@
 }
 #slideshow {
 	/* height: 100vh; */
+	transform: translateY(-50%);
+	top: 50vh;
 	position: relative;
 	margin: 0;
 	height: 200%;
 	display: grid;
-	grid-template-columns: 33.333% 33.333% 33.333%;
+	grid-template-columns: 26% 48% 26%;
 	grid-column-gap: 0%;
 	grid-template-rows: 100%;
 	grid-template-areas: '... slide ...';
@@ -20,7 +22,6 @@
 	grid-area: slide;
 	position: relative;
 	display: inline-block;
-
 }
 
 .slide > img {

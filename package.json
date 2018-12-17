@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "animejs": "^2.2.0",
-    "antd": "^3.10.1",
+    "antd": "^3.11.2",
     "gsap": "^2.0.2",
     "imagesloaded": "^4.1.4",
     "react": "^16.4.2",

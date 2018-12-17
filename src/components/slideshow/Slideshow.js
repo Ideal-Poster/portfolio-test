@@ -158,25 +158,25 @@ class Slideshow extends React.Component {
       <div id="gallery">
         <div id="slideshow">
           <div className="slide slide1">
-            <img src={require("../../assets/1.png") } className="slide__img"/>
+            <img src={require("../../img/1.jpg") } className="slide__img"/>
             <div class="overlay"/>
             <h3 class="slide__title">Automation</h3>
           </div>
 
           <div className="slide slide2">
-            <img src={require("../../assets/2.png") } className="slide__img"/>
+            <img src={require("../../img/one.jpg") } className="slide__img"/>
             <div class="overlay"/>
             <h3 class="slide__title">Automation</h3>
           </div>
 
           <div className="slide slide3">
-            <img src={require("../../assets/3.png") } className="slide__img"/>
+            <img src={require("../../img/one.jpg") } className="slide__img"/>
             <div class="overlay"/>
             <h3 class="slide__title">Automation</h3>
           </div>
 
           <div className="slide slide4">
-            <img src={require("../../assets/4.png") } className="slide__img"/>
+            <img src={require("../../img/one.jpg") } className="slide__img"/>
             <div class="overlay"/>
             <h3 class="slide__title">Automation</h3>
           </div>

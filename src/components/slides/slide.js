@@ -22,6 +22,7 @@ class Slide extends React.Component {
     this.DOM.texts = {
       title: this.DOM.el.querySelector('.slide__title')
     };
+
     this.calcSizes();
     // And also the transforms needed per position.
     // We have 5 different possible positions for a slide: center, bottom right, top left and outside the viewport (top left or bottom right).
@@ -50,9 +51,9 @@ class Slide extends React.Component {
     */
     this.transforms = [
       {x: -1*(winsize.width+this.width), y: 0, rotation: 0},
-      {x: -1*(winsize.width/1.7), y: 0, rotation: 0},
+      {x: -1*(winsize.width/1.5), y: 0, rotation: 0},
       {x: 0, y: 0, rotation: 0},
-      {x: (winsize.width/1.7), y: 0, rotation: 0},
+      {x: (winsize.width/1.5), y: 0, rotation: 0},
       {x: winsize.width+this.width, y: 0, rotation: 0},
       {x: -1*(winsize.width/2 - this.width/2 - winsize.width*0.075), y: 0, rotation: 0}
     ];
