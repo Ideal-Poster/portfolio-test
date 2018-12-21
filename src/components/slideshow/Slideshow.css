@@ -2,113 +2,77 @@
 	background: #c4c2c2;
 	height: 100vh;
 }
-
-#gallery {
-	/* background: seagreen; */
-	/* position: fixed; */
-}
-
 #slideshow {
-	/* height: 100vh; */
-	top: calc(50vh);
-	overflow-x: hidden;
-	transform: translateY(-50%);
-	/* top: 50vh; */
-	position: relative;
-	margin: 0;
-	height: 200%;
-	display: grid;
 	grid-template-columns: 26% 48% 26%;
 	grid-column-gap: 0%;
 	grid-template-rows: 100%;
 	grid-template-areas: '... slide ...';
+	display: grid;
+	overflow: hidden;
+	position: relative;
+	top: 50vh;
+	transform: translateY(-50%);
 }
-
-.scroll__box {
-	border: 1.5px solid #000;
-}
-
 .slide {
-	display: flex;
+	display: inline-block;
 	height: 100%;
-	width: 100%;
 	grid-area: slide;
 	position: relative;
-	display: inline-block;
+	width: 100%;
 }
-
 .slide > img {
 	display: block;
-	width: 100%;
 	height: auto;
+	width: 100%;
 }
-
 .slide__img {
 	background: gold;
-	width: 100%;
 	height: 100%;
 	opacity: 0;
+	width: 100%;
 }
-
 .slide__title {
+	color: rgb(21, 20, 19);
 	display: inline-block;
-	position: relative;
-	/* color: #d04887; */
-	z-index: 100;
 	font-family: 'Circular STD';
 	font-size: 4vw;
 	height: 10px;
-	color: rgb(21, 20, 19);
-  line-height: 1.074;
-	text-align: left;
 	letter-spacing: 0.5px;
-	/* top: -50%; */
-	/* left: -20%; */
-	top: 50px;
+  line-height: 1.074;
 	opacity: 0;
+	position: relative;
+	text-align: left;
+	top: 50px;
+	z-index: 100;
 }
-
 .hide__text {
 	left: -20%;
 	position: relative;
-	/* background: #d04887; */
 	overflow: hidden;
 	top: -50%;
-
 }
-
 #color-overlay,
 .overlay {
 	position: absolute;
 	z-index: 2;
 	transform-origin: right;
 }
-
 #color-overlay {
-	/* background-color: #d04887; */
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
 }
-
 .overlay {
 	display: block;
-	/* top: -1.5px; */
 	right: -1.5px;
 	bottom: -1.5px;
 	left: -1.5px;
 	background-color: #c4c2c2;
 }
-
 .center__slide {
 	margin: auto;
 }
-
-/* #next {
-	z-index: 10000;
-} */
-
 .content__title,
 .content__subtitle,
 .content__number,
@@ -116,23 +80,22 @@
 .content__close {
 	opacity: 0;
 }
-
 .content {
-	position: fixed;
-	top: 10rem;
-	left: 0;
-	width: 100%;
 	height: calc(100% - 10rem);
+	left: 0;
+	top: 10rem;
 	pointer-events: none;
+	position: fixed;
+	width: 100%;
 	z-index: 100;
 }
 
 .content__item {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 100%;
 	height: 100%;
 	padding: 10vh 5vw;
 	overflow: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
 }

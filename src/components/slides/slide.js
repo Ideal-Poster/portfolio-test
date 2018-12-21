@@ -32,16 +32,11 @@ class Slide extends React.Component {
       letter.classList.add('char');
     });
 
-
-
     this.calcSizes();
     // And also the transforms needed per position.
     this.calcTransforms();
     // Init/Bind events.
     this.initEvents();
-
-    console.log(this.DOM.titleLetters);
-
   }
 
   calcSizes() {
