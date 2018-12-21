@@ -3,6 +3,7 @@ import '../slideshow/Slideshow.css';
 import Slide from '../slides/Slide';
 import Content from '../content/Content';
 import debounce from '../utils/debounce';
+import Navigation from '../navigation/Navigation';
 
 class Slideshow extends React.Component {
 
@@ -156,17 +157,18 @@ class Slideshow extends React.Component {
   render() {
     return(
       <div id="gallery">
+        <Navigation></Navigation>
         <div id="slideshow">
           <div className="slide slide1">
             <img src={require("../../img/1.jpg") } className="slide__img"/>
             <div class="overlay"/>
-            <h3 class="slide__title">Automation</h3>
+            <h3 class="slide__title">AUTOMATION</h3>
           </div>
 
           <div className="slide slide2">
             <img src={require("../../img/one.jpg") } className="slide__img"/>
             <div class="overlay"/>
-            <h3 class="slide__title">Automation</h3>
+            <h3 class="slide__title">ALEX</h3>
           </div>
 
           <div className="slide slide3">

@@ -3,10 +3,26 @@
 	height: 100vh;
 }
 
+/* .ALEX_BRINDIS_ART {
+  font-size: 54px;
+  font-family: "Circular Std";
+  color: rgb(21, 20, 19);
+  line-height: 1.074;
+  text-align: left;
+  position: absolute;
+  left: 289.46px;
+  top: 1322.857px;
+  width: 213px;
+  height: 154px;
+  z-index: 8;
+} */
+
+
 #gallery {
 	/* background: seagreen; */
 	/* position: fixed; */
 }
+
 #slideshow {
 	/* height: 100vh; */
 	top: calc(50vh);
@@ -52,17 +68,22 @@
 .slide__title {
 	display: inline-block;
 	position: relative;
-	top: -40%;
+	top: -50%;
+	transform: translateY(50%);
 	left: -20%;
 	color: #d04887;
 	z-index: 100;
 	font-family: 'Circular STD';
 	font-size: 4vw;
+	height: 10px;
+	color: rgb(21, 20, 19);
+  line-height: 1.074;
+	text-align: left;
+	letter-spacing: 0.5px;
 }
 
 .char {
 	opacity: 0;
-	color: green;
 	position: relative;
 }
 

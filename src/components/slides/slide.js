@@ -141,33 +141,31 @@ class Slide extends React.Component {
   }
 
   showTitle() {
-    TweenMax.set(this.DOM.titleLetters, { top: '-25%', opacity: 0 });
-    TweenMax.staggerTo(this.DOM.titleLetters, 1.2, {
-      ease: Power4.easeInOut,
-      opacity: 1,
-      top: '-45%'
-    }, 0.02)
-
-    // TweenMax.set(this.DOM.texts.title,{ top: '-25%', opacity: 0 })
-    // TweenMax.to(this.DOM.texts.title, 1.2, {
-    //   ease: Power4.easeInOut,
-    //   opacity: 1,
-    //   top: '-50%'
-    // })
+    setTimeout(() => {
+      TweenMax.set(this.DOM.titleLetters, { top: '-25%', opacity: 0 });
+      TweenMax.staggerTo(this.DOM.titleLetters, 1, {
+        ease: Power4.easeInOut,
+        opacity: 1,
+        top: '-45%'
+      }, 0.025)
+    }, 350);
   }
 
   hideTitle() {
-    // TweenMax.to(this.DOM.texts.title, 1.2, {
-    //   ease: Power4.easeInOut,
-    //   opacity: 0,
-    //   top: '-25%'
-    // })
     TweenMax.staggerTo(this.DOM.titleLetters, 1.2, {
       ease: Power4.easeInOut,
-      opacity: 0,
-      top: '-25%'
+      opacity: 0
+      // top: '-45%'
     }, 0.05)
   }
+
+  hideTitleUp() {
+    TweenMax.to(this.DOM.texts.title, 1.2, {
+      ease: Power4.easeInOut,
+      opacity: 0,
+      top: '-75%'
+    })
+}
 
   cover() {
     this.DOM.cover.style.transformOrigin = "left 0% 0px";
