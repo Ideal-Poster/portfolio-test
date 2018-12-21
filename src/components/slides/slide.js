@@ -1,7 +1,7 @@
 import  React from 'react';
-import { TweenMax, Power4 } from 'gsap';
+import { TweenMax, Power4, Elastic } from 'gsap';
 import debounce from '../utils/debounce';
-
+import charming from 'charming';
 // Window sizes.
 let winsize;
 const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
@@ -20,17 +20,28 @@ class Slide extends React.Component {
     this.DOM.cover = this.DOM.imgWrap.querySelector('.overlay');
     // The texts: the parent wrap, title, number and side text.
     this.DOM.texts = {
-      title: this.DOM.el.querySelector('.slide__title')
+      wrap: this.DOM.el.querySelector('.slide__title-wrap'),
+      title: this.DOM.el.querySelector('.slide__title'),
+      number: this.DOM.el.querySelector('.slide__number')
     };
+
+    charming(this.DOM.texts.title);
+    this.DOM.titleLetters = Array.from(this.DOM.texts.title.querySelectorAll('span'));
+    this.DOM.titleLetters.forEach(letter => {
+      letter.dataset.initial = letter.innerHTML;
+      letter.classList.add('char');
+    });
+
+
 
     this.calcSizes();
     // And also the transforms needed per position.
-    // We have 5 different possible positions for a slide: center, bottom right, top left and outside the viewport (top left or bottom right).
     this.calcTransforms();
     // Init/Bind events.
     this.initEvents();
-    // this.slideTransition();
-    console.log(this.DOM.texts);
+
+    console.log(this.DOM.titleLetters);
+
   }
 
   calcSizes() {
@@ -129,35 +140,38 @@ class Slide extends React.Component {
     });
   }
 
-  cover() {
-    this.DOM.cover.style.transformOrigin = "left 0% 0px";
-    TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
-  }
-
-
   showTitle() {
-    TweenMax.set(this.DOM.texts.title,{ top: '-25%', opacity: 0 })
-    TweenMax.to(this.DOM.texts.title, 1.2, {
+    TweenMax.set(this.DOM.titleLetters, { top: '-25%', opacity: 0 });
+    TweenMax.staggerTo(this.DOM.titleLetters, 1.2, {
       ease: Power4.easeInOut,
       opacity: 1,
-      top: '-50%'
-    })
+      top: '-45%'
+    }, 0.02)
+
+    // TweenMax.set(this.DOM.texts.title,{ top: '-25%', opacity: 0 })
+    // TweenMax.to(this.DOM.texts.title, 1.2, {
+    //   ease: Power4.easeInOut,
+    //   opacity: 1,
+    //   top: '-50%'
+    // })
   }
 
   hideTitle() {
-    TweenMax.to(this.DOM.texts.title, 1.2, {
+    // TweenMax.to(this.DOM.texts.title, 1.2, {
+    //   ease: Power4.easeInOut,
+    //   opacity: 0,
+    //   top: '-25%'
+    // })
+    TweenMax.staggerTo(this.DOM.titleLetters, 1.2, {
       ease: Power4.easeInOut,
       opacity: 0,
       top: '-25%'
-    })
+    }, 0.05)
   }
 
-  hideTitleUp() {
-    TweenMax.to(this.DOM.texts.title, 1.2, {
-      ease: Power4.easeInOut,
-      opacity: 0,
-      top: '-75%'
-    })
+  cover() {
+    this.DOM.cover.style.transformOrigin = "left 0% 0px";
+    TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
   }
 
   // Sets it as current.

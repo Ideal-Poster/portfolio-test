@@ -5,6 +5,7 @@
   "dependencies": {
     "animejs": "^2.2.0",
     "antd": "^3.11.2",
+    "charming": "^2.2.4",
     "gsap": "^2.0.2",
     "imagesloaded": "^4.1.4",
     "react": "^16.4.2",
