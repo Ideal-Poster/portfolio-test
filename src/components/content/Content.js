@@ -12,7 +12,6 @@ class Content extends React.Component {
     this.DOM.text = this.DOM.el.querySelector('.content__text');
     this.DOM.backCtrl = this.DOM.el.parentNode.querySelector('.content__close');
     // this.DOM.backCtrl.addEventListener('click', () => slideshow.hideContent());
-    // console.log(this.DOM.backCtrl);
   }
   show() {
       this.DOM.el.classList.add('content__item--current');

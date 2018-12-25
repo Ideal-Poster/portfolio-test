@@ -21,6 +21,7 @@ class Slideshow extends React.Component {
     this.current = 0;
     this.isAnimated = false;
     this.isContentOpen = false;
+
     this.setPos();
     this.init();
     this.revealSlides();
@@ -60,7 +61,6 @@ class Slideshow extends React.Component {
   }
 
   setPos() {
-
     this.updateSlides();
 
     if (!this.isContentOpen) {
@@ -73,7 +73,6 @@ class Slideshow extends React.Component {
       if (this.prevOutView2) this.prevOutView2.setLeftOutView();
     } else {
       this.currentSlide.setContentOpen();
-
       if (this.nextSlide) this.nextSlide.setRightOutView();
       if (this.nextOutView) this.nextOutView.setRightOutView();
       if (this.nextOutView2) this.nextOutView2.setRightOutView();
@@ -81,6 +80,9 @@ class Slideshow extends React.Component {
       if (this.prevOutView) this.prevOutView.setLeftOutView();
       if (this.prevOutView2) this.prevOutView2.setLeftOutView();
     }
+
+    // set height of slide container
+
   }
   // Navigate the slideshow.
   navigate(direction) {
@@ -125,9 +127,6 @@ class Slideshow extends React.Component {
 
       this.updateSlides();
       this.currentSlide.showTitle();
-
-      console.log(this.current);
-
     }
   }
 
@@ -152,6 +151,7 @@ class Slideshow extends React.Component {
     // this.currentSlide.moveToPosition({position: 3, resetImageScale: true});
     this.coverSlides();
     this.currentSlide.hideTitleUp();
+    // this.setPos();
   }
 
   render() {
@@ -162,38 +162,68 @@ class Slideshow extends React.Component {
           <div className="slide slide1">
             <img src={require("../../img/1.jpg") } className="slide__img"/>
             <div class="overlay"/>
-            <div className="hide__text">
-              <h3 class="slide__title">AUTOMATION</h3>
+
+            <div className="title__container">
+              <div className="hide__text">
+                <h3 class="slide__title">HRIBWRIB</h3>
+              </div>
             </div>
           </div>
 
           <div className="slide slide2">
+
             <img src={require("../../img/one.jpg") } className="slide__img"/>
             <div class="overlay"/>
-            <div className="hide__text">
-              <h3 class="slide__title">ALEX</h3>
+
+            <div className="title__container">
+              <div className="hide__text">
+                <h3 class="slide__title">
+                  Alex<br/>
+                </h3>
+              </div>
+              <div className="hide__text">
+                <h3 class="slide__title">
+                  brindis<br/>
+                </h3>
+              </div>
+              <div className="hide__text">
+                <h3 class="slide__title">
+                  artwork<br/>
+                </h3>
+              </div>
             </div>
+
           </div>
 
           <div className="slide slide3">
-            <img src={require("../../img/one.jpg") } className="slide__img"/>
-            <div class="overlay"/>
-            <div className="hide__text">
-              <h3 class="slide__title">Automation</h3>
+            <div className="test">
+
+              <img src={require("../../img/one.jpg") } className="slide__img"/>
+              <div class="overlay"/>
+            </div>
+            <div className="title__container">
+              <div className="hide__text">
+                <h3 class="slide__title">HRIBWRIB</h3>
+              </div>
             </div>
           </div>
 
           <div className="slide slide4">
-            <img src={require("../../img/one.jpg") } className="slide__img"/>
-            <div class="overlay"/>
-            <div className="hide__text">
-              <h3 class="slide__title">Automation</h3>
+            <div className="test">
+              <img src={require("../../img/one.jpg") } className="slide__img"/>
+              <div class="overlay"/>
+            </div>
+
+            <div className="title__container">
+              <div className="hide__text">
+                <h3 class="slide__title">HRIBWRIB</h3>
+              </div>
             </div>
           </div>
         </div>
-        <button onClick={
+        {/* <button onClick={
          ()=> { this.hideContent(); }
-        }>button</button>
+        }>button</button> */}
 
         <div class="content">
           <div class="content__item">

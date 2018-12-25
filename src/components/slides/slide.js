@@ -1,7 +1,6 @@
 import  React from 'react';
 import { TweenMax, Power4, Elastic } from 'gsap';
 import debounce from '../utils/debounce';
-import charming from 'charming';
 // Window sizes.
 let winsize;
 const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
@@ -21,16 +20,11 @@ class Slide extends React.Component {
     // The texts: the parent wrap, title, number and side text.
     this.DOM.texts = {
       wrap: this.DOM.el.querySelector('.slide__title-wrap'),
-      title: this.DOM.el.querySelector('.slide__title'),
+      title: this.DOM.el.querySelectorAll('.slide__title'),
       number: this.DOM.el.querySelector('.slide__number')
     };
 
-    charming(this.DOM.texts.title);
-    this.DOM.titleLetters = Array.from(this.DOM.texts.title.querySelectorAll('span'));
-    this.DOM.titleLetters.forEach(letter => {
-      letter.dataset.initial = letter.innerHTML;
-      letter.classList.add('char');
-    });
+    this.DOM.texts.title.reverse = Array.from(this.DOM.texts.title).reverse();
 
     this.calcSizes();
     // And also the transforms needed per position.
@@ -138,20 +132,20 @@ class Slide extends React.Component {
   showTitle() {
     setTimeout(() => {
       TweenMax.set(this.DOM.texts.title, { opacity: 1 });
-      TweenMax.to(this.DOM.texts.title, 1.2, {
+      TweenMax.staggerTo(this.DOM.texts.title, 1.2, {
         ease: Power4.easeInOut,
         opacity: 1,
         top: '0px'
-      })
-    });
+      }, 0.05)
+    }, 300);
   }
 
   hideTitle() {
-    TweenMax.to(this.DOM.texts.title, 1.2, {
+    TweenMax.staggerTo(this.DOM.texts.title.reverse, 1.2, {
       ease: Power4.easeInOut,
-      opacity: 0
-      // top: '-45%'
-    })
+      opacity: 0,
+      top: '50px'
+    }, 0.05)
   }
 
   hideTitleUp() {
@@ -160,7 +154,7 @@ class Slide extends React.Component {
       opacity: 0,
       top: '-75%'
     })
-}
+  }
 
   cover() {
     this.DOM.cover.style.transformOrigin = "left 0% 0px";
