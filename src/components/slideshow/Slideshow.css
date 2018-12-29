@@ -74,7 +74,8 @@
 	right: -1.5px;
 	bottom: -1.5px;
 	left: -1.5px;
-	background-color: #c4c2c2;
+	/* background-color: #c4c2c2; */
+	background: white;
 }
 .center__slide {
 	margin: auto;

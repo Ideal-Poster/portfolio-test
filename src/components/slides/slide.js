@@ -161,6 +161,10 @@ class Slide extends React.Component {
     TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
   }
 
+  unCover() {
+    TweenMax.to(this.DOM.cover, 1, { scaleY: 0, top: -1, ease: Power4.easeInOut });
+
+  }
   // Sets it as current.
   setCurrent(isContentOpen) {
     this.isCurrent = true;

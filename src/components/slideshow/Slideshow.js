@@ -146,11 +146,18 @@ class Slideshow extends React.Component {
 
   showContent() {
     this.isContentOpen = true;
-    // if (this.prevSlide) this.prevSlide.moveToPosition({position: -2});
-    // if (this.nextSlide) this.nextSlide.moveToPosition({position: 2});
-    // this.currentSlide.moveToPosition({position: 3, resetImageScale: true});
     this.coverSlides();
     this.currentSlide.hideTitleUp();
+
+    setTimeout(() => {
+      this.currentSlide.moveToPosition({position: 3, resetImageScale: true}).then(()=> {
+        if (this.prevSlide) this.prevSlide.moveToPosition({position: -2});
+        if (this.nextSlide) this.nextSlide.moveToPosition({position: 2});
+      });
+    }, 500);
+    setTimeout(() => {
+      this.currentSlide.unCover();
+    }, 1200);
     // this.setPos();
   }
 
