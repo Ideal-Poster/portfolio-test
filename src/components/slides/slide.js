@@ -120,7 +120,8 @@ class Slide extends React.Component {
   }
 
   fadeIn() {
-    TweenMax.set(this.DOM.cover, {scaleY: 0, top: -1});
+    // this.DOM.cover.style.transformOrigin = "left 0% 0px";
+    TweenMax.set(this.DOM.cover, {bottom: 0, top: '100%'});
 
     TweenMax.from(this.DOM.el, 1, {
       y: 120,
@@ -162,11 +163,22 @@ class Slide extends React.Component {
 
   cover() {
     this.DOM.cover.style.transformOrigin = "left 0% 0px";
-    TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
+    TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: 0, ease: Power4.easeInOut })
+
+    // setTimeout(() => {
+    //   TweenMax.set(this.DOM.cover, { scaleY: 0, top: 1, ease: Power4.easeInOut })
+    // }, 4000);
+
   }
 
   uncover() {
-    TweenMax.to(this.DOM.cover, 1, { scaleY: 0, top: -1, ease: Power4.easeInOut });
+    this.DOM.cover.style.transformOrigin = "left 0% 0px";
+    TweenMax.to(this.DOM.cover, 1, { scaleY: 0, bottom: 0, ease: Power4.easeInOut });
+
+
+    setTimeout(() => {
+      TweenMax.set(this.DOM.cover, { scaleY: 1, left:0, right:0, bottom:0, top:'100%', background: 'blue'})
+    }, 1200);
   }
   // Sets it as current.
   setCurrent(isContentOpen) {

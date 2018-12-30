@@ -62,16 +62,18 @@
 	position: absolute;
 	z-index: 2;
 	transform-origin: right;
+	/* height: 3px; */
 }
 .color__overlay {
 	display: block;
-	/* top: 0; */
+	top: unset;
 	right: 0;
 	bottom: 0;
 	left: 0;
 	background: black;
 }
 .overlay {
+	/* min-height: 20px; */
 	display: block;
 	right: -1.5px;
 	bottom: -1.5px;
