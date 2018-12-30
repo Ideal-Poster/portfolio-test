@@ -40,7 +40,14 @@ class Slideshow extends React.Component {
         this.navigate('prev');
       }
       else if (slide.isPositionedCenter()) {
-        this.showContent();
+        if (!this.isContentOpen) {
+          this.showContent();
+          console.log(this.isContentOpen);
+        }
+        else {
+          this.hideContent();
+        }
+
       }
     };
     for (let slide of this.slides) {
@@ -144,6 +151,12 @@ class Slideshow extends React.Component {
     if (this.nextSlide) setTimeout(() => this.nextSlide.cover(), 400);
   }
 
+  uncoverSlides() {
+    this.currentSlide.uncover();
+    if (this.prevSlide) setTimeout(() => this.prevSlide.uncover(), 200);
+    if (this.nextSlide) setTimeout(() => this.nextSlide.uncover(), 400);
+  }
+
   showContent() {
     this.isContentOpen = true;
     this.coverSlides();
@@ -156,9 +169,25 @@ class Slideshow extends React.Component {
       });
     }, 500);
     setTimeout(() => {
-      this.currentSlide.unCover();
+      this.currentSlide.uncover();
     }, 1200);
     // this.setPos();
+  }
+
+  hideContent() {
+    this.isContentOpen = false;
+    this.currentSlide.cover();
+    setTimeout(() => {
+      // this.currentSlide.hide();
+      this.currentSlide.moveToPosition({position: 0})
+      if (this.prevSlide) this.prevSlide.moveToPosition({position: -1});
+      if (this.nextSlide) this.nextSlide.moveToPosition({position: 1}).then(()=>{
+        this.revealSlides();
+      });
+    }, 500);
+
+    // this.uncoverSlides();
+    // this.revealSlides();
   }
 
   render() {
@@ -168,20 +197,19 @@ class Slideshow extends React.Component {
         <div id="slideshow">
           <div className="slide slide1">
             <img src={require("../../img/1.jpg") } className="slide__img"/>
+            <div class="color__overlay"/>
             <div class="overlay"/>
-
             <div className="title__container">
               <div className="hide__text">
-                <h3 class="slide__title">HRIBWRIB</h3>
+                <h3 className="slide__title">HRIBWRIB</h3>
               </div>
             </div>
           </div>
 
           <div className="slide slide2">
-
             <img src={require("../../img/one.jpg") } className="slide__img"/>
+            <div class="color__overlay"/>
             <div class="overlay"/>
-
             <div className="title__container">
               <div className="hide__text">
                 <h3 class="slide__title">
@@ -199,15 +227,13 @@ class Slideshow extends React.Component {
                 </h3>
               </div>
             </div>
-
           </div>
 
           <div className="slide slide3">
-            <div className="test">
+            <img src={require("../../img/one.jpg") } className="slide__img"/>
+            <div class="color__overlay"/>
+            <div class="overlay"/>
 
-              <img src={require("../../img/one.jpg") } className="slide__img"/>
-              <div class="overlay"/>
-            </div>
             <div className="title__container">
               <div className="hide__text">
                 <h3 class="slide__title">HRIBWRIB</h3>
@@ -216,10 +242,9 @@ class Slideshow extends React.Component {
           </div>
 
           <div className="slide slide4">
-            <div className="test">
-              <img src={require("../../img/one.jpg") } className="slide__img"/>
-              <div class="overlay"/>
-            </div>
+            <img src={require("../../img/one.jpg") } className="slide__img"/>
+            <div class="color__overlay"/>
+            <div class="overlay"/>
 
             <div className="title__container">
               <div className="hide__text">

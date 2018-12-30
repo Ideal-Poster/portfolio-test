@@ -17,6 +17,7 @@ class Slide extends React.Component {
     this.DOM.img = this.DOM.imgWrap.querySelector('.slide__img');
     // Slide cover
     this.DOM.cover = this.DOM.imgWrap.querySelector('.overlay');
+    this.DOM.coverColored = this.DOM.imgWrap.querySelector('.overlay__color')
     // The texts: the parent wrap, title, number and side text.
     this.DOM.texts = {
       wrap: this.DOM.el.querySelector('.slide__title-wrap'),
@@ -119,9 +120,12 @@ class Slide extends React.Component {
   }
 
   fadeIn() {
+    TweenMax.set(this.DOM.cover, {scaleY: 0, top: -1});
+
     TweenMax.from(this.DOM.el, 1, {
       y: 120,
-      ease: Power4.easeOut
+      ease: Power4.easeOut,
+      opacity:0
     });
 
     TweenMax.to(this.DOM.img, 1, {
@@ -161,9 +165,8 @@ class Slide extends React.Component {
     TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: -1, ease: Power4.easeInOut });
   }
 
-  unCover() {
+  uncover() {
     TweenMax.to(this.DOM.cover, 1, { scaleY: 0, top: -1, ease: Power4.easeInOut });
-
   }
   // Sets it as current.
   setCurrent(isContentOpen) {
@@ -231,8 +234,10 @@ class Slide extends React.Component {
     this.DOM.el.classList = 'slide';
   }
 
+
+
   hide() {
-    TweenMax.set(this.DOM.imgWrap, {x:0, y:0, rotationX:0, rotationY:0, rotationZ:0, opacity:0});
+    TweenMax.set(this.DOM.imgWrap, {rotationX:0, rotationY:0, rotationZ:0, opacity:0});
   }
 }
 export default Slide;
