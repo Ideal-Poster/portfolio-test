@@ -26,9 +26,6 @@ class Slideshow extends React.Component {
     this.init();
     this.revealSlides();
 
-    setTimeout(() => {
-      this.currentSlide.showTitle();
-    }, 500);
   }
 
   init() {
@@ -142,6 +139,10 @@ class Slideshow extends React.Component {
       setTimeout(() => {
         slide.fadeIn();
       }, i * 500);
+
+      setTimeout(() => {
+        this.currentSlide.showTitle();
+      }, 900);
     });
   }
 
@@ -167,7 +168,7 @@ class Slideshow extends React.Component {
         if (this.prevSlide) this.prevSlide.moveToPosition({position: -2});
         if (this.nextSlide) this.nextSlide.moveToPosition({position: 2});
       });
-    }, 500);
+    }, 600);
     setTimeout(() => {
       this.currentSlide.uncover();
     }, 1200);
@@ -178,16 +179,14 @@ class Slideshow extends React.Component {
     this.isContentOpen = false;
     this.currentSlide.cover();
     setTimeout(() => {
-      // this.currentSlide.hide();
-      this.currentSlide.moveToPosition({position: 0})
-      if (this.prevSlide) this.prevSlide.moveToPosition({position: -1});
-      if (this.nextSlide) this.nextSlide.moveToPosition({position: 1}).then(()=>{
+      this.currentSlide.moveToPosition({position: 0}).then(()=>{
         this.revealSlides();
       });
-    }, 500);
+      if (this.prevSlide) this.prevSlide.moveToPosition({position: -1});
+      if (this.nextSlide) this.nextSlide.moveToPosition({position: 1})
+    }, 600);
 
-    // this.uncoverSlides();
-    // this.revealSlides();
+
   }
 
   render() {

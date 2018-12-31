@@ -1,5 +1,5 @@
 import  React from 'react';
-import { TweenMax, Power4, Elastic } from 'gsap';
+import { TweenMax, Power4, Power3 } from 'gsap';
 import debounce from '../utils/debounce';
 // Window sizes.
 let winsize;
@@ -90,8 +90,8 @@ class Slide extends React.Component {
         2: right bottom corner outside the viewport
         3: left side, for when the content is shown
         */
-        TweenMax.to(this.DOM.imgWrap, 1.2, {
-            ease: Power4.easeInOut,
+        TweenMax.to(this.DOM.imgWrap, 1, {
+            ease: Power3.easeInOut,
             delay: settings.delay || 0,
             startAt: settings.from !== undefined ? {
                 x: this.transforms[settings.from+2].x,
@@ -136,8 +136,8 @@ class Slide extends React.Component {
 
   showTitle() {
     setTimeout(() => {
-      TweenMax.set(this.DOM.texts.title, { opacity: 1 });
-      TweenMax.staggerTo(this.DOM.texts.title, 1.2, {
+      TweenMax.set(this.DOM.texts.title, { opacity: 1, top:'50px' });
+      TweenMax.staggerTo(this.DOM.texts.title, 1, {
         ease: Power4.easeInOut,
         opacity: 1,
         top: '0px'
@@ -146,39 +146,30 @@ class Slide extends React.Component {
   }
 
   hideTitle() {
-    TweenMax.staggerTo(this.DOM.texts.title.reverse, 1.2, {
+    TweenMax.staggerTo(this.DOM.texts.title.reverse, 1, {
       ease: Power4.easeInOut,
       opacity: 0,
       top: '50px'
-    }, 0.05)
+    }, 0.05);
   }
 
   hideTitleUp() {
-    TweenMax.to(this.DOM.texts.title, 1.2, {
+    TweenMax.to(this.DOM.texts.title, 1, {
       ease: Power4.easeInOut,
       opacity: 0,
       top: '-75%'
-    })
+    });
   }
 
   cover() {
+    TweenMax.set(this.DOM.cover, { scaleY: 1, left:-1, right:-1, bottom:-1, top:'100%'});
+
     this.DOM.cover.style.transformOrigin = "left 0% 0px";
-    TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: 0, ease: Power4.easeInOut })
-
-    // setTimeout(() => {
-    //   TweenMax.set(this.DOM.cover, { scaleY: 0, top: 1, ease: Power4.easeInOut })
-    // }, 4000);
-
+    TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: 0, ease: Power4.easeInOut });
   }
 
   uncover() {
-    this.DOM.cover.style.transformOrigin = "left 0% 0px";
     TweenMax.to(this.DOM.cover, 1, { scaleY: 0, bottom: 0, ease: Power4.easeInOut });
-
-
-    setTimeout(() => {
-      TweenMax.set(this.DOM.cover, { scaleY: 1, left:0, right:0, bottom:0, top:'100%', background: 'blue'})
-    }, 1200);
   }
   // Sets it as current.
   setCurrent(isContentOpen) {
