@@ -200,13 +200,25 @@ class Slideshow extends React.Component {
             <div class="overlay"/>
             <div className="title__container">
               <div className="hide__text">
-                <h3 className="slide__title">HRIBWRIB</h3>
+                <h3 class="slide__title">
+                  Alex<br/>
+                </h3>
+              </div>
+              <div className="hide__text">
+                <h3 class="slide__title">
+                  brindis<br/>
+                </h3>
+              </div>
+              <div className="hide__text">
+                <h3 class="slide__title">
+                  design<br/>
+                </h3>
               </div>
             </div>
           </div>
 
           <div className="slide slide2">
-            <img src={require("../../img/one.jpg") } className="slide__img"/>
+            <img src={require("../../img/2.jpg") } className="slide__img"/>
             <div class="color__overlay"/>
             <div class="overlay"/>
             <div className="title__container">

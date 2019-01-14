@@ -13,8 +13,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Slideshow></Slideshow>
         {/* <Panel></Panel> */}
+        <Slideshow></Slideshow>
       </div>
     );
   }

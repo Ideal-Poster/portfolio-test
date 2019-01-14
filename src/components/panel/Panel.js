@@ -194,7 +194,7 @@ class Panel extends React.Component {
               </Col>
             </Row>
             <Row>
-              <Col offset={13} md={9} align="center">
+              <Col md={9, offset: 13} align="center">
                 <a className="animatable" id="intro__enter">Enter</a>
               </Col>
             </Row>

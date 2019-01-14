@@ -2,6 +2,11 @@
 	background: #c4c2c2;
 	height: 100vh;
 }
+
+body{
+background: #c4c2c2;
+}
+
 #slideshow {
 	grid-template-columns: 26% 48% 26%;
 	grid-column-gap: 0%;
@@ -37,6 +42,7 @@
 	color: rgb(21, 20, 19);
 	display: inline-block;
 	font-family: 'Circular STD';
+	font-weight: 500;
 	font-size: 4vw;
 	height: 10px;
 	letter-spacing: 0.5px;
@@ -51,7 +57,7 @@
 .hide__text {
 	display: block;
 	width: auto;
-	left: -20%;
+	left: -50%;
 	position: relative;
 	overflow: hidden;
 	top: -50%;
@@ -81,9 +87,11 @@
 	background-color: #c4c2c2;
 	/* background: white; */
 }
+
 .center__slide {
 	margin: auto;
 }
+
 .content__title,
 .content__subtitle,
 .content__number,
@@ -91,6 +99,7 @@
 .content__close {
 	opacity: 0;
 }
+
 .content {
 	height: calc(100% - 10rem);
 	left: 0;
@@ -117,3 +126,4 @@
 	top: 50%;
 	transform: translateY(-50%);
 }
+
