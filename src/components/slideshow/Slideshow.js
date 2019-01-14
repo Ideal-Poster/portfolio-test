@@ -39,12 +39,10 @@ class Slideshow extends React.Component {
       else if (slide.isPositionedCenter()) {
         if (!this.isContentOpen) {
           this.showContent();
-          console.log(this.isContentOpen);
         }
         else {
           this.hideContent();
         }
-
       }
     };
     for (let slide of this.slides) {
@@ -152,26 +150,18 @@ class Slideshow extends React.Component {
     if (this.nextSlide) setTimeout(() => this.nextSlide.cover(), 400);
   }
 
-  uncoverSlides() {
-    this.currentSlide.uncover();
-    if (this.prevSlide) setTimeout(() => this.prevSlide.uncover(), 200);
-    if (this.nextSlide) setTimeout(() => this.nextSlide.uncover(), 400);
-  }
-
   showContent() {
     this.isContentOpen = true;
     this.coverSlides();
     this.currentSlide.hideTitleUp();
 
-    setTimeout(() => {
-      this.currentSlide.moveToPosition({position: 3, resetImageScale: true}).then(()=> {
-        if (this.prevSlide) this.prevSlide.moveToPosition({position: -2});
-        if (this.nextSlide) this.nextSlide.moveToPosition({position: 2});
-      });
-    }, 600);
+    setTimeout(() => { this.currentSlide.position(5) }, 1000);
+    setTimeout(() => {  if (this.prevSlide) this.prevSlide.position(0) },1400)
+    setTimeout(() => { if (this.prevSlide) this.prevSlide.position(4) },1600)
+
     setTimeout(() => {
       this.currentSlide.uncover();
-    }, 1200);
+    }, 1600);
     // this.setPos();
   }
 
@@ -179,14 +169,11 @@ class Slideshow extends React.Component {
     this.isContentOpen = false;
     this.currentSlide.cover();
     setTimeout(() => {
-      this.currentSlide.moveToPosition({position: 0}).then(()=>{
-        this.revealSlides();
-      });
-      if (this.prevSlide) this.prevSlide.moveToPosition({position: -1});
-      if (this.nextSlide) this.nextSlide.moveToPosition({position: 1})
-    }, 600);
-
-
+      this.currentSlide.position(2);
+      this.revealSlides();
+      if (this.prevSlide) this.prevSlide.position(1);
+      if (this.nextSlide) this.nextSlide.position(3);
+    }, 1600);
   }
 
   render() {

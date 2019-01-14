@@ -62,51 +62,51 @@ class Slide extends React.Component {
 
   initEvents() {
     this.resizeFn = () => {
-        this.calcSizes();
-        this.calcTransforms();
+      this.calcSizes();
+      this.calcTransforms();
     };
     window.addEventListener('resize', debounce(this.resizeFn, 5));
   }
 
   position(pos) {
     TweenMax.set(this.DOM.imgWrap, {
-        x: this.transforms[pos].x,
-        y: this.transforms[pos].y,
-        rotationX: 0,
-        rotationY: 0,
-        opacity: 1,
-        rotationZ: this.transforms[pos].rotation
+      x: this.transforms[pos].x,
+      y: this.transforms[pos].y,
+      rotationX: 0,
+      rotationY: 0,
+      opacity: 1,
+      rotationZ: this.transforms[pos].rotation
     });
   }
 
   moveToPosition(settings) {
     return new Promise((resolve, reject) => {
-        /*
-        Moves the slide to a specific position:
-        -2: left top corner outside the viewport
-        -1: left top corner (prev slide position)
-        0: center (current slide position)
-        1: right bottom corner (next slide position)
-        2: right bottom corner outside the viewport
-        3: left side, for when the content is shown
-        */
-        TweenMax.to(this.DOM.imgWrap, 1, {
-            ease: Power3.easeInOut,
-            delay: settings.delay || 0,
-            startAt: settings.from !== undefined ? {
-                x: this.transforms[settings.from+2].x,
-                y: this.transforms[settings.from+2].y,
-                rotationX: 0,
-                rotationY: 0
-                // rotationZ: 0
-            } : {},
-            x: this.transforms[settings.position+2].x,
-            y: this.transforms[settings.position+2].y,
-            rotationX: 0,
-            rotationY: 0,
-            // rotationZ: this.transforms[settings.position+2].rotation,
-            onStart: settings.from !== undefined ? () => TweenMax.set(this.DOM.imgWrap, {opacity: 1}) : null,
-            onComplete: resolve
+      /*
+      Moves the slide to a specific position:
+      -2: left top corner outside the viewport
+      -1: left top corner (prev slide position)
+      0: center (current slide position)
+      1: right bottom corner (next slide position)
+      2: right bottom corner outside the viewport
+      3: left side, for when the content is shown
+      */
+      TweenMax.to(this.DOM.imgWrap, 1.2, {
+          ease: Power3.easeInOut,
+          delay: settings.delay || 0,
+          startAt: settings.from !== undefined ? {
+              x: this.transforms[settings.from+2].x,
+              y: this.transforms[settings.from+2].y,
+              rotationX: 0,
+              rotationY: 0
+              // rotationZ: 0
+          } : {},
+          x: this.transforms[settings.position+2].x,
+          y: this.transforms[settings.position+2].y,
+          rotationX: 0,
+          rotationY: 0,
+          // rotationZ: this.transforms[settings.position+2].rotation,
+          onStart: settings.from !== undefined ? () => TweenMax.set(this.DOM.imgWrap, {opacity: 1}) : null,
+          onComplete: resolve
         });
 
         // Reset image scale when showing the content of the current slide.
@@ -121,23 +121,23 @@ class Slide extends React.Component {
 
   fadeIn() {
     // this.DOM.cover.style.transformOrigin = "left 0% 0px";
-    TweenMax.set(this.DOM.cover, {bottom: 0, top: '100%'});
+    TweenMax.set(this.DOM.cover, { bottom: 0, top: '100%' });
 
-    TweenMax.from(this.DOM.el, 1, {
+    TweenMax.from(this.DOM.el, 1.2, {
       y: 120,
       ease: Power4.easeOut,
       opacity:0
     });
 
-    TweenMax.to(this.DOM.img, 1, {
+    TweenMax.to(this.DOM.img, 1.2, {
       opacity: 1
     });
   }
 
   showTitle() {
     setTimeout(() => {
-      TweenMax.set(this.DOM.texts.title, { opacity: 1, top:'50px' });
-      TweenMax.staggerTo(this.DOM.texts.title, 1, {
+      TweenMax.set(this.DOM.texts.title, { opacity: 1.2, top:'50px' });
+      TweenMax.staggerTo(this.DOM.texts.title, 1.2, {
         ease: Power4.easeInOut,
         opacity: 1,
         top: '0px'
@@ -146,7 +146,7 @@ class Slide extends React.Component {
   }
 
   hideTitle() {
-    TweenMax.staggerTo(this.DOM.texts.title.reverse, 1, {
+    TweenMax.staggerTo(this.DOM.texts.title.reverse, 1.2, {
       ease: Power4.easeInOut,
       opacity: 0,
       top: '50px'
@@ -154,7 +154,7 @@ class Slide extends React.Component {
   }
 
   hideTitleUp() {
-    TweenMax.to(this.DOM.texts.title, 1, {
+    TweenMax.to(this.DOM.texts.title, 1.2, {
       ease: Power4.easeInOut,
       opacity: 0,
       top: '-75%'
@@ -165,11 +165,11 @@ class Slide extends React.Component {
     TweenMax.set(this.DOM.cover, { scaleY: 1, left:-1, right:-1, bottom:-1, top:'100%'});
 
     this.DOM.cover.style.transformOrigin = "left 0% 0px";
-    TweenMax.to(this.DOM.cover, 1, { scaleY: 1, top: 0, ease: Power4.easeInOut });
+    TweenMax.to(this.DOM.cover, 1.2, { scaleY: 1, top: 0, ease: Power4.easeInOut });
   }
 
   uncover() {
-    TweenMax.to(this.DOM.cover, 1, { scaleY: 0, bottom: 0, ease: Power4.easeInOut });
+    TweenMax.to(this.DOM.cover, 1.2, { scaleY: 0, bottom: 0, ease: Power4.easeInOut });
   }
   // Sets it as current.
   setCurrent(isContentOpen) {
