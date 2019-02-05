@@ -3,7 +3,7 @@ import { TweenMax, Power4, Power3 } from 'gsap';
 import debounce from '../utils/debounce';
 // Window sizes.
 let winsize;
-const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight};
+const calcWinsize = () => winsize = { width: window.innerWidth, height: window.innerHeight };
 calcWinsize();
 window.addEventListener('resize', debounce(calcWinsize, 5));
 
@@ -236,8 +236,6 @@ class Slide extends React.Component {
     this.isRight = this.isLeft = this.isCurrent = false;
     this.DOM.el.classList = 'slide';
   }
-
-
 
   hide() {
     TweenMax.set(this.DOM.imgWrap, {rotationX:0, rotationY:0, rotationZ:0, opacity:0});

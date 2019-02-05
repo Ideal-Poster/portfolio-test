@@ -4,6 +4,7 @@ import Slide from '../slides/Slide';
 import Content from '../content/Content';
 import debounce from '../utils/debounce';
 import Navigation from '../navigation/Navigation';
+import projectsAPI from '../../api';
 
 class Slideshow extends React.Component {
 
@@ -19,13 +20,16 @@ class Slideshow extends React.Component {
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
     this.slidesTotal = this.slides.length;
     this.current = 0;
-    this.isAnimated = false;
+    this.isAnimating = false;
     this.isContentOpen = false;
 
     this.setPos();
     this.init();
     this.revealSlides();
 
+    // setInterval(() => {
+    //   this.navigate('next');
+    // }, 8000);
   }
 
   init() {
@@ -100,14 +104,6 @@ class Slideshow extends React.Component {
         this.prevSlide.moveToPosition({ position: direction === 'next' ? -2 : 0 });
       }
 
-      // Slide current slide forwards or backwards
-      this.currentSlide.hideTitle();
-
-      this.currentSlide.moveToPosition({ position: direction === 'next' ? -1 : 1 }).then(() => {
-        this.isAnimating = false;
-        this.setPos();
-      });
-
       // Slide next slide to current or out of view right
 
       if (this.nextSlide) {
@@ -123,6 +119,13 @@ class Slideshow extends React.Component {
       if (this.prevOutView) {
         this.prevOutView.moveToPosition({ position: direction === 'next' ? -2 : -1 });
       }
+      // Slide current slide forwards or backwards
+      this.currentSlide.hideTitle();
+
+      this.currentSlide.moveToPosition({ position: direction === 'next' ? -1 : 1 }).then(() => {
+        this.isAnimating = false;
+        this.setPos();
+      });
 
       // Update Current
       this.current = direction === 'next' ? this.current+1 : this.current-1;
@@ -150,30 +153,41 @@ class Slideshow extends React.Component {
     if (this.nextSlide) setTimeout(() => this.nextSlide.cover(), 400);
   }
 
+
   showContent() {
-    this.isContentOpen = true;
-    this.coverSlides();
-    this.currentSlide.hideTitleUp();
+    if ( !this.isAnimating ) {
+      this.isAnimating = true;
+      this.isContentOpen = true;
+      this.coverSlides();
+      this.currentSlide.hideTitleUp();
 
-    setTimeout(() => { this.currentSlide.position(5) }, 1000);
-    setTimeout(() => {  if (this.prevSlide) this.prevSlide.position(0) },1400)
-    setTimeout(() => { if (this.prevSlide) this.prevSlide.position(4) },1600)
+      setTimeout(() => { this.currentSlide.position(5) }, 1000);
+      setTimeout(() => {  if (this.prevSlide) this.prevSlide.position(0) },1400)
+      setTimeout(() => { if (this.prevSlide) this.prevSlide.position(4) },1600)
 
-    setTimeout(() => {
-      this.currentSlide.uncover();
-    }, 1600);
+      setTimeout(() => {
+        this.currentSlide.uncover();
+        setTimeout(() => { this.isAnimating = false } ,1200)
+      }, 1600);
+    }
     // this.setPos();
   }
 
   hideContent() {
-    this.isContentOpen = false;
-    this.currentSlide.cover();
-    setTimeout(() => {
-      this.currentSlide.position(2);
-      this.revealSlides();
-      if (this.prevSlide) this.prevSlide.position(1);
-      if (this.nextSlide) this.nextSlide.position(3);
-    }, 1600);
+    if ( !this.isAnimating ) {
+      this.isAnimating = true;
+      this.isContentOpen = false;
+      this.currentSlide.cover();
+      setTimeout(() => {
+        this.currentSlide.position(2);
+        if (this.prevSlide) this.prevSlide.position(1);
+        if (this.nextSlide) this.nextSlide.position(3);
+        this.revealSlides();
+        setTimeout(() => {
+          this.isAnimating = false;
+        }, 1600)
+      }, 1600);
+    }
   }
 
   render() {
@@ -181,75 +195,28 @@ class Slideshow extends React.Component {
       <div id="gallery">
         <Navigation></Navigation>
         <div id="slideshow">
-          <div className="slide slide1">
-            <img src={require("../../img/1.jpg") } className="slide__img"/>
-            <div class="color__overlay"/>
-            <div class="overlay"/>
-            <div className="title__container">
-              <div className="hide__text">
-                <h3 class="slide__title">
-                  Alex<br/>
-                </h3>
-              </div>
-              <div className="hide__text">
-                <h3 class="slide__title">
-                  brindis<br/>
-                </h3>
-              </div>
-              <div className="hide__text">
-                <h3 class="slide__title">
-                  design<br/>
-                </h3>
+
+          {projectsAPI.projects.map((el, i) =>
+            <div className={`slide slide${i}`}>
+              <img src={require(`../../assets/img/${el.img}`) } className="slide__img"/>
+              <div className="color__overlay"/>
+              <div className="overlay"/>
+
+              <div className="title__container">
+                <div className="hide__text">
+                  <h3 className="slide__title">
+                    Alex Brindis
+                  </h3>
+                </div>
+
+                <div className="hide__text">
+                  <h3 className="slide__title">
+                    design<br/>
+                  </h3>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="slide slide2">
-            <img src={require("../../img/2.jpg") } className="slide__img"/>
-            <div class="color__overlay"/>
-            <div class="overlay"/>
-            <div className="title__container">
-              <div className="hide__text">
-                <h3 class="slide__title">
-                  Alex<br/>
-                </h3>
-              </div>
-              <div className="hide__text">
-                <h3 class="slide__title">
-                  brindis<br/>
-                </h3>
-              </div>
-              <div className="hide__text">
-                <h3 class="slide__title">
-                  artwork<br/>
-                </h3>
-              </div>
-            </div>
-          </div>
-
-          <div className="slide slide3">
-            <img src={require("../../img/one.jpg") } className="slide__img"/>
-            <div class="color__overlay"/>
-            <div class="overlay"/>
-
-            <div className="title__container">
-              <div className="hide__text">
-                <h3 class="slide__title">HRIBWRIB</h3>
-              </div>
-            </div>
-          </div>
-
-          <div className="slide slide4">
-            <img src={require("../../img/one.jpg") } className="slide__img"/>
-            <div class="color__overlay"/>
-            <div class="overlay"/>
-
-            <div className="title__container">
-              <div className="hide__text">
-                <h3 class="slide__title">HRIBWRIB</h3>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
         {/* <button onClick={
          ()=> { this.hideContent(); }

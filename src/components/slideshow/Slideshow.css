@@ -43,9 +43,9 @@ background: #c4c2c2;
 	display: inline-block;
 	font-family: 'Circular STD';
 	font-weight: 500;
-	font-size: 4vw;
+	font-size: 46px;
 	height: 10px;
-	letter-spacing: 0.5px;
+	letter-spacing: -2px;
   line-height: 1.074;
 	opacity: 0;
 	position: relative;
@@ -57,7 +57,7 @@ background: #c4c2c2;
 .hide__text {
 	display: block;
 	width: auto;
-	left: -50%;
+	left: -25%;
 	position: relative;
 	overflow: hidden;
 	top: -50%;
@@ -127,3 +127,7 @@ background: #c4c2c2;
 	transform: translateY(-50%);
 }
 
+
+::selection{ background-color: transparent;}
+::moz-selection{ background-color: transparent;}
+::webkit-selection{ background-color: transparent;}
