@@ -1,7 +1,6 @@
 import  React from 'react';
 import '../slideshow/Slideshow.css';
 import Slide from '../slides/Slide';
-import Content from '../content/Content';
 import debounce from '../utils/debounce';
 import Navigation from '../navigation/Navigation';
 import projectsAPI from '../../api';
@@ -12,10 +11,11 @@ class Slideshow extends React.Component {
     this.DOM = {};
 
     this.slides = [];
-    document.querySelectorAll('.slide').forEach(slideEl => this.slides.push(new Slide(slideEl)));
+    document.querySelectorAll('.slide').forEach((slideEl, i) => this.slides.push(new Slide(slideEl, i)));
+    console.log(this.slides[0]);
 
-    this.contents = [];
-    document.querySelectorAll('.content > .content__item').forEach(contentEl => this.contents.push(new Content(contentEl)));
+    // this.contents = [];
+    // document.querySelectorAll('.content > .content__item').forEach(contentEl => this.contents.push(new Content(contentEl)));
 
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
     this.slidesTotal = this.slides.length;
@@ -42,7 +42,9 @@ class Slideshow extends React.Component {
       }
       else if (slide.isPositionedCenter()) {
         if (!this.isContentOpen) {
-          this.showContent();
+          this.hideSlides();
+          // console.log(slide.index);
+          this.props.history.push(`/site/${slide.index}`);
         }
         else {
           this.hideContent();
@@ -86,7 +88,6 @@ class Slideshow extends React.Component {
       if (this.prevOutView) this.prevOutView.setLeftOutView();
       if (this.prevOutView2) this.prevOutView2.setLeftOutView();
     }
-
     // set height of slide container
 
   }
@@ -154,50 +155,49 @@ class Slideshow extends React.Component {
   }
 
 
-  showContent() {
+  hideSlides() {
     if ( !this.isAnimating ) {
       this.isAnimating = true;
       this.isContentOpen = true;
       this.coverSlides();
       this.currentSlide.hideTitleUp();
 
-      setTimeout(() => { this.currentSlide.position(5) }, 1000);
-      setTimeout(() => {  if (this.prevSlide) this.prevSlide.position(0) },1400)
-      setTimeout(() => { if (this.prevSlide) this.prevSlide.position(4) },1600)
+      // setTimeout(() => { this.currentSlide.position(5) }, 1000);
+      // setTimeout(() => {  if (this.prevSlide) this.prevSlide.position(0) },1400)
+      // setTimeout(() => { if (this.prevSlide) this.prevSlide.position(4) },1600)
 
-      setTimeout(() => {
-        this.currentSlide.uncover();
-        setTimeout(() => { this.isAnimating = false } ,1200)
-      }, 1600);
+      // setTimeout(() => {
+      //   this.currentSlide.uncover();
+      //   setTimeout(() => { this.isAnimating = false } ,1200)
+      // }, 1600);
     }
     // this.setPos();
   }
 
-  hideContent() {
-    if ( !this.isAnimating ) {
-      this.isAnimating = true;
-      this.isContentOpen = false;
-      this.currentSlide.cover();
-      setTimeout(() => {
-        this.currentSlide.position(2);
-        if (this.prevSlide) this.prevSlide.position(1);
-        if (this.nextSlide) this.nextSlide.position(3);
-        this.revealSlides();
-        setTimeout(() => {
-          this.isAnimating = false;
-        }, 1600)
-      }, 1600);
-    }
-  }
+  // hideContent() {
+  //   if ( !this.isAnimating ) {
+  //     this.isAnimating = true;
+  //     this.isContentOpen = false;
+  //     this.currentSlide.cover();
+  //     setTimeout(() => {
+  //       this.currentSlide.position(2);
+  //       if (this.prevSlide) this.prevSlide.position(1);
+  //       if (this.nextSlide) this.nextSlide.position(3);
+  //       this.revealSlides();
+  //       setTimeout(() => {
+  //         this.isAnimating = false;
+  //       }, 1600)
+  //     }, 1600);
+  //   }
+  // }
 
   render() {
     return(
       <div id="gallery">
         <Navigation></Navigation>
         <div id="slideshow">
-
           {projectsAPI.projects.map((el, i) =>
-            <div className={`slide slide${i}`}>
+            <div key={i} className={`slide slide${i}`}>
               <img src={require(`../../assets/img/${el.img}`) } className="slide__img"/>
               <div className="color__overlay"/>
               <div className="overlay"/>
@@ -221,27 +221,6 @@ class Slideshow extends React.Component {
         {/* <button onClick={
          ()=> { this.hideContent(); }
         }>button</button> */}
-
-        <div class="content">
-          <div class="content__item">
-            <span class="content__number">1</span>
-            <h3 class="content__title">Automation</h3>
-            <h4 class="content__subtitle">A tree needs to be your friend if you're going to paint him</h4>
-            <div class="content__text">Just let this happen. We just let this flow right out of our minds. Just relax and let it flow. That easy. Let's put some happy little clouds in our world. It's a very cold picture, I may have to go get my coat. It’s about to freeze me to death. This is gonna be a happy little seascape. Let's go up in here, and start having some fun The least little bit can do so much. Work on one thing at a time. Don't get carried away - we have plenty of time. Put your feelings into it, your heart, it's your world. These trees are so much fun. I get started on them and I have a hard time stopping.</div>
-          </div>
-          <div class="content__item">
-            <span class="content__number">2</span>
-            <h3 class="content__title">Machines</h3>
-            <h4 class="content__subtitle">This is probably the greatest thing to happen in my life</h4>
-            <div class="content__text">We're not trying to teach you a thing to copy. We're just here to teach you a technique, then let you loose into the world. Now, we're going to fluff this cloud. We don't have anything but happy trees here. Let's do that again. Use what you see, don't plan it. Let's go up in here, and start having some fun The least little bit can do so much. Work on one thing at a time. Don't get carried away - we have plenty of time. Put your feelings into it, your heart, it's your world. These trees are so much fun. I get started on them and I have a hard time stopping.</div>
-          </div>
-          <div class="content__item">
-            <span class="content__number">3</span>
-            <h3 class="content__title">Coexistence</h3>
-            <h4 class="content__subtitle">The only guide is your heart</h4>
-            <div class="content__text">Let's go up in here, and start having some fun The least little bit can do so much. Work on one thing at a time. Don't get carried away - we have plenty of time. Put your feelings into it, your heart, it's your world. These trees are so much fun. I get started on them and I have a hard time stopping. But we're not there yet, so we don't need to worry about it. Now let's put some happy little clouds in here. What the devil. A thin paint will stick to a thick paint. I'm going to mix up a little color. </div>
-          </div>
-        </div>
       </div>
     );
   }

@@ -8,8 +8,9 @@ calcWinsize();
 window.addEventListener('resize', debounce(calcWinsize, 5));
 
 class Slide extends React.Component {
-  constructor(el) {
+  constructor(el, index) {
     super();
+    this.index = index;
     this.DOM = {el: el};
     // The image wrap element.
     this.DOM.imgWrap = this.DOM.el;
