@@ -5,7 +5,7 @@ import Project from '../components/project/project';
 import Slideshow from '../components/slideshow/Slideshow';
 
 import { TransitionGroup, Transition } from "react-transition-group";
-import {TweenLite, TweenMax} from 'gsap';
+import { TweenLite, TweenMax } from 'gsap';
 
 const completeCall = target => {
   TweenLite.set(target, { clearProps: "position, width" });
@@ -13,41 +13,35 @@ const completeCall = target => {
 const AppRoutes = (props) => (
   <TransitionGroup>
     <Transition
-        key={props.location.pathname}
-        timeout={2000}
-        mountOnEnter={true}
-        unmountOnExit={true}
-        onEnter={node => {
-          TweenMax.killTweensOf(node);
+      key={props.location.pathname}
+      timeout={2000}
+      mountOnEnter={true}
+      unmountOnExit={true}
+      onEnter={node => {
+        TweenMax.killTweensOf(node);
+        // Node change hands animation
+        const parent = node.parentNode;
+        const targetWidth =
+          parent.clientWidth -
+          parseFloat(getComputedStyle(node.parentNode).paddingLeft) * 2;
+        // set the position and properties of the entering element
+        TweenLite.set(node, {
+          position: "fixed",
+          autoAlpha: 0,
+          width: targetWidth
+        });
+        // animate in the element
+        TweenLite.to(node, 0.5, {
+          autoAlpha: 1,
+          onComplete: completeCall,
+          onCompleteParams: [node],
+          delay: 1
+        });
 
-          // Node change hands animation
-          const parent = node.parentNode;
-          const targetWidth =
-            parent.clientWidth -
-            parseFloat(getComputedStyle(node.parentNode).paddingLeft) * 2;
-          // set the position and properties of the entering element
-          TweenLite.set(node, {
-            position: "fixed",
-            autoAlpha: 0,
-            width: targetWidth
-          });
-          // animate in the element
-          TweenLite.to(node, 0.5, {
-            autoAlpha: 1,
-            onComplete: completeCall,
-            onCompleteParams: [node],
-            delay: 1.5
-          });
-
-          // // console.log(node);
+          // console.log(props.history);
 
           // // first kill all tweens of the target
-          // // console.log(node.childNodes[2].childNodes[0].childNodes[0].id);
-          // // console.log(node.childNodes[2].childNodes[1].childNodes[0]);
-
-          // projectImageIntro(node);
-          // projectNameIntro(node);
-          // projectDescIntro(node);
+          // hideSlides(node);
         }} // on enter end
 
         onExit={node => {
@@ -67,7 +61,7 @@ const AppRoutes = (props) => (
           TweenLite.to(node, 0.5, {
             position: "fixed",
             opacity: 0,
-            delay: 1.5
+            delay: 1
 
           });
 

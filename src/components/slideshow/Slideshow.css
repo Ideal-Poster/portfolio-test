@@ -56,7 +56,7 @@ background: #c4c2c2;
 }
 .hide__text {
 	display: block;
-	width: auto;
+	width: 120%;
 	left: -25%;
 	position: relative;
 	overflow: hidden;

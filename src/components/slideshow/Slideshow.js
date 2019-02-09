@@ -5,17 +5,29 @@ import debounce from '../utils/debounce';
 import Navigation from '../navigation/Navigation';
 import projectsAPI from '../../api';
 
+
+// browserHistory.listen ( location => {
+//   console.log('hello');
+
+// })
 class Slideshow extends React.Component {
+
+  constructor(props) {
+    super(props);
+    console.log(props);
+    props.history.listen( location => {
+      console.log(location);
+      this.hideSlides();
+      // this.revealSlides();
+    })
+
+  }
 
   componentDidMount() {
     this.DOM = {};
 
     this.slides = [];
     document.querySelectorAll('.slide').forEach((slideEl, i) => this.slides.push(new Slide(slideEl, i)));
-    console.log(this.slides[0]);
-
-    // this.contents = [];
-    // document.querySelectorAll('.content > .content__item').forEach(contentEl => this.contents.push(new Content(contentEl)));
 
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
     this.slidesTotal = this.slides.length;
@@ -25,11 +37,13 @@ class Slideshow extends React.Component {
 
     this.setPos();
     this.init();
-    this.revealSlides();
+    setTimeout(() => {
+      this.revealSlides();
+    }, 1000);
+  }
 
-    // setInterval(() => {
-    //   this.navigate('next');
-    // }, 8000);
+  componentWillUnmount() {
+    // this.hideSlides();
   }
 
   init() {
@@ -42,12 +56,12 @@ class Slideshow extends React.Component {
       }
       else if (slide.isPositionedCenter()) {
         if (!this.isContentOpen) {
-          this.hideSlides();
+          // this.hideSlides();
           // console.log(slide.index);
           this.props.history.push(`/site/${slide.index}`);
         }
         else {
-          this.hideContent();
+          // this.hideContent();
         }
       }
     };
@@ -193,7 +207,7 @@ class Slideshow extends React.Component {
 
   render() {
     return(
-      <div id="gallery">
+      <div id="gallery__container">
         <Navigation></Navigation>
         <div id="slideshow">
           {projectsAPI.projects.map((el, i) =>
