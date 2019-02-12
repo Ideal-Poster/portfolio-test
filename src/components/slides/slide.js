@@ -53,9 +53,9 @@ class Slide extends React.Component {
     */
     this.transforms = [
       {x: -1*(winsize.width+this.width), y: 0, rotation: 0},
-      {x: -1*(winsize.width/1.5), y: 0, rotation: 0},
+      {x: -1*(winsize.width/1.6), y: 0, rotation: 0},
       {x: 0, y: 0, rotation: 0},
-      {x: (winsize.width/1.5), y: 0, rotation: 0},
+      {x: (winsize.width/1.6), y: 0, rotation: 0},
       {x: winsize.width+this.width, y: 0, rotation: 0},
       {x: -1*(winsize.width/2 - this.width/2 - winsize.width*0.075), y: 0, rotation: 0}
     ];

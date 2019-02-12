@@ -1,18 +1,37 @@
 body {
   /* font-size: 18px; */
   font-family: "Gotham Book";
+  color: rgba(0, 0, 0, 0.214)
 }
 
 #navlist,
 #links,
 #title,
-#name {
+#name,
+#position__tracker {
   position: fixed;
+  font-family: 'Gertrude Regular';
+}
+
+#position__tracker {
+  left: 0;
+  top: 0;
+  padding-top: 25px;
+  z-index: 400;
+}
+
+#position__tracker > ul > li > .number{
+  font-size: 22px;
+}
+
+#position__tracker > ul > li > .project__name{
+  position: relative;
+  top: -5px;
 }
 
 #navlist {
-  padding-right: 75px;
-  padding-top: 50px;
+  padding-right: 40px;
+  padding-top: 20px;
   right: 0;
   z-index: 400;
 }
@@ -48,14 +67,19 @@ body {
   text-align: center;
 }
 
-#name {
-  left: 0;
-  top: 0;
-  padding-top: 60px;
-  z-index: 400;
-}
+
 
 #name > li {
   display: inline-block;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+}

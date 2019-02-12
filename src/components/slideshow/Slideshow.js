@@ -4,6 +4,7 @@ import Slide from '../slides/Slide';
 import debounce from '../utils/debounce';
 import Navigation from '../navigation/Navigation';
 import projectsAPI from '../../api';
+import { Col } from 'antd';
 
 
 // browserHistory.listen ( location => {
@@ -209,16 +210,23 @@ class Slideshow extends React.Component {
     return(
       <div id="gallery__container">
         <Navigation></Navigation>
+          {/* <Col offset={2}>
+            <h2 id="page__title">
+              Works
+              <br/>
+              Gallery
+            </h2>
+          </Col> */}
         <div id="slideshow">
-          {projectsAPI.projects.map((el, i) =>
+          {projectsAPI.projects.map((project, i) =>
             <div key={i} className={`slide slide${i}`}>
-              <img src={require(`../../assets/img/${el.img}`) } className="slide__img"/>
+              <img src={require(`../../assets/img/${project.img}`) } className="slide__img"/>
               <div className="color__overlay"/>
               <div className="overlay"/>
 
               <div className="title__container">
                 <div className="hide__text">
-                  <h3 className="slide__title">
+                  <h3 className={`slide__title slide__title${i}`}>
                     Alex Brindis
                   </h3>
                 </div>

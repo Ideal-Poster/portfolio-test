@@ -1,11 +1,23 @@
 import React from 'react';
 import '../navigation/Navigation.css'
+import projectApi from '../../api';
 
 const Navigation = () => (
   <div>
-    <ul id="name">
-      <li>Malcolm Gourdine</li>
-    </ul>
+    <div id="position__tracker">
+      <ul>
+        { projectApi.projects.map((project, i) =>
+          <li>
+            <div className="number">
+              -0{i+1}
+            </div>
+            <div className="project__name">
+              {project.name}
+            </div>
+          </li>
+        )}
+      </ul>
+    </div>
     <ul id="navlist">
       <li>Portfolio</li>
       <li>About</li>
