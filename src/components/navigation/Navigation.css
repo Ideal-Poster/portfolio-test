@@ -1,16 +1,11 @@
-body {
-  /* font-size: 18px; */
-  font-family: "Gotham Book";
-  color: rgba(0, 0, 0, 0.214)
-}
-
 #navlist,
 #links,
 #title,
 #name,
 #position__tracker {
   position: fixed;
-  font-family: 'Gertrude Regular';
+  font-family: 'Suisse Int\'l';
+  font-size: 16px;
 }
 
 #position__tracker {
@@ -20,9 +15,6 @@ body {
   z-index: 400;
 }
 
-#position__tracker > ul > li > .number{
-  font-size: 22px;
-}
 
 #position__tracker > ul > li > .project__name{
   position: relative;
@@ -43,8 +35,7 @@ body {
 
 #links {
   bottom: 0;
-  left: 0;
-  padding-bottom: 50px;
+  left: 10px;
   z-index: 400;
 }
 
@@ -53,10 +44,15 @@ body {
   padding-right: 20px;
 }
 
+#links, #title {
+  padding-bottom: 20px;
+
+}
+
 #title {
   bottom: 0;
   left: 50%;
-  padding-bottom: 64px;
+  /* padding-bottom: 20px; */
   text-align: center;
   transform: translateX(-50%);
   z-index: 400;

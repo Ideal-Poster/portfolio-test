@@ -5,7 +5,7 @@ import projectApi from '../../api';
 const Navigation = () => (
   <div>
     <div id="position__tracker">
-      <ul>
+      {/* <ul>
         { projectApi.projects.map((project, i) =>
           <li>
             <div className="number">
@@ -16,7 +16,7 @@ const Navigation = () => (
             </div>
           </li>
         )}
-      </ul>
+      </ul> */}
     </div>
     <ul id="navlist">
       <li>Portfolio</li>

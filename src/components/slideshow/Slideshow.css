@@ -1,16 +1,11 @@
 #gallery__container {
 	overflow-x: hidden;
 	overflow-y: visible;
-	/* width: 100vw; */
 	height: 100vh;
 }
 
 .container {
-	/* background: #c4c2c2; */
 	height: 100vh;
-}
-
-body{
 }
 
 #slideshow {
@@ -23,11 +18,15 @@ body{
 	top: 50vh;
 	transform: translateY(-50%);
 	width: 100vw;
-	/* padding-top: 3.5vw; */
-	/* overflow-x: hidden; */
-	/* overflow-y: visible; */
-
 }
+
+#background__text > * {
+	/* width: 2000px; */
+	font-size: 50px;
+	position: fixed;
+	color: #326855;
+}
+
 .slide {
 	display: inline-block;
 	height: auto;
@@ -42,24 +41,23 @@ body{
 }
 .slide__img {
 	display: inline-block;
-	background: gold;
 	height: 100%;
 	opacity: 0;
 	width: 100%;
 }
 
 body, .overlay {
-	background: #1f1f1f;
+	background: #2a5848;
 }
 
 .slide__title {
-	color: #3e616e;
+	color: #1f1f1c;
 	display: inline-block;
-	font-family: 'Gertrude Regular';
-	/* font-weight: 500; */
-	font-size: 54px;
+	font-family: 'Trebuchet MS';
+	font-weight: 800;
+	font-size: 5vw;
 	height: 10px;
-	letter-spacing: -2px;
+	letter-spacing: -1px;
   line-height: 1.074;
 	opacity: 0;
 	position: relative;

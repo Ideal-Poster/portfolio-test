@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Project from '../components/project/project';
 import Slideshow from '../components/slideshow/Slideshow';
+import SplashPage from '../components/splash-page/splash-page';
 
 import { TransitionGroup, Transition } from "react-transition-group";
 import { TweenLite, TweenMax } from 'gsap';
@@ -74,7 +75,8 @@ const AppRoutes = (props) => (
         }} >
 
       <Switch location={ props.location }>
-        <Route exact path="/" component={ Slideshow }/>
+        <Route exact path="/" component={ SplashPage }/>
+        <Route exact path="/home" component={ Slideshow }/>
         <Route path="/site/:number" component={ Project } />
       </Switch>
     </Transition>

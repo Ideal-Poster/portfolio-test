@@ -15,11 +15,8 @@ class Slideshow extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     props.history.listen( location => {
-      console.log(location);
       this.hideSlides();
-      // this.revealSlides();
     })
 
   }
@@ -218,6 +215,9 @@ class Slideshow extends React.Component {
             </h2>
           </Col> */}
         <div id="slideshow">
+          <div id="background__text">
+            <h1>Hoobie Two Shoobie Rob</h1>
+          </div>
           {projectsAPI.projects.map((project, i) =>
             <div key={i} className={`slide slide${i}`}>
               <img src={require(`../../assets/img/${project.img}`) } className="slide__img"/>
