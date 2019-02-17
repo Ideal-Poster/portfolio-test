@@ -14,18 +14,24 @@
 	grid-template-rows: 100%;
 	grid-template-areas: '... slide ...';
 	display: grid;
-	position: relative;
+	position: fixed;
 	top: 50vh;
 	transform: translateY(-50%);
 	width: 100vw;
 }
+/*
+.background__text {
 
-#background__text > * {
-	/* width: 2000px; */
 	font-size: 50px;
 	position: fixed;
 	color: #326855;
-}
+	text-transform: uppercase;
+	background: linear-gradient(to , #1f4135 0%, transparent 80%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	line-height: 68px;
+	width: 120vw;
+} */
 
 .slide {
 	display: inline-block;
@@ -47,15 +53,15 @@
 }
 
 body, .overlay {
-	background: #2a5848;
+	background: #e7ede3;
 }
 
 .slide__title {
-	color: #1f1f1c;
+	color: #000206;
 	display: inline-block;
-	font-family: 'Trebuchet MS';
+	font-family: 'Separat';
 	font-weight: 800;
-	font-size: 5vw;
+	font-size: 57px;
 	height: 10px;
 	letter-spacing: -1px;
   line-height: 1.074;

@@ -207,17 +207,7 @@ class Slideshow extends React.Component {
     return(
       <div id="gallery__container">
         <Navigation></Navigation>
-          {/* <Col offset={2}>
-            <h2 id="page__title">
-              Works
-              <br/>
-              Gallery
-            </h2>
-          </Col> */}
         <div id="slideshow">
-          <div id="background__text">
-            <h1>Hoobie Two Shoobie Rob</h1>
-          </div>
           {projectsAPI.projects.map((project, i) =>
             <div key={i} className={`slide slide${i}`}>
               <img src={require(`../../assets/img/${project.img}`) } className="slide__img"/>
