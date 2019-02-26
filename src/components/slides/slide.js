@@ -137,7 +137,7 @@ class Slide extends React.Component {
 
   showTitle() {
     setTimeout(() => {
-      TweenMax.set(this.DOM.texts.title, { opacity: 1.2, top:'50px' });
+      TweenMax.set(this.DOM.texts.title, { opacity: 1.2, top:'80px' });
       TweenMax.staggerTo(this.DOM.texts.title, 1.2, {
         ease: Power4.easeInOut,
         opacity: 1,

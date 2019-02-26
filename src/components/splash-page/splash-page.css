@@ -1,50 +1,111 @@
 #background {
-  position: fixed;
   height: 100vh;
   width: 100vw;
-  background: #232323;
-  padding: 20px 40px 20px 40px;
-}
-
-.splash__title, .splash__info {
+  background: #1e2020;
+  position: fixed;
   font-family: 'Separat';
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  line-height: 60px;
+  z-index: -100;
+  /* text-transform: uppercase; */
 }
 
-.splash__title {
-  color:#fefdec;
-  font-size: 57.3px;
-  line-height: 80px;
-  padding-top: 10px;
-}
-
-.splash__info {
-  font-size: 19px;
-  position: absolute;
-  bottom: 0;
-  font-family: 'Separat';
-  color: #ffffff;
-  font-size: 24px;
-  text-transform: uppercase;
-}
-
-.click {
+.hide__splash-text {
   position: relative;
-  top: -30px;
-  font-family: 'Separat';
-  color: #ffffff;
-  font-size: 24px;
-  text-transform: uppercase;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-h2 {
-  /* -webkit-text-stroke: 1px white; */
-  color: white;
+.slash__container {
+  overflow: hidden;
+  /* background: khaki; */
 }
 
-.text__stroke {
-  -webkit-text-stroke: 1px white;
-  color: #232323;
+.web, .design, .slash, .develop {
+  color: #fafafa;
+  margin: 0;
+  line-height: 1.2;
+
+}
+
+.web {
+  text-align: center;
+  margin: 0;
+}
+
+.slash {
+  margin: 0;
+}
+
+.design {
+  right: 0px;
+}
+
+.splash__title  {
+  /* background: tomato; */
+  margin-top: -10px;
+  position: relative;
+  font-size: 6vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.title__text, .slash, .side__items {
+  opacity: 0;
+}
+
+.title__text {
+  /* text-transform: uppercase; */
+}
+
+.row {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+}
+
+
+.name {
+  transform: rotate(90deg) translateX(25%);
+  top: 0;
+  margin-top: 40px;
+  /* background: tomato; */
+
+}
+
+.location {
+  transform: rotate(90deg) translateX(-50%);
+    margin-top: 25px;
+  top: 50vh;
+}
+
+.time {
+  transform: rotate(90deg) translateX(-50%);
+  bottom: 0;
+}
+
+.job__description-1 {
+  transform: rotate(90deg) translateX(-50%);
+  margin-top: 10px;
+  margin-right: 25px;
+  top: 25%;
+  right: -14px;
+}
+
+.job__description-2 {
+  transform: rotate(90deg) translateX(50%);
+  margin-bottom: 45px;
+  margin-right: 25px;
+  bottom: 25%;
+  right: -48px;
+}
+
+.side__items {
+  top: 0;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.side__items > * {
+  position: fixed;
+  color: #FAFAFA;
 }

@@ -4,13 +4,7 @@ import Slide from '../slides/Slide';
 import debounce from '../utils/debounce';
 import Navigation from '../navigation/Navigation';
 import projectsAPI from '../../api';
-import { Col } from 'antd';
 
-
-// browserHistory.listen ( location => {
-//   console.log('hello');
-
-// })
 class Slideshow extends React.Component {
 
   constructor(props) {
@@ -18,7 +12,6 @@ class Slideshow extends React.Component {
     props.history.listen( location => {
       this.hideSlides();
     })
-
   }
 
   componentDidMount() {
@@ -40,9 +33,6 @@ class Slideshow extends React.Component {
     }, 1000);
   }
 
-  componentWillUnmount() {
-    // this.hideSlides();
-  }
 
   init() {
     this.clickFn = (slide) => {
@@ -173,35 +163,8 @@ class Slideshow extends React.Component {
       this.isContentOpen = true;
       this.coverSlides();
       this.currentSlide.hideTitleUp();
-
-      // setTimeout(() => { this.currentSlide.position(5) }, 1000);
-      // setTimeout(() => {  if (this.prevSlide) this.prevSlide.position(0) },1400)
-      // setTimeout(() => { if (this.prevSlide) this.prevSlide.position(4) },1600)
-
-      // setTimeout(() => {
-      //   this.currentSlide.uncover();
-      //   setTimeout(() => { this.isAnimating = false } ,1200)
-      // }, 1600);
     }
-    // this.setPos();
   }
-
-  // hideContent() {
-  //   if ( !this.isAnimating ) {
-  //     this.isAnimating = true;
-  //     this.isContentOpen = false;
-  //     this.currentSlide.cover();
-  //     setTimeout(() => {
-  //       this.currentSlide.position(2);
-  //       if (this.prevSlide) this.prevSlide.position(1);
-  //       if (this.nextSlide) this.nextSlide.position(3);
-  //       this.revealSlides();
-  //       setTimeout(() => {
-  //         this.isAnimating = false;
-  //       }, 1600)
-  //     }, 1600);
-  //   }
-  // }
 
   render() {
     return(
@@ -223,16 +186,13 @@ class Slideshow extends React.Component {
 
                 <div className="hide__text">
                   <h3 className="slide__title">
-                    design<br/>
+                    Design
                   </h3>
                 </div>
               </div>
             </div>
           )}
         </div>
-        {/* <button onClick={
-         ()=> { this.hideContent(); }
-        }>button</button> */}
       </div>
     );
   }
