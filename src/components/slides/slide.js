@@ -137,7 +137,7 @@ class Slide extends React.Component {
 
   showTitle() {
     setTimeout(() => {
-      TweenMax.set(this.DOM.texts.title, { opacity: 1.2, top:'80px' });
+      TweenMax.set(this.DOM.texts.title, { opacity: 1.2, top:'7.5vw' });
       TweenMax.staggerTo(this.DOM.texts.title, 1.2, {
         ease: Power4.easeInOut,
         opacity: 1,
@@ -149,16 +149,19 @@ class Slide extends React.Component {
   hideTitle() {
     TweenMax.staggerTo(this.DOM.texts.title.reverse, 1.2, {
       ease: Power4.easeInOut,
-      opacity: 0,
-      top: '50px'
+      // opacity: 0,
+      top: '7.5vw'
     }, 0.05);
+    setTimeout(() => {
+      TweenMax.set(this.DOM.texts.title.reverse,{ opacity: 0 });
+    }, 1200);
   }
 
   hideTitleUp() {
     TweenMax.to(this.DOM.texts.title, 1.2, {
       ease: Power4.easeInOut,
       opacity: 0,
-      top: '-75%'
+      top: '-75'
     });
   }
 

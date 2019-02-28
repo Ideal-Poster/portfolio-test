@@ -39,9 +39,11 @@
 	width: 100%;
 }
 
-body, .overlay {
+body,.overlay
+{
 	background: #e7ede3;
 }
+
 
 .slide__title {
 	color: #000206;
@@ -49,14 +51,16 @@ body, .overlay {
 	display: inline-block;
 	font-family: 'Separat';
 	top: 0;
-	margin-top: 0;
-	margin-bottom: 0;
-	padding-bottom: 10px;
+	margin: 0;
 	font-size: calc(30px + 4vw);
 	font-weight: 800;
-  line-height: 1;
+	line-height: 1.25;
+  /* line-height: 1; */
 	opacity: 0;
 	z-index: 100;
+	/* min-width: 255px; */
+	/* background: lightseagreen; */
+	min-width:  255px;
 }
 
 .hide__text {

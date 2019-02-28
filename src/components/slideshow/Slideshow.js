@@ -174,18 +174,22 @@ class Slideshow extends React.Component {
           {projectsAPI.projects.map((project, i) =>
             <div key={i} className={`slide slide${i}`}>
               <img src={require(`../../assets/img/${project.img}`) } className="slide__img"/>
-              <div className="color__overlay"/>
+              {/* <div className="color__overlay"/> */}
               <div className="overlay"/>
 
               <div className="title__container">
                 <div className="hide__text">
-                  <h3 className={`slide__title slide__title${i}`}>
+                  <h3 className={`slide__title slide__title${i}`}
+                      style={{ marginBottom: '-8px' }}
+                  >
                     Alex Brindis
                   </h3>
                 </div>
 
                 <div className="hide__text">
-                  <h3 className="slide__title">
+                  <h3 className="slide__title"
+                      style={{ marginTop: '-8px' }}
+                  >
                     Design
                   </h3>
                 </div>

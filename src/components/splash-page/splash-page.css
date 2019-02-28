@@ -49,7 +49,7 @@
   transform: translateY(-50%);
 }
 
-.title__text, .slash, .side__items {
+.title__text, .slash, .side__item {
   opacity: 0;
 }
 
@@ -74,7 +74,7 @@
 
 .location {
   transform: rotate(90deg) translateX(-50%);
-    margin-top: 25px;
+  margin-top: 25px;
   top: 50vh;
 }
 

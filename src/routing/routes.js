@@ -15,7 +15,7 @@ const AppRoutes = (props) => (
   <TransitionGroup>
     <Transition
       key={props.location.pathname}
-      timeout={2000}
+      timeout={4000}
       mountOnEnter={true}
       unmountOnExit={true}
       onEnter={node => {
@@ -39,10 +39,12 @@ const AppRoutes = (props) => (
           delay: 1
         });
 
-          // console.log(props.history);
 
-          // // first kill all tweens of the target
-          // hideSlides(node);
+        console.log(node.id);
+
+        // // first kill all tweens of the target
+        // hideSlides(node);
+
         }} // on enter end
 
         onExit={node => {
