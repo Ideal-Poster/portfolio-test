@@ -24,10 +24,11 @@ class Slideshow extends React.Component {
     this.slidesTotal = this.slides.length;
     this.current = 0;
     this.isAnimating = false;
-    this.isContentOpen = false;
 
     this.setPos();
     this.init();
+    this.resetSlideCover();
+
     setTimeout(() => {
       this.revealSlides();
     }, 1000);
@@ -43,14 +44,7 @@ class Slideshow extends React.Component {
         this.navigate('prev');
       }
       else if (slide.isPositionedCenter()) {
-        if (!this.isContentOpen) {
-          // this.hideSlides();
-          // console.log(slide.index);
-          this.props.history.push(`/site/${slide.index}`);
-        }
-        else {
-          // this.hideContent();
-        }
+        this.props.history.push(`/site/${slide.index}`);
       }
     };
     for (let slide of this.slides) {
@@ -72,26 +66,13 @@ class Slideshow extends React.Component {
 
   setPos() {
     this.updateSlides();
-
-    if (!this.isContentOpen) {
-      this.currentSlide.setCurrent()
-      if (this.nextSlide) this.nextSlide.setRight();
-      if (this.nextOutView) this.nextOutView.setRightOutView();
-      if (this.nextOutView2) this.nextOutView2.setRightOutView();
-      if (this.prevSlide) this.prevSlide.setLeft();
-      if (this.prevOutView) this.prevOutView.setLeftOutView();
-      if (this.prevOutView2) this.prevOutView2.setLeftOutView();
-    } else {
-      this.currentSlide.setContentOpen();
-      if (this.nextSlide) this.nextSlide.setRightOutView();
-      if (this.nextOutView) this.nextOutView.setRightOutView();
-      if (this.nextOutView2) this.nextOutView2.setRightOutView();
-      if (this.prevSlide) this.prevSlide.setLeftOutView();
-      if (this.prevOutView) this.prevOutView.setLeftOutView();
-      if (this.prevOutView2) this.prevOutView2.setLeftOutView();
-    }
-    // set height of slide container
-
+    this.currentSlide.setCurrent()
+    if (this.nextSlide) this.nextSlide.setRight();
+    if (this.nextOutView) this.nextOutView.setRightOutView();
+    if (this.nextOutView2) this.nextOutView2.setRightOutView();
+    if (this.prevSlide) this.prevSlide.setLeft();
+    if (this.prevOutView) this.prevOutView.setLeftOutView();
+    if (this.prevOutView2) this.prevOutView2.setLeftOutView();
   }
   // Navigate the slideshow.
   navigate(direction) {
@@ -108,7 +89,6 @@ class Slideshow extends React.Component {
       }
 
       // Slide next slide to current or out of view right
-
       if (this.nextSlide) {
         this.nextSlide.moveToPosition({ position: direction === 'next' ? 0 : 2 });
       };
@@ -150,17 +130,22 @@ class Slideshow extends React.Component {
     });
   }
 
+  resetSlideCover() {
+    this.slides.forEach(slide => {
+      slide.resetCover();
+    });
+  }
+
   coverSlides() {
     this.currentSlide.cover();
     if (this.prevSlide) setTimeout(() => this.prevSlide.cover(), 200);
     if (this.nextSlide) setTimeout(() => this.nextSlide.cover(), 400);
   }
 
-
   hideSlides() {
     if ( !this.isAnimating ) {
       this.isAnimating = true;
-      this.isContentOpen = true;
+      // this.isContentOpen = true;
       this.coverSlides();
       this.currentSlide.hideTitleUp();
     }

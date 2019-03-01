@@ -15,7 +15,7 @@ const AppRoutes = (props) => (
   <TransitionGroup>
     <Transition
       key={props.location.pathname}
-      timeout={4000}
+      timeout={5000}
       mountOnEnter={true}
       unmountOnExit={true}
       onEnter={node => {
@@ -38,12 +38,10 @@ const AppRoutes = (props) => (
           onCompleteParams: [node],
           delay: 1
         });
+        
+        console.log('pontinibio ' + node);
 
 
-        console.log(node.id);
-
-        // // first kill all tweens of the target
-        // hideSlides(node);
 
         }} // on enter end
 

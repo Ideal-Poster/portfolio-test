@@ -137,11 +137,14 @@ class Slide extends React.Component {
 
   showTitle() {
     setTimeout(() => {
-      TweenMax.set(this.DOM.texts.title, { opacity: 1.2, top:'7.5vw' });
+      TweenMax.set(this.DOM.texts.title, { opacity: 1 });
+    }, 350);
+
+    setTimeout(() => {
       TweenMax.staggerTo(this.DOM.texts.title, 1.2, {
         ease: Power4.easeInOut,
-        opacity: 1,
-        top: '0px'
+        // opacity: 1,
+        top: '0'
       }, 0.05)
     }, 300);
   }
@@ -163,6 +166,10 @@ class Slide extends React.Component {
       opacity: 0,
       top: '-75'
     });
+  }
+
+  resetCover() {
+    TweenMax.set(this.DOM.cover, { scaleY: 1, left:-1, right:-1, bottom:-1, top:'0%'});
   }
 
   cover() {
