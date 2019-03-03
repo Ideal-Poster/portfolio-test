@@ -6,6 +6,13 @@ import { TweenMax, Power4 }from 'gsap';
 import { Link }from 'react-router-dom';
 
 class SplashPage extends Component {
+  constructor(props) {
+    super(props);
+    setTimeout(() => {
+      this.props.history.push(`/home`);
+    }, 10000);
+  }
+
   componentDidMount() {
     this.DOM = {
       texts: {}

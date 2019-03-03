@@ -35,6 +35,8 @@ class Slide extends React.Component {
     this.initEvents();
   }
 
+
+
   calcSizes() {
     this.width = (this.DOM.imgWrap.offsetWidth);
     this.height = (this.DOM.imgWrap.offsetHeight);

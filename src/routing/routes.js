@@ -38,12 +38,7 @@ const AppRoutes = (props) => (
           onCompleteParams: [node],
           delay: 1
         });
-        
-        console.log('pontinibio ' + node);
-
-
-
-        }} // on enter end
+      }} // on enter end
 
         onExit={node => {
 

@@ -154,7 +154,6 @@ class Slideshow extends React.Component {
   render() {
     return(
       <div id="gallery__container">
-        <Navigation></Navigation>
         <div id="slideshow">
           {projectsAPI.projects.map((project, i) =>
             <div key={i} className={`slide slide${i}`}>
@@ -182,6 +181,8 @@ class Slideshow extends React.Component {
             </div>
           )}
         </div>
+        <Navigation></Navigation>
+
       </div>
     );
   }

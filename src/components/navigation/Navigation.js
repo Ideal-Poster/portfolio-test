@@ -4,31 +4,23 @@ import projectApi from '../../api';
 
 const Navigation = () => (
   <div>
-    <div id="position__tracker">
-      {/* <ul>
-        { projectApi.projects.map((project, i) =>
-          <li>
-            <div className="number">
-              -0{i+1}
-            </div>
-            <div className="project__name">
-              {project.name}
-            </div>
-          </li>
-        )}
-      </ul> */}
+    <div className="navlist__top">
+      <ul id="navlist">
+        <li>Portfolio</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
     </div>
-    <ul id="navlist">
-      <li>Portfolio</li>
-      <li>About</li>
-      <li>Contact</li>
-    </ul>
-    <ul id="links">
-      <li>Github</li>
-      <li>Instagram</li>
-    </ul>
-    <div id="title">
-      <div>Web Design & Web Development</div>
+    <div className="navlist__bottom">
+      <ul id="links">
+        <li>Github</li>
+        <li>Instagram</li>
+      </ul>
+      <div id="title">
+        {/* <p> */}
+          Web Design & Web Development
+          {/* </p> */}
+      </div>
     </div>
   </div>
 )
