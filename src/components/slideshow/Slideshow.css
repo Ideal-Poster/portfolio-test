@@ -26,6 +26,7 @@
 	grid-area: slide;
 	position: relative;
 	width: 100%;
+	/* background: green; */
 }
 .slide > img {
 	display: block;
@@ -51,24 +52,21 @@ body
 	/* overflow: hidden; */
 }
 
-
 .slide__title {
 	color: #000206;
 	position: relative;
 	display: inline-block;
-	font-family: 'Separat';
-	top: 100%;
+	font-family: 'Scto Grotesk A';
 	margin: 0;
-  font-size: 6vw;
-	font-size: calc(30px + 4vw);
-	font-weight: 800;
-	line-height: 1.25;
-  /* line-height: 1; */
+	font-size: 8vw;
+	font-weight: 600;
+	line-height: 1;
 	opacity: 0;
 	z-index: 100;
-	/* min-width: 255px; */
-	/* background: lightseagreen; */
-	min-width:  255px;
+	text-transform: uppercase;
+	/* top: -100px; */
+
+	/* background: darkcyan; */
 }
 
 .hide__text {
@@ -76,8 +74,9 @@ body
 	left: -25%;
 	position: relative;
 	overflow: hidden;
-	top: 50%;
-	transform: translateY(-100%);
+	letter-spacing: -0.5em;
+	/* background: palevioletred; */
+
 }
 
 .color__overlay,
@@ -107,15 +106,15 @@ body
 	margin: auto;
 }
 
-
 .title__container {
-	height: 100%;
+	height: auto;
 	position: fixed;
 	z-index: 500;
 	top: 50%;
+	/* background: khaki; */
 	transform: translateY(-50%);
+	width: 110%;
 }
-
 
 ::selection{ background-color: transparent;}
 ::moz-selection{ background-color: transparent;}

@@ -1,9 +1,11 @@
 import React from 'react';
-import './project.css';
+import './Project.css';
 
 import projectsAPI from '../../api';
 
 import { Col, Row } from 'antd';
+import { Link }from 'react-router-dom';
+
 
 
 const Project = (props) => {
@@ -13,6 +15,9 @@ const Project = (props) => {
 
   return(
     <div id="project__container">
+    <Link to="/home">
+      <p>back</p>
+    </Link>
       <Col offset={1} span={22} style={{background: 'green'}}>
         <Col span={12}>
           {/* <p>hello my name is blinko the sintk josep</p> */}

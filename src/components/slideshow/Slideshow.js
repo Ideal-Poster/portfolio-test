@@ -9,6 +9,9 @@ class Slideshow extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      current: 0
+    }
     props.history.listen( location => {
       this.hideSlides();
     })
@@ -22,12 +25,11 @@ class Slideshow extends React.Component {
 
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
     this.slidesTotal = this.slides.length;
-    this.current = 0;
+    // this.current = 0;
     this.isAnimating = false;
 
     this.setPos();
     this.init();
-    this.resetSlideCover();
 
     setTimeout(() => {
       this.revealSlides();
@@ -55,13 +57,13 @@ class Slideshow extends React.Component {
   }
 
   updateSlides() {
-    this.nextOutView2 = this.slides[this.current + 3];
-    this.nextOutView = this.slides[this.current+2];
-    this.nextSlide = this.slides[this.current+1];
-    this.currentSlide = this.slides[this.current];
-    this.prevSlide = this.slides[this.current-1];
-    this.prevOutView = this.slides[this.current-2];
-    this.prevOutView2 = this.slides[this.current-3];
+    this.nextOutView2 = this.slides[this.state.current + 3];
+    this.nextOutView = this.slides[this.state.current +2];
+    this.nextSlide = this.slides[this.state.current +1];
+    this.currentSlide = this.slides[this.state.current];
+    this.prevSlide = this.slides[this.state.current -1];
+    this.prevOutView = this.slides[this.state.current -2];
+    this.prevOutView2 = this.slides[this.state.current -3];
   }
 
   setPos() {
@@ -80,7 +82,7 @@ class Slideshow extends React.Component {
     if ( !this.isAnimating ) {
       this.isAnimating = true;
 
-      const upcomingPos = direction === 'next' ? this.current + 1 : this.current - 1;
+      const upcomingPos = direction === 'next' ? this.state.current + 1 : this.state.current - 1;
       this.upcomingSlide = this.slides[upcomingPos];
 
       // Move previous slide to current or out of view left
@@ -111,7 +113,7 @@ class Slideshow extends React.Component {
       });
 
       // Update Current
-      this.current = direction === 'next' ? this.current+1 : this.current-1;
+      this.state.current = direction === 'next' ? this.state.current+1 : this.state.current-1;
 
       this.updateSlides();
       this.currentSlide.showTitle();
@@ -154,6 +156,8 @@ class Slideshow extends React.Component {
   render() {
     return(
       <div id="gallery__container">
+      {/* <NavigationEvents onDidFocus={() => console.log('I am triggered')} /> */}
+
         <div id="slideshow">
           {projectsAPI.projects.map((project, i) =>
             <div key={i} className={`slide slide${i}`}>
@@ -164,17 +168,25 @@ class Slideshow extends React.Component {
               <div className="title__container">
                 <div className="hide__text">
                   <h3 className={`slide__title slide__title${i}`}
-                      style={{ marginBottom: '-8px' }}
-                  >
-                    Alex Brindis
+                      // style={{ marginBottom: '-8px' }}
+                      >
+                    Alex
                   </h3>
                 </div>
 
                 <div className="hide__text">
-                  <h3 className="slide__title"
-                      style={{ marginTop: '-8px' }}
-                  >
-                    Design
+                  <h3 className={`slide__title slide__title${i}`}
+                      // style={{ marginBottom: '-8px' }}
+                      >
+                   Brindis
+                  </h3>
+                </div>
+
+                <div className="hide__text">
+                  <h3 className={`slide__title slide__title${i}`}
+                      // style={{ marginBottom: '-8px' }}
+                      >
+                   Design
                   </h3>
                 </div>
               </div>

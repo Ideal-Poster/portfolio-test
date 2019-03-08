@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './splash-page.css' ;
+import './Splash-page.css' ;
 import { Col, Row } from 'antd';
 import { TweenMax, Power4 }from 'gsap';
 

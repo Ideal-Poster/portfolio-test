@@ -15,7 +15,7 @@ const AppRoutes = (props) => (
   <TransitionGroup>
     <Transition
       key={props.location.pathname}
-      timeout={5000}
+      timeout={500}
       mountOnEnter={true}
       unmountOnExit={true}
       onEnter={node => {
@@ -40,34 +40,29 @@ const AppRoutes = (props) => (
         });
       }} // on enter end
 
-        onExit={node => {
+      onExit={node => {
 
-          TweenMax.killTweensOf(node);
-          const parent = node.parentNode;
-          const targetWidth =
-            parent.clientWidth -
-            parseFloat(getComputedStyle(node.parentNode).paddingLeft) * 2;
+        TweenMax.killTweensOf(node);
+        const parent = node.parentNode;
+        const targetWidth =
+          parent.clientWidth -
+          parseFloat(getComputedStyle(node.parentNode).paddingLeft) * 2;
 
-          // set the position of the element
-          TweenLite.set(node, {
-            position: "fixed",
-            width: targetWidth
-          });
+        // set the position of the element
+        TweenLite.set(node, {
+          position: "fixed",
+          width: targetWidth
+        });
 
-          TweenLite.to(node, 0.5, {
-            position: "fixed",
-            opacity: 0,
-            delay: 1
+        TweenLite.to(node, 0.5, {
+          position: "fixed",
+          opacity: 0,
+          // delay: 1
 
-          });
+        });
 
-          // Project image exit animation
-          // const image = node.childNodes[1].childNodes[0].childNodes[0];
 
-          // projectImageExit(node);
-          // projectNameExit(node);
-
-        }} >
+      }} >
 
       <Switch location={ props.location }>
         <Route exact path="/" component={ SplashPage }/>

@@ -33,6 +33,8 @@ class Slide extends React.Component {
     this.calcTransforms();
     // Init/Bind events.
     this.initEvents();
+      // TweenMax.set(this.DOM.texts.title, { top: 110 });
+
   }
 
 
@@ -69,6 +71,8 @@ class Slide extends React.Component {
       this.calcTransforms();
     };
     window.addEventListener('resize', debounce(this.resizeFn, 5));
+    TweenMax.set(this.DOM.texts.title, { top: 110 });
+
   }
 
   position(pos) {
@@ -138,14 +142,14 @@ class Slide extends React.Component {
   }
 
   showTitle() {
-    setTimeout(() => {
-      TweenMax.set(this.DOM.texts.title, { opacity: 1 });
-    }, 350);
+    // setTimeout(() => {
+    TweenMax.set(this.DOM.texts.title, { opacity: 1 });
+    // }, 350);
 
     setTimeout(() => {
       TweenMax.staggerTo(this.DOM.texts.title, 1.2, {
         ease: Power4.easeInOut,
-        // opacity: 1,
+        opacity: 1,
         top: '0'
       }, 0.05)
     }, 300);
@@ -154,8 +158,7 @@ class Slide extends React.Component {
   hideTitle() {
     TweenMax.staggerTo(this.DOM.texts.title.reverse, 1.2, {
       ease: Power4.easeInOut,
-      // opacity: 0,
-      top: '7.5vw'
+      top: '110'
     }, 0.05);
     setTimeout(() => {
       TweenMax.set(this.DOM.texts.title.reverse,{ opacity: 0 });
