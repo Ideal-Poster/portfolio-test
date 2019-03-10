@@ -12,9 +12,9 @@ class Slideshow extends React.Component {
     this.state = {
       current: 0
     }
-    props.history.listen( location => {
-      this.hideSlides();
-    })
+    // props.history.listen( location => {
+    //   this.hideSlides();
+    // })
   }
 
   componentDidMount() {
@@ -157,35 +157,50 @@ class Slideshow extends React.Component {
     return(
       <div id="gallery__container">
       {/* <NavigationEvents onDidFocus={() => console.log('I am triggered')} /> */}
+        <div className="background__text-container">
+          <div className="
+            background__hide-text
+            background__line-1">
+            <h1 className="background__title">&thinsp;Alex</h1>
+          </div>
+          <div className="
+          background__hide-text
+          background__line-2">
+            <h1 className="background__title">&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;Brindis</h1>
+          </div>
+          <div className="
+          background__hide-text
+          background__line-3">
+            <h1 className="background__title">Design</h1>
+          </div>
+        </div>
 
         <div id="slideshow">
           {projectsAPI.projects.map((project, i) =>
             <div key={i} className={`slide slide${i}`}>
-              <img src={require(`../../assets/img/${project.img}`) } className="slide__img"/>
-              {/* <div className="color__overlay"/> */}
-              <div className="overlay"/>
+              {/* <div className="overlay__container"> */}
+                <div className="overlay">
+                  <div>
+                    <img src={require(`../../assets/img/${project.img}`) } className="slide__img"/>
+                  </div>
+                </div>
+              {/* </div> */}
 
               <div className="title__container">
                 <div className="hide__text">
-                  <h3 className={`slide__title slide__title${i}`}
-                      // style={{ marginBottom: '-8px' }}
-                      >
+                  <h3 className={`slide__title slide__title${i}`}>
                     Alex
                   </h3>
                 </div>
 
                 <div className="hide__text">
-                  <h3 className={`slide__title slide__title${i}`}
-                      // style={{ marginBottom: '-8px' }}
-                      >
+                  <h3 className={`slide__title slide__title${i}`}>
                    Brindis
                   </h3>
                 </div>
 
                 <div className="hide__text">
-                  <h3 className={`slide__title slide__title${i}`}
-                      // style={{ marginBottom: '-8px' }}
-                      >
+                  <h3 className={`slide__title slide__title${i}`}>
                    Design
                   </h3>
                 </div>
@@ -193,7 +208,7 @@ class Slideshow extends React.Component {
             </div>
           )}
         </div>
-        <Navigation></Navigation>
+        {/* <Navigation></Navigation> */}
 
       </div>
     );

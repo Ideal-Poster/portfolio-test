@@ -15,7 +15,7 @@ const AppRoutes = (props) => (
   <TransitionGroup>
     <Transition
       key={props.location.pathname}
-      timeout={500}
+      timeout={2000}
       mountOnEnter={true}
       unmountOnExit={true}
       onEnter={node => {
@@ -57,7 +57,7 @@ const AppRoutes = (props) => (
         TweenLite.to(node, 0.5, {
           position: "fixed",
           opacity: 0,
-          // delay: 1
+          delay: 1
 
         });
 

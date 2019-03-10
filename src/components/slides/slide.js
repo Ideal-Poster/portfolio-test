@@ -18,7 +18,6 @@ class Slide extends React.Component {
     this.DOM.img = this.DOM.imgWrap.querySelector('.slide__img');
     // Slide cover
     this.DOM.cover = this.DOM.imgWrap.querySelector('.overlay');
-    this.DOM.coverColored = this.DOM.imgWrap.querySelector('.overlay__color')
     // The texts: the parent wrap, title, number and side text.
     this.DOM.texts = {
       wrap: this.DOM.el.querySelector('.slide__title-wrap'),
@@ -33,11 +32,7 @@ class Slide extends React.Component {
     this.calcTransforms();
     // Init/Bind events.
     this.initEvents();
-      // TweenMax.set(this.DOM.texts.title, { top: 110 });
-
   }
-
-
 
   calcSizes() {
     this.width = (this.DOM.imgWrap.offsetWidth);
@@ -72,7 +67,6 @@ class Slide extends React.Component {
     };
     window.addEventListener('resize', debounce(this.resizeFn, 5));
     TweenMax.set(this.DOM.texts.title, { top: 110 });
-
   }
 
   position(pos) {
@@ -115,36 +109,24 @@ class Slide extends React.Component {
           onStart: settings.from !== undefined ? () => TweenMax.set(this.DOM.imgWrap, {opacity: 1}) : null,
           onComplete: resolve
         });
-
-        // Reset image scale when showing the content of the current slide.
-        // if ( settings.resetImageScale ) {
-        //     TweenMax.to(this.DOM.img, .8, {
-        //         ease: Power4.easeInOut,
-        //         scale: 1
-        //     });
-        // }
     });
   }
 
   fadeIn() {
-    // this.DOM.cover.style.transformOrigin = "left 0% 0px";
-    TweenMax.set(this.DOM.cover, { bottom: 0, top: '100%' });
-
-    TweenMax.from(this.DOM.el, 1.2, {
-      y: 120,
+    TweenMax.from(this.DOM.cover, 1.2, {
+      y: '10%',
       ease: Power4.easeOut,
       opacity:0
     });
+    console.log(this.DOM.el);
 
-    TweenMax.to(this.DOM.img, 1.2, {
+    TweenMax.to(this.DOM.cover, 1.2, {
       opacity: 1
     });
   }
 
   showTitle() {
-    // setTimeout(() => {
     TweenMax.set(this.DOM.texts.title, { opacity: 1 });
-    // }, 350);
 
     setTimeout(() => {
       TweenMax.staggerTo(this.DOM.texts.title, 1.2, {
@@ -178,10 +160,11 @@ class Slide extends React.Component {
   }
 
   cover() {
-    TweenMax.set(this.DOM.cover, { scaleY: 1, left:-1, right:-1, bottom:-1, top:'100%'});
-
     this.DOM.cover.style.transformOrigin = "left 0% 0px";
-    TweenMax.to(this.DOM.cover, 1.2, { scaleY: 1, top: 0, ease: Power4.easeInOut });
+    TweenMax.to(this.DOM.cover, 1.2, {
+      height: 0,
+      ease: Power4.easeInOut
+    });
   }
 
   uncover() {

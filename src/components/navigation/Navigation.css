@@ -25,7 +25,7 @@ li {
 .navlist__top {
   position: fixed;
   padding-left: 40px;
-  /* top: 12vh; */
+  top: 0vh;
 }
 
 .navlist__bottom {

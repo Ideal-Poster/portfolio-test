@@ -1,7 +1,6 @@
 #gallery__container {
 	overflow-x: hidden;
 	overflow-y: visible;
-	/* height: 100vh; */
 }
 
 .container {
@@ -26,19 +25,25 @@
 	grid-area: slide;
 	position: relative;
 	width: 100%;
-	/* background: green; */
 }
+
 .slide > img {
 	display: block;
 	height: auto;
 	width: 100%;
 	z-index: 100;
+	position:fixed;
+	overflow: auto;
+	display: flex;
+
+
 }
+
 .slide__img {
-	display: inline-block;
 	height: 100%;
-	opacity: 0;
 	width: 100%;
+	/* opacity: 0; */
+
 }
 
 body
@@ -48,8 +53,8 @@ body
 }
 
 .overlay {
-	background: grey;
-	/* overflow: hidden; */
+	overflow: hidden;
+	opacity: 0;
 }
 
 .slide__title {
@@ -64,42 +69,28 @@ body
 	opacity: 0;
 	z-index: 100;
 	text-transform: uppercase;
-	/* top: -100px; */
-
-	/* background: darkcyan; */
 }
 
 .hide__text {
 	height: auto;
-	left: -25%;
 	position: relative;
 	overflow: hidden;
 	letter-spacing: -0.5em;
-	/* background: palevioletred; */
-
+	padding-left: 5%;
 }
 
-.color__overlay,
 .overlay {
-	position: absolute;
+	right: -1.5px;
+	bottom: -1.5px;
+	left: -1.5px;
+	border: 1px solid deeppink;
+	position: static;
 	z-index: 2;
 	transform-origin: right;
 }
 
-.color__overlay {
-	display: block;
-	top: unset;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: black;
-}
-
-.overlay {
-	display: block;
-	right: -1.5px;
-	bottom: -1.5px;
-	left: -1.5px;
+.overlay__container {
+	height: 100%;
 }
 
 .center__slide {
@@ -111,7 +102,6 @@ body
 	position: fixed;
 	z-index: 500;
 	top: 50%;
-	/* background: khaki; */
 	transform: translateY(-50%);
 	width: 110%;
 }
@@ -119,3 +109,34 @@ body
 ::selection{ background-color: transparent;}
 ::moz-selection{ background-color: transparent;}
 ::webkit-selection{ background-color: transparent;}
+
+.background__hide-text {
+	margin: 0 auto;
+	position: fixed;
+}
+
+.background__title {
+	color: transparent;
+  font-size: 17.5vw;
+	text-transform: uppercase;
+	margin: 0;
+	line-height: 1;
+	font-family: 'Scto Grotesk A';
+	padding: 0;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: black;
+	padding-top: 2.5%;
+}
+.background__line-1 {
+	bottom: 65vh;
+}
+
+.background__line-2 {
+	top: 50vh;
+	transform: translateY(-50%);
+}
+
+.background__line-3 {
+	top: 65vh;
+	transform: translateX(-10%);
+}
