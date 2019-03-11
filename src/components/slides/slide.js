@@ -11,7 +11,7 @@ class Slide extends React.Component {
   constructor(el, index) {
     super();
     this.index = index;
-    this.DOM = {el: el};
+    this.DOM = { el: el };
     // The image wrap element.
     this.DOM.imgWrap = this.DOM.el;
     // The image element.
@@ -118,7 +118,6 @@ class Slide extends React.Component {
       ease: Power4.easeOut,
       opacity:0
     });
-    console.log(this.DOM.el);
 
     TweenMax.to(this.DOM.cover, 1.2, {
       opacity: 1
@@ -155,9 +154,9 @@ class Slide extends React.Component {
     });
   }
 
-  resetCover() {
-    TweenMax.set(this.DOM.cover, { scaleY: 1, left:-1, right:-1, bottom:-1, top:'0%'});
-  }
+  // resetCover() {
+  //   TweenMax.set(this.DOM.cover, { scaleY: 1, left:-1, right:-1, bottom:-1, top:'0%'});
+  // }
 
   cover() {
     this.DOM.cover.style.transformOrigin = "left 0% 0px";
@@ -230,14 +229,14 @@ class Slide extends React.Component {
   isPositionedCenter() {
     return this.isCurrent;
   }
-  // Reset classes and state.
-  reset() {
-    this.isRight = this.isLeft = this.isCurrent = false;
-    this.DOM.el.classList = 'slide';
-  }
+  // // Reset classes and state.
+  // reset() {
+  //   this.isRight = this.isLeft = this.isCurrent = false;
+  //   this.DOM.el.classList = 'slide';
+  // }
 
-  hide() {
-    TweenMax.set(this.DOM.imgWrap, {rotationX:0, rotationY:0, rotationZ:0, opacity:0});
-  }
+  // hide() {
+  //   TweenMax.set(this.DOM.imgWrap, {rotationX:0, rotationY:0, rotationZ:0, opacity:0});
+  // }
 }
 export default Slide;

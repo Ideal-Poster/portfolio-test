@@ -54,7 +54,7 @@ body
 
 .overlay {
 	overflow: hidden;
-	opacity: 0;
+	/* opacity: 0; */
 }
 
 .slide__title {
@@ -75,7 +75,6 @@ body
 	height: auto;
 	position: relative;
 	overflow: hidden;
-	letter-spacing: -0.5em;
 	padding-left: 5%;
 }
 
@@ -83,10 +82,10 @@ body
 	right: -1.5px;
 	bottom: -1.5px;
 	left: -1.5px;
-	border: 1px solid deeppink;
 	position: static;
 	z-index: 2;
 	transform-origin: right;
+	opacity: 0;
 }
 
 .overlay__container {

@@ -3,21 +3,20 @@ import './Project.css';
 
 import projectsAPI from '../../api';
 
-import { Col, Row } from 'antd';
+import { Col } from 'antd';
 import { Link }from 'react-router-dom';
 
 
 
 const Project = (props) => {
-  const index = parseInt(props.match.params.number);
+  const index = parseInt(props.match.params.number, 10);
   const project = projectsAPI.projects[index];
-  // console.log('MUTUMBO' + projectsAPI.projects);
 
   return(
     <div id="project__container">
-    <Link to="/home">
-      <p>back</p>
-    </Link>
+      <Link to="/home">
+        <p>back</p>
+      </Link>
       <Col offset={1} span={22} style={{background: 'green'}}>
         <Col span={12}>
           {/* <p>hello my name is blinko the sintk josep</p> */}

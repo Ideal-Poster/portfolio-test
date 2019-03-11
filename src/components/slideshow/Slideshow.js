@@ -2,19 +2,18 @@ import  React from 'react';
 import '../slideshow/Slideshow.css';
 import Slide from '../slides/Slide';
 import debounce from '../utils/debounce';
-import Navigation from '../navigation/Navigation';
 import projectsAPI from '../../api';
+import { TransitionGroup, Transition } from "react-transition-group";
+
 
 class Slideshow extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      current: 0
+      current: 0,
+      exiting: false
     }
-    // props.history.listen( location => {
-    //   this.hideSlides();
-    // })
   }
 
   componentDidMount() {
@@ -33,9 +32,14 @@ class Slideshow extends React.Component {
 
     setTimeout(() => {
       this.revealSlides();
-    }, 1000);
+    }, 2000);
   }
 
+  componentDidUpdate() {
+    if (this.state.exting === true) {
+     this.hideSlides();
+    }
+  }
 
   init() {
     this.clickFn = (slide) => {
@@ -46,6 +50,7 @@ class Slideshow extends React.Component {
         this.navigate('prev');
       }
       else if (slide.isPositionedCenter()) {
+        this.setState({ exting: true });
         this.props.history.push(`/site/${slide.index}`);
       }
     };
@@ -104,16 +109,16 @@ class Slideshow extends React.Component {
       if (this.prevOutView) {
         this.prevOutView.moveToPosition({ position: direction === 'next' ? -2 : -1 });
       }
+
       // Slide current slide forwards or backwards
       this.currentSlide.hideTitle();
-
       this.currentSlide.moveToPosition({ position: direction === 'next' ? -1 : 1 }).then(() => {
         this.isAnimating = false;
         this.setPos();
       });
 
-      // Update Current
-      this.state.current = direction === 'next' ? this.state.current+1 : this.state.current-1;
+      // Update Current`
+      this.setState({ current: direction === 'next' ? this.state.current+1 : this.state.current-1 });
 
       this.updateSlides();
       this.currentSlide.showTitle();
@@ -156,7 +161,6 @@ class Slideshow extends React.Component {
   render() {
     return(
       <div id="gallery__container">
-      {/* <NavigationEvents onDidFocus={() => console.log('I am triggered')} /> */}
         <div className="background__text-container">
           <div className="
             background__hide-text
@@ -178,13 +182,11 @@ class Slideshow extends React.Component {
         <div id="slideshow">
           {projectsAPI.projects.map((project, i) =>
             <div key={i} className={`slide slide${i}`}>
-              {/* <div className="overlay__container"> */}
-                <div className="overlay">
-                  <div>
-                    <img src={require(`../../assets/img/${project.img}`) } className="slide__img"/>
-                  </div>
+              <div className="overlay">
+                <div>
+                  <img src={require(`../../assets/img/${project.img}`) } className="slide__img" alt="slide"/>
                 </div>
-              {/* </div> */}
+              </div>
 
               <div className="title__container">
                 <div className="hide__text">
@@ -195,21 +197,19 @@ class Slideshow extends React.Component {
 
                 <div className="hide__text">
                   <h3 className={`slide__title slide__title${i}`}>
-                   Brindis
+                  Brindis
                   </h3>
                 </div>
 
                 <div className="hide__text">
                   <h3 className={`slide__title slide__title${i}`}>
-                   Design
+                  Design
                   </h3>
                 </div>
               </div>
             </div>
           )}
         </div>
-        {/* <Navigation></Navigation> */}
-
       </div>
     );
   }
