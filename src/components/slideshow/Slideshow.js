@@ -3,8 +3,7 @@ import '../slideshow/Slideshow.css';
 import Slide from '../slides/Slide';
 import debounce from '../utils/debounce';
 import projectsAPI from '../../api';
-import { TransitionGroup, Transition } from "react-transition-group";
-
+import { TweenMax, Power4 } from 'gsap';
 
 class Slideshow extends React.Component {
 
@@ -19,20 +18,37 @@ class Slideshow extends React.Component {
   componentDidMount() {
     this.DOM = {};
 
+    this.DOM.backgroundTitles = [];
+
+    // Hide background text
+    document.querySelectorAll('.background__reveal').forEach((title, i) => {
+      if(i !== 2 && i !== 4){
+        this.DOM.backgroundTitles.push(title)
+      } else
+      {
+        if(i === 2) { this.DOM.backgroundTitles.push([]); }
+        this.DOM.backgroundTitles[2].push(title);
+      }
+    });
+
     this.slides = [];
     document.querySelectorAll('.slide').forEach((slideEl, i) => this.slides.push(new Slide(slideEl, i)));
 
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
     this.slidesTotal = this.slides.length;
-    // this.current = 0;
     this.isAnimating = false;
 
     this.setPos();
     this.init();
 
     setTimeout(() => {
+      this.showBackgroundTitle();
+    }, 1000);
+
+    setTimeout(() => {
       this.revealSlides();
-    }, 2000);
+    }, 3000);
+
   }
 
   componentDidUpdate() {
@@ -40,6 +56,20 @@ class Slideshow extends React.Component {
      this.hideSlides();
     }
   }
+
+  showBackgroundTitle() {
+    // TweenMax.set(this.DOM.backgroundTitles, { top: 130 });
+    TweenMax.set(this.DOM.backgroundTitles, {
+      opacity: 1,
+      top: 130
+    })
+
+    TweenMax.staggerTo(this.DOM.backgroundTitles, 2, {
+      ease: Power4.easeInOut,
+      top: 0
+    }, 0.5)
+  }
+
 
   init() {
     this.clickFn = (slide) => {
@@ -81,6 +111,7 @@ class Slideshow extends React.Component {
     if (this.prevOutView) this.prevOutView.setLeftOutView();
     if (this.prevOutView2) this.prevOutView2.setLeftOutView();
   }
+
   // Navigate the slideshow.
   navigate(direction) {
     // If animating return.
@@ -161,23 +192,25 @@ class Slideshow extends React.Component {
   render() {
     return(
       <div id="gallery__container">
-        <div className="background__text-container">
+        {/* <div className="background__text-container"> */}
           <div className="
             background__hide-text
             background__line-1">
-            <h1 className="background__title">&thinsp;Alex</h1>
+            <h1 className="background__title background__title-1 background__reveal">&thinsp;Stone</h1>
           </div>
           <div className="
           background__hide-text
           background__line-2">
-            <h1 className="background__title">&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;Brindis</h1>
+            <h1 className="background__title background__title-2 background__reveal">&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;Stupid</h1>
           </div>
           <div className="
           background__hide-text
           background__line-3">
-            <h1 className="background__title">Design</h1>
+            <h1 className="background__title background__title-3 background__reveal">Studio.</h1>
+            <p className="background__description background__title-4 background__reveal">Brooklyn based digital design & fullstack web development created by Malcolm Gourdine.</p>
+            <h1  className="background__title background__title-5 background__reveal">Studio.</h1>
           </div>
-        </div>
+        {/* </div> */}
 
         <div id="slideshow">
           {projectsAPI.projects.map((project, i) =>
@@ -203,7 +236,7 @@ class Slideshow extends React.Component {
 
                 <div className="hide__text">
                   <h3 className={`slide__title slide__title${i}`}>
-                  Design
+                  Design.
                   </h3>
                 </div>
               </div>

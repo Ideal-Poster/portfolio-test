@@ -66,7 +66,10 @@ class Slide extends React.Component {
       this.calcTransforms();
     };
     window.addEventListener('resize', debounce(this.resizeFn, 5));
+
     TweenMax.set(this.DOM.texts.title, { top: 110 });
+    // console.log(this.DOM.texts.title);
+
   }
 
   position(pos) {

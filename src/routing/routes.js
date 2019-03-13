@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Project from '../components/project/project';
 import Slideshow from '../components/slideshow/Slideshow';
@@ -16,7 +16,10 @@ const AppRoutes = (props) => (
   <TransitionGroup>
     <Transition
       key={props.location.pathname}
-      timeout={2000}
+      timeout={{
+        enter: 1000,
+        exit: 1000
+      }}
       mountOnEnter={true}
       unmountOnExit={true}
       onEnter={
