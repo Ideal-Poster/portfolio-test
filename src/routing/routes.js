@@ -41,7 +41,7 @@ const AppRoutes = (props) => (
             autoAlpha: 1,
             onComplete: completeCall,
             onCompleteParams: [node],
-            delay: 2
+            delay: 1
           });
         }
       } // on enter end
@@ -62,7 +62,7 @@ const AppRoutes = (props) => (
         TweenLite.to(node, 1, {
           position: "fixed",
           opacity: 0,
-          delay: 2
+          delay: 1
         });
       }}
       >

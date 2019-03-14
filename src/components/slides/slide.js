@@ -131,7 +131,7 @@ class Slide extends React.Component {
 
     setTimeout(() => {
       TweenMax.staggerTo(this.DOM.texts.title, 1.2, {
-        ease: Power4.easeInOut,
+        ease: Power4.easeOut,
         opacity: 1,
         top: '0'
       }, 0.05)

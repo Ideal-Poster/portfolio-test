@@ -48,7 +48,8 @@
 body
 /* ,.overlay */
 {
-	background: #fcb9ab;
+	/* background: #262882; */
+	background:#B6B49B;
 }
 
 .overlay {
@@ -133,7 +134,7 @@ body
 	-webkit-text-stroke-width: 1.5px;
 	-webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-	-webkit-text-stroke-color: #FD1C17;
+	-webkit-text-stroke-color: #22211D;
 	transform: translateY(6.5%);
 	line-height: 0.75;
 }
@@ -145,11 +146,12 @@ body
 	font-size: 16px;
 	margin: 0;
 	min-width: 20%;
-	color: #FFFFFF;
+	color: #22211D;
 	align-self: flex-end;
 	padding-left: 20px;
 	padding-right: 20px;
 	margin-bottom: -2px;
+	opacity: 0;
 	/* background: saddlebrown; */
 }
 

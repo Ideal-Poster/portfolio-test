@@ -18,11 +18,11 @@ class Slideshow extends React.Component {
   componentDidMount() {
     this.DOM = {};
 
+    this.DOM.backgroundDesc = document.querySelector('.background__description');
     this.DOM.backgroundTitles = [];
-
     // Hide background text
     document.querySelectorAll('.background__reveal').forEach((title, i) => {
-      if(i !== 2 && i !== 4){
+      if(i < 2){
         this.DOM.backgroundTitles.push(title)
       } else
       {
@@ -47,7 +47,7 @@ class Slideshow extends React.Component {
 
     setTimeout(() => {
       this.revealSlides();
-    }, 3000);
+    }, 4000);
 
   }
 
@@ -59,14 +59,19 @@ class Slideshow extends React.Component {
 
   showBackgroundTitle() {
     TweenMax.set(this.DOM.backgroundTitles, {
-      top: '100%'
+      top: '110%'
     })
 
     TweenMax.staggerTo(this.DOM.backgroundTitles, 2, {
       ease: Power4.easeInOut,
       top: 0,
       opacity: 1
-    }, 0.5)
+    }, 0.5);
+
+    TweenMax.to(this.DOM.backgroundDesc, 3, {
+      ease: Power4.easeInOut,
+      opacity: 1
+    })
   }
 
 
@@ -159,11 +164,10 @@ class Slideshow extends React.Component {
     this.slides.forEach((slide, i) => {
       setTimeout(() => {
         slide.fadeIn();
-      }, i * 500);
+      }, i * 100);
 
-      setTimeout(() => {
-        this.currentSlide.showTitle();
-      }, 900);
+      this.currentSlide.showTitle();
+
     });
   }
 
@@ -195,19 +199,19 @@ class Slideshow extends React.Component {
           <div className="
             background__hide-text
             background__line-1">
-            <h1 className="background__title background__title-1 background__reveal">&thinsp;Stone</h1>
+            <h1 className="background__title background__reveal">&thinsp;Stone</h1>
           </div>
           <div className="
           background__hide-text
           background__line-2">
-            <h1 className="background__title background__title-2 background__reveal">&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;Stupid</h1>
+            <h1 className="background__title background__reveal">&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;Stupid</h1>
           </div>
           <div className="
           background__hide-text
           background__line-3">
-            <h1 className="background__title background__title-3 background__reveal">Studio.</h1>
-            <p className="background__description background__title-4 background__reveal">Brooklyn based digital design & fullstack web development created by Malcolm Gourdine.</p>
-            <h1  className="background__title background__title-5 background__reveal">Studio.</h1>
+            <h1 className="background__title background__reveal">Studio.</h1>
+            <p className="background__description">Brooklyn based digital design & fullstack web development created by Malcolm Gourdine.</p>
+            <h1  className="background__title background__reveal">Studio.</h1>
           </div>
         {/* </div> */}
 
