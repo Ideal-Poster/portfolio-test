@@ -5,6 +5,10 @@ import debounce from '../utils/debounce';
 import projectsAPI from '../../api';
 import { TweenMax, Power4 } from 'gsap';
 
+
+let colors = [
+   ['#B6B39C', '#ea2f3c', '#cd5d63']
+];
 class Slideshow extends React.Component {
 
   constructor(props) {
@@ -20,16 +24,6 @@ class Slideshow extends React.Component {
 
     this.DOM.backgroundDesc = document.querySelector('.background__description');
     this.DOM.backgroundTitles = [];
-    // Hide background text
-    document.querySelectorAll('.background__reveal').forEach((title, i) => {
-      if(i < 2){
-        this.DOM.backgroundTitles.push(title)
-      } else
-      {
-        if(i === 2) { this.DOM.backgroundTitles.push([]); }
-        this.DOM.backgroundTitles[2].push(title);
-      }
-    });
 
     this.slides = [];
     document.querySelectorAll('.slide').forEach((slideEl, i) => this.slides.push(new Slide(slideEl, i)));
@@ -48,7 +42,6 @@ class Slideshow extends React.Component {
     setTimeout(() => {
       this.showSlides();
     }, 4000);
-
   }
 
   componentDidUpdate() {
@@ -57,7 +50,24 @@ class Slideshow extends React.Component {
     }
   }
 
+  initBackgroundText() {
+    document.querySelectorAll('.background__reveal').forEach((title, i) => {
+      if(i < 2){
+        this.DOM.backgroundTitles.push(title)
+      } else
+      {
+        if(i === 2) { this.DOM.backgroundTitles.push([]); }
+        this.DOM.backgroundTitles[2].push(title);
+      }
+    });
+  }
+
+  selectColorPalette() {
+
+  }
+
   showBackgroundTitle() {
+    this.initBackgroundText();
     TweenMax.set(this.DOM.backgroundTitles, {
       top: '110%'
     })
@@ -178,7 +188,6 @@ class Slideshow extends React.Component {
   hideSlides() {
     if ( !this.isAnimating ) {
       this.isAnimating = true;
-      // this.isContentOpen = true;
       this.coverSlides();
       this.currentSlide.hideTitleUp();
     }
