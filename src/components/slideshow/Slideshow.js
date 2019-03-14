@@ -58,15 +58,14 @@ class Slideshow extends React.Component {
   }
 
   showBackgroundTitle() {
-    // TweenMax.set(this.DOM.backgroundTitles, { top: 130 });
     TweenMax.set(this.DOM.backgroundTitles, {
-      opacity: 1,
-      top: 130
+      top: '100%'
     })
 
     TweenMax.staggerTo(this.DOM.backgroundTitles, 2, {
       ease: Power4.easeInOut,
-      top: 0
+      top: 0,
+      opacity: 1
     }, 0.5)
   }
 

@@ -67,9 +67,8 @@ class Slide extends React.Component {
     };
     window.addEventListener('resize', debounce(this.resizeFn, 5));
 
-    TweenMax.set(this.DOM.texts.title, { top: 110 });
+    TweenMax.set(this.DOM.texts.title, { top: 100 });
     // console.log(this.DOM.texts.title);
-
   }
 
   position(pos) {
@@ -119,7 +118,7 @@ class Slide extends React.Component {
     TweenMax.from(this.DOM.cover, 1.2, {
       y: '10%',
       ease: Power4.easeOut,
-      opacity:0
+      opacity: 0
     });
 
     TweenMax.to(this.DOM.cover, 1.2, {
@@ -156,10 +155,6 @@ class Slide extends React.Component {
       top: '-75'
     });
   }
-
-  // resetCover() {
-  //   TweenMax.set(this.DOM.cover, { scaleY: 1, left:-1, right:-1, bottom:-1, top:'0%'});
-  // }
 
   cover() {
     this.DOM.cover.style.transformOrigin = "left 0% 0px";
