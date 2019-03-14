@@ -46,7 +46,7 @@ class Slideshow extends React.Component {
     }, 1000);
 
     setTimeout(() => {
-      this.revealSlides();
+      this.showSlides();
     }, 4000);
 
   }
@@ -160,20 +160,12 @@ class Slideshow extends React.Component {
     }
   }
 
-  revealSlides() {
+  showSlides() {
     this.slides.forEach((slide, i) => {
       setTimeout(() => {
         slide.fadeIn();
       }, i * 100);
-
       this.currentSlide.showTitle();
-
-    });
-  }
-
-  resetSlideCover() {
-    this.slides.forEach(slide => {
-      slide.resetCover();
     });
   }
 
@@ -195,25 +187,23 @@ class Slideshow extends React.Component {
   render() {
     return(
       <div id="gallery__container">
-        {/* <div className="background__text-container"> */}
-          <div className="
-            background__hide-text
-            background__line-1">
-            <h1 className="background__title background__reveal">&thinsp;Stone</h1>
-          </div>
-          <div className="
+        <div className="
           background__hide-text
-          background__line-2">
-            <h1 className="background__title background__reveal">&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;Stupid</h1>
-          </div>
-          <div className="
-          background__hide-text
-          background__line-3">
-            <h1 className="background__title background__reveal">Studio.</h1>
-            <p className="background__description">Brooklyn based digital design & fullstack web development created by Malcolm Gourdine.</p>
-            <h1  className="background__title background__reveal">Studio.</h1>
-          </div>
-        {/* </div> */}
+          background__line-1">
+          <h1 className="background__title background__reveal">&thinsp;Stone</h1>
+        </div>
+        <div className="
+        background__hide-text
+        background__line-2">
+          <h1 className="background__title background__reveal">&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;Stupid</h1>
+        </div>
+        <div className="
+        background__hide-text
+        background__line-3">
+          <h1 className="background__title background__reveal">Studio.</h1>
+          <p className="background__description">Brooklyn based digital design & fullstack web development created by Malcolm Gourdine.</p>
+          <h1  className="background__title background__reveal">Studio.</h1>
+        </div>
 
         <div id="slideshow">
           {projectsAPI.projects.map((project, i) =>

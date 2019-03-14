@@ -227,14 +227,5 @@ class Slide extends React.Component {
   isPositionedCenter() {
     return this.isCurrent;
   }
-  // // Reset classes and state.
-  // reset() {
-  //   this.isRight = this.isLeft = this.isCurrent = false;
-  //   this.DOM.el.classList = 'slide';
-  // }
-
-  // hide() {
-  //   TweenMax.set(this.DOM.imgWrap, {rotationX:0, rotationY:0, rotationZ:0, opacity:0});
-  // }
 }
 export default Slide;
