@@ -11,6 +11,8 @@ import { TweenLite, TweenMax } from 'gsap';
 const completeCall = target => {
   TweenLite.set(target, { clearProps: "position, width" });
 };
+
+
 const AppRoutes = (props) => (
 
   <TransitionGroup>
@@ -69,7 +71,9 @@ const AppRoutes = (props) => (
 
       <Switch location={ props.location }>
         <Route exact path="/" component={ SplashPage }/>
-        <Route exact path="/home" component={ Slideshow }/>
+        {/* <Route exact path="/home" component={ Slideshow }/> */}
+        <Route path='/home' render={(props) => <Slideshow  {...props} isAuthed={true} />}
+/>
         <Route path="/site/:number" component={ Project } />
       </Switch>
     </Transition>

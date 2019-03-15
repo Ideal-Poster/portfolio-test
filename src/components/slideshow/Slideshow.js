@@ -7,7 +7,18 @@ import { TweenMax, Power4 } from 'gsap';
 
 
 let colors = [
-   ['#B6B39C', '#ea2f3c', '#cd5d63']
+    // Grey
+   ['#B6B39C', '#ea2f3c', '#cd5d63'],
+   // Black
+   ['#21201d','#b6b39c','#b6b39c'],
+   // Yellow
+   ['#e7c986','#FEFEFE','#0e1f2c'],
+   // orange
+   ['#f7b47c','#eb272d','#fefefe'],
+   // white
+   ['#e6e7e9','#eb1020','#eb1020'],
+   // blue
+   ['#7bc4d3','#fef4f2','#030603']
 ];
 class Slideshow extends React.Component {
 
@@ -22,6 +33,7 @@ class Slideshow extends React.Component {
   componentDidMount() {
     this.DOM = {};
 
+    this.DOM.container = document.querySelector('#gallery__container');
     this.DOM.backgroundDesc = document.querySelector('.background__description');
     this.DOM.backgroundTitles = [];
 
@@ -35,13 +47,18 @@ class Slideshow extends React.Component {
     this.setPos();
     this.init();
 
+
     setTimeout(() => {
-      this.showBackgroundTitle();
+      this.showBackgroundText();
     }, 1000);
 
     setTimeout(() => {
       this.showSlides();
     }, 4000);
+
+    // console.log(colors[0][0]);
+    this.selectColorPalette();
+
   }
 
   componentDidUpdate() {
@@ -63,10 +80,22 @@ class Slideshow extends React.Component {
   }
 
   selectColorPalette() {
+    TweenMax.to(this.DOM.container, 1 , {
+      background: colors[Math.floor(Math.random() * 6)][0]
+    });
+    // TweenMax.to(this.DOM.backgroundDesc, 1 , {
+    //   webkitTextStrokeColor: 'yellow'
+    // });
+
+    console.log(
+      this.DOM.backgroundDesc
+    );
+    this.DOM.backgroundDesc.style["-webkit-text-stroke-color"] = "grey";
+
 
   }
 
-  showBackgroundTitle() {
+  showBackgroundText() {
     this.initBackgroundText();
     TweenMax.set(this.DOM.backgroundTitles, {
       top: '110%'
@@ -199,18 +228,18 @@ class Slideshow extends React.Component {
         <div className="
           background__hide-text
           background__line-1">
-          <h1 className="background__title background__reveal">&thinsp;Stone</h1>
+          <h1 className="background__title background__reveal">&thinsp;Record.</h1>
         </div>
         <div className="
         background__hide-text
         background__line-2">
-          <h1 className="background__title background__reveal">&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;Stupid</h1>
+          <h1 className="background__title background__reveal">&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;Shows.</h1>
         </div>
         <div className="
         background__hide-text
         background__line-3">
           <h1 className="background__title background__reveal">Studio.</h1>
-          <p className="background__description">Brooklyn based digital design & fullstack web development created by Malcolm Gourdine.</p>
+          <p className="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
           <h1  className="background__title background__reveal">Studio.</h1>
         </div>
 
