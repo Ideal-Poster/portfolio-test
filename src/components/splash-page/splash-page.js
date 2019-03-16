@@ -33,11 +33,6 @@ class SplashPage extends Component {
     }, 0.5)
   }
 
-  fadeInBackground() {
-    // let body = document.getElementById
-    // console.log(body);
-  }
-
   render() {
     return(
       <div id="splash__page">

@@ -81,16 +81,16 @@ class Slideshow extends React.Component {
 
   selectColorPalette() {
     TweenMax.to(this.DOM.container, 1 , {
-      background: colors[Math.floor(Math.random() * 6)][0]
+      // background: colors[Math.floor(Math.random() * 6)][0]
     });
     // TweenMax.to(this.DOM.backgroundDesc, 1 , {
     //   webkitTextStrokeColor: 'yellow'
     // });
 
-    console.log(
-      this.DOM.backgroundDesc
-    );
-    this.DOM.backgroundDesc.style["-webkit-text-stroke-color"] = "grey";
+    // console.log(
+    //   this.DOM.backgroundDesc
+    // );
+    // this.DOM.backgroundDesc.style["-webkit-text-stroke-color"] = "grey";
 
 
   }
