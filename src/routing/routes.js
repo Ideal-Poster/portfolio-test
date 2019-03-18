@@ -40,7 +40,7 @@ class AppRoutes extends React.Component {
   render() {
     return(
       <div>
-        <h1 onClick={this.props.onSelectScheme}>hello</h1>
+      <h1 onClick={this.props.onRemoveScheme}>hello</h1>
       <TransitionGroup>
       <Transition
         key={this.props.location.pathname}
@@ -116,7 +116,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSelectScheme: ()=> dispatch({type: 'SELECT'})
+    onRemoveScheme: ()=> dispatch({type: 'REMOVE'})
   }
 }
 

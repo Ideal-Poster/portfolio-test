@@ -19,7 +19,6 @@ const Project = (props) => {
       </Link>
       <Col offset={1} span={22} style={{background: 'green'}}>
         <Col span={12}>
-          {/* <p>hello my name is blinko the sintk josep</p> */}
           <img className="project__img" src={ require(`../../assets/img/${project.img}`) } alt=""/>
         </Col>
       </Col>
