@@ -8,6 +8,8 @@ import SplashPage from '../components/splash-page/splash-page';
 import { TransitionGroup, Transition } from "react-transition-group";
 import { TweenLite, TweenMax } from 'gsap';
 
+import { connect } from 'react-redux';
+
 import _ from 'lodash';
 
 const completeCall = target => {
@@ -18,32 +20,27 @@ class AppRoutes extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      colorScheme: 0,
-      repeatArray: [0, 1, 2, 3, 4, 5]
-    };
+    // this.state = {
+    //   colorScheme: 0,
+    //   repeatArray: [0, 1, 2, 3, 4, 5]
+    // };
   }
 
-  updateColorScheme() {
-    // clone state array
-    let repeatArrayClone = this.state.repeatArray;
-    // select number from array
-    let number = repeatArrayClone[Math.floor(Math.random() * repeatArrayClone.length)];
-    // remove number from clone
-    _.remove(repeatArrayClone, function(n) {
-      return n === number
-    });
-
-    this.setState({
-      colorScheme: number,
-      repeatArray: repeatArrayClone
-    });
-
-    if (repeatArrayClone.length < 1) this.setState({repeatArray: [0, 1, 2, 3, 4, 5]})
-  }
+  // updateColorScheme() {
+  //   // clone state array
+  //   let repeatArrayClone = [0, 1, 2, 3, 4, 5];
+  //   // select number from array
+  //   let number = repeatArray[Math.floor(Math.random() * repeatArray.length)];
+  //   // remove number from clone
+  //   _.remove(repeatArrayClone, function(n) {
+  //     return n === number
+  //   });
+  // }
 
   render() {
     return(
+      <div>
+        <h1 onClick={this.props.onSelectScheme}>hello</h1>
       <TransitionGroup>
       <Transition
         key={this.props.location.pathname}
@@ -105,8 +102,23 @@ class AppRoutes extends React.Component {
         </Switch>
       </Transition>
     </TransitionGroup>
+
+      </div>
     );
   }
 };
 
-export default AppRoutes;
+const mapStateToProps = state => {
+  return {
+    ctr: state.counter
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSelectScheme: ()=> dispatch({type: 'SELECT'})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (AppRoutes);
+// export default AppRoutes;
