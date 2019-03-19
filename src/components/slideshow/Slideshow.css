@@ -70,7 +70,7 @@ body
 	line-height: 1;
 	opacity: 0;
 	z-index: 100;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	transform: translateY(5%);
 }
 
@@ -127,8 +127,8 @@ body
 .background__title {
 	position: relative;
 	color: transparent;
-  font-size: 17.5vw;
-	text-transform: uppercase;
+  font-size: 17vw;
+	/* text-transform: uppercase; */
 	margin: 0;
 	line-height: 1;
 	font-family: 'Scto Grotesk A';

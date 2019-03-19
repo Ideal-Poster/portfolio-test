@@ -6,23 +6,26 @@ const initialState = {
   repeatArray: [0, 1, 2, 3, 4, 5]
 }
 
-const reducer = (state = initialState, action) => {
-  switch ( action.type ) {
-    case 'REMOVE':
+
+function reducer(state = initialState, action) {
+  console.log("reducer", state, action);
+
+  switch (action.type) {
+    case "INCREMENT":
       return {
-        
-      }
+        count: state.count + 1
+      };
+    case "DECREMENT":
+      return {
+        count: state.count - 1
+      };
+    case "RESET":
+      return {
+        count: 0
+      };
+    default:
+      return state;
   }
-  // if (action.type === 'REMOVE') {
-  //     return {
-  //       ...state,
-  //       repeatArray:
-  //         console.log(
-  //           action.type
-  //         )
-  //     }
-  // }
-  return state;
-};
+}
 
 export default reducer;

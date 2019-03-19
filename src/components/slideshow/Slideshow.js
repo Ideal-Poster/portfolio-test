@@ -228,12 +228,12 @@ class Slideshow extends React.Component {
         <div className="
           background__hide-text
           background__line-1">
-          <h1 className="background__title background__reveal">&thinsp;Record.</h1>
+          <h1 className="background__title background__reveal">&thinsp;Rich Man</h1>
         </div>
         <div className="
         background__hide-text
         background__line-2">
-          <h1 className="background__title background__reveal">&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;Shows.</h1>
+          <h1 className="background__title background__reveal" >Poor Man</h1>
         </div>
         <div className="
         background__hide-text

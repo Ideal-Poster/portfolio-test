@@ -37,10 +37,33 @@ class AppRoutes extends React.Component {
   //   });
   // }
 
+  state = { count: 0 }
+
+  increment = () => {
+    this.props.dispatch({ type: "INCREMENT" });
+  };
+
+  decrement = () => {
+    this.props.dispatch({ type: "DECREMENT" });
+  };
+
   render() {
     return(
       <div>
-      <h1 onClick={this.props.onRemoveScheme}>hello</h1>
+      <div className="counter">
+        <h2>Counter</h2>
+        <div>
+          <button onClick={this.decrement}>-</button>
+          <span className="count">{
+            // Replace state:
+            //// this.state.count
+            // With props:
+            this.props.count
+          }</span>
+          <button onClick={this.increment}>+</button>
+        </div>
+      </div>
+
       <TransitionGroup>
       <Transition
         key={this.props.location.pathname}
@@ -108,17 +131,11 @@ class AppRoutes extends React.Component {
   }
 };
 
-const mapStateToProps = state => {
+function mapStateToProps(state) {
   return {
-    ctr: state.counter
-  }
+    count: state.count
+  };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onRemoveScheme: ()=> dispatch({type: 'REMOVE'})
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps) (AppRoutes);
+export default connect(mapStateToProps)(AppRoutes);
 // export default AppRoutes;

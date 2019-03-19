@@ -9,6 +9,9 @@ import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(reducer);
+store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: "DECREMENT" });
+store.dispatch({ type: "RESET" });
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
