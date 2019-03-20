@@ -304,9 +304,9 @@ hideBackgroundText() {
 
         <div>
           <p className="navigation name">Malcolm Gourdine</p>
-          <p className="navigation bracket-1">[</p>
+          <p className="navigation bracket-1">［</p>
           <p className="navigation contact"> Contact</p>
-          <p className="navigation bracket-2">]</p>
+          <p className="navigation bracket-2">］</p>
 
           <p className="navigation location">KY <br/> BN</p>
 

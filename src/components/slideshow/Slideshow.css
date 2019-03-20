@@ -216,13 +216,13 @@ body
 }
 
 .bracket-1 {
-	bottom:182px;
-	left: 30px;
+	bottom:190px;
+	left: 23px;
 	transform: rotate(90deg);
 }
 
 .bracket-2 {
-	bottom:0;
+	bottom: -8px;
 	transform: rotate(90deg);
-	left: 31px;
+	left: 23px;
 }
