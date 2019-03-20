@@ -93,7 +93,7 @@ class Slide extends React.Component {
       2: right bottom corner outside the viewport
       3: left side, for when the content is shown
       */
-      TweenMax.to(this.DOM.imgWrap, 1.2, {
+      TweenMax.to(this.DOM.imgWrap, 1.5, {
           ease: Power3.easeInOut,
           delay: settings.delay || 0,
           startAt: settings.from !== undefined ? {

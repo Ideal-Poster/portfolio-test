@@ -3,7 +3,7 @@ import '../slideshow/Slideshow.css';
 import Slide from '../slides/Slide';
 import debounce from '../utils/debounce';
 import projectsAPI from '../../api';
-import { TweenMax, Power4 } from 'gsap';
+import { TweenMax, Power3, Power4 } from 'gsap';
 
 
 let colors = [
@@ -47,23 +47,19 @@ class Slideshow extends React.Component {
     this.setPos();
     this.init();
 
-
-    setTimeout(() => {
-      this.showBackgroundText();
-    }, 1000);
+    // Intro animations
+    this.showBackgroundText();
 
     setTimeout(() => {
       this.showSlides();
-    }, 4000);
-
-    // console.log(colors[0][0]);
-    this.selectColorPalette();
+    }, 2500);
 
   }
 
   componentDidUpdate() {
     if (this.state.exting === true) {
-     this.hideSlides();
+      this.hideSlides();
+      this.hideBackgroundText();
     }
   }
 
@@ -79,38 +75,69 @@ class Slideshow extends React.Component {
     });
   }
 
-  selectColorPalette() {
-    TweenMax.to(this.DOM.container, 1 , {
-      // background: colors[Math.floor(Math.random() * 6)][0]
-    });
-    // TweenMax.to(this.DOM.backgroundDesc, 1 , {
-    //   webkitTextStrokeColor: 'yellow'
-    // });
+  // selectColorPalette() {
+  //   TweenMax.to(this.DOM.container, 1 , {
+  //     // background: colors[Math.floor(Math.random() * 6)][0]
+  //   });
+  //   // TweenMax.to(this.DOM.backgroundDesc, 1 , {
+  //   //   webkitTextStrokeColor: 'yellow'
+  //   // });
 
-    // console.log(
-    //   this.DOM.backgroundDesc
-    // );
-    // this.DOM.backgroundDesc.style["-webkit-text-stroke-color"] = "grey";
+  //   // console.log(
+  //   //   this.DOM.backgroundDesc
+  //   // );
+  //   // this.DOM.backgroundDesc.style["-webkit-text-stroke-color"] = "grey";
 
 
-  }
+  // }
 
   showBackgroundText() {
     this.initBackgroundText();
-    TweenMax.set(this.DOM.backgroundTitles, {
-      top: '110%'
+
+    TweenMax.set(this.DOM.backgroundTitles[0], {
+      left: '10%'
     })
 
-    TweenMax.staggerTo(this.DOM.backgroundTitles, 2, {
-      ease: Power4.easeInOut,
-      top: 0,
-      opacity: 1
-    }, 0.5);
-
-    TweenMax.to(this.DOM.backgroundDesc, 3, {
-      ease: Power4.easeInOut,
-      opacity: 1
+    TweenMax.set(this.DOM.backgroundTitles[1], {
+      right: '10%'
     })
+
+    TweenMax.set(this.DOM.backgroundTitles[2], {
+      left: '10%'
+    })
+
+    TweenMax.staggerTo(this.DOM.backgroundTitles, 2.5, {
+      ease: Power3.easeInOut,
+      right: 0,
+      left: 0,
+      opacity: 1
+    }, 0.05);
+
+    setTimeout(() => {
+      TweenMax.fromTo(this.DOM.backgroundDesc, 1,
+        {
+          opacity: 0,
+          ease: Power4.easeInOut,
+          top: 100
+        },{
+        opacity: 1,
+        top:0
+      })
+    }, 2000);
+  }
+
+hideBackgroundText() {
+   TweenMax.to(this.DOM.backgroundTitles, 2,
+    {
+      ease: Power4.easeInOut,
+      top: -180
+    }, 0.1);
+
+    TweenMax.to(this.DOM.backgroundDesc, 2,
+      {
+        ease: Power4.easeInOut,
+        top: -180
+      }, 0.1);
   }
 
 
@@ -228,17 +255,17 @@ class Slideshow extends React.Component {
         <div className="
           background__hide-text
           background__line-1">
-          <h1 className="background__title background__reveal">&thinsp;Rich Man</h1>
+          <h1 className="background__title background__reveal">Rich Man. Ri</h1>
         </div>
         <div className="
         background__hide-text
         background__line-2">
-          <h1 className="background__title background__reveal" >Poor Man</h1>
+          <h1 className="background__title background__reveal">Man. Poor Man.</h1>
         </div>
         <div className="
         background__hide-text
         background__line-3">
-          <h1 className="background__title background__reveal">Studio.</h1>
+          <h1 className="background__title background__reveal">Studios.</h1>
           <p className="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
           <h1  className="background__title background__reveal">Studio.</h1>
         </div>

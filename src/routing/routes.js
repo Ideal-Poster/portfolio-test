@@ -37,7 +37,7 @@ class AppRoutes extends React.Component {
   //   });
   // }
 
-  state = { count: 0 }
+  // state = { count: 0 }
 
   increment = () => {
     this.props.dispatch({ type: "INCREMENT" });
@@ -50,7 +50,7 @@ class AppRoutes extends React.Component {
   render() {
     return(
       <div>
-      <div className="counter">
+      {/* <div className="counter">
         <h2>Counter</h2>
         <div>
           <button onClick={this.decrement}>-</button>
@@ -62,14 +62,14 @@ class AppRoutes extends React.Component {
           }</span>
           <button onClick={this.increment}>+</button>
         </div>
-      </div>
+      </div> */}
 
       <TransitionGroup>
       <Transition
         key={this.props.location.pathname}
         timeout={{
-          enter: 1000,
-          exit: 1000
+          enter: 2500,
+          exit: 2000
         }}
         mountOnEnter={true}
         unmountOnExit={true}
@@ -88,11 +88,11 @@ class AppRoutes extends React.Component {
               width: targetWidth
             });
             // animate in the element
-            TweenLite.to(node, 1, {
+            TweenLite.to(node, 0.5, {
               autoAlpha: 1,
               onComplete: completeCall,
               onCompleteParams: [node],
-              delay: 1
+              delay: 2
             });
           }
         } // on enter end
@@ -110,10 +110,10 @@ class AppRoutes extends React.Component {
             width: targetWidth
           });
 
-          TweenLite.to(node, 1, {
+          TweenLite.to(node, 0.5, {
             position: "fixed",
             opacity: 0,
-            delay: 1
+            delay: 2
           });
         }}>
 

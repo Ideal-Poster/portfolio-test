@@ -1,6 +1,6 @@
 #gallery__container {
 	overflow-x: hidden;
-	overflow-y: visible;
+	overflow-y: hidden;
 	height: 100vh;
 	width: 100vw;
 }
@@ -50,8 +50,8 @@
 body
 /* ,.overlay */
 {
-	/* background: #262882; */
-	/* background:#B6B49B; */
+	background: #8C9B65;
+	/* background: #8599A3; */
 }
 
 .overlay {
@@ -70,7 +70,7 @@ body
 	line-height: 1;
 	opacity: 0;
 	z-index: 100;
-	/* text-transform: uppercase; */
+	text-transform: uppercase;
 	transform: translateY(5%);
 }
 
@@ -136,7 +136,7 @@ body
 	-webkit-text-stroke-width: 1.5px;
 	-webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-	-webkit-text-stroke-color: #22211D;
+	-webkit-text-stroke-color: #0A0809;
 	transform: translateY(6.5%);
 	line-height: 0.75;
 }
@@ -147,7 +147,7 @@ body
 	font-family: 'Scto Grotesk A';
 	font-size: 16px;
 	margin: 0;
-	min-width: 20%;
+	min-width: 25vw;
 	color: #22211D;
 	align-self: flex-end;
 	padding-left: 20px;
@@ -158,16 +158,26 @@ body
 }
 
 .background__line-1 {
-	bottom: 71vh;
+	bottom: 70vh;
+	width: 140vw;
+	transform:
+	/* translateX(2%) */
+	;
+
 }
 
 .background__line-2 {
 	top: 50vh;
-	transform: translateY(-50%);
+	transform:
+		translateY(-50%)
+		translateX(-12%)
+
+	;
+	width: 140vw;
 }
 
 .background__line-3 {
-	top: 71vh;
+	top: 70vh;
 	transform: translateX(-5%);
 	display: flex;
 	flex-direction: row;
