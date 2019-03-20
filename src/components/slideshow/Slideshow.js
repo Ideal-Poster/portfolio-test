@@ -255,12 +255,12 @@ hideBackgroundText() {
         <div className="
           background__hide-text
           background__line-1">
-          <h1 className="background__title background__reveal">Rich Man. Ri</h1>
+          <h1 className="background__title background__reveal">Street. Street</h1>
         </div>
         <div className="
         background__hide-text
         background__line-2">
-          <h1 className="background__title background__reveal">Man. Poor Man.</h1>
+          <h1 className="background__title background__reveal">se. Wise. Wise</h1>
         </div>
         <div className="
         background__hide-text
@@ -300,6 +300,13 @@ hideBackgroundText() {
               </div>
             </div>
           )}
+        </div>
+
+        <div>
+          <p className="navigation name">Malcolm Gourdine</p>
+          <p className="navigation contact">Contact</p>
+          <p className="navigation location">,Y <br/> BN</p>
+
         </div>
       </div>
     );
