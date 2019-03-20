@@ -50,7 +50,7 @@
 body
 /* ,.overlay */
 {
-	background: #B1A7A9;
+	background: #497381;
 	/* background: #8599A3; */
 }
 
@@ -186,18 +186,17 @@ body
 .navigation {
 	position: fixed;
 	color: #fffdfb;
-	font-size: 16px;
+	font-size: 18px;
 	font-family: 'Suisse Int\'l';
+
 
 }
 
 .contact {
-	bottom: 10px;
+	bottom: 20px;
 	left: 0;
 	writing-mode: vertical-rl;
 	text-orientation: upright;
-	/* text-transform: uppercase; */
-
 }
 
 .name {
@@ -210,8 +209,20 @@ body
 }
 
 .location {
-	right: 0;
-	top: 30px;
+	left: 0;
+	top: 31px;
 	writing-mode: vertical-rl;
   text-orientation: upright;
+}
+
+.bracket-1 {
+	bottom:182px;
+	left: 30px;
+	transform: rotate(90deg);
+}
+
+.bracket-2 {
+	bottom:0;
+	transform: rotate(90deg);
+	left: 31px;
 }
