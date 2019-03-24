@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Project from '../components/project/project';
+import Project from '../components/project/Project';
 import Slideshow from '../components/slideshow/Slideshow';
 import SplashPage from '../components/splash-page/splash-page';
 
