@@ -24,7 +24,6 @@ const Project = (props) => {
       </Col>
     </div>
   );
-
 };
 
 export default Project;

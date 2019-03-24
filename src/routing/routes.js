@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Project from '../components/project/Project';
 import Slideshow from '../components/slideshow/Slideshow';
-import SplashPage from '../components/splash-page/splash-page';
+import SplashPage from '../components/splashPage/SplashPage';
 
 import { TransitionGroup, Transition } from "react-transition-group";
 import { TweenLite, TweenMax } from 'gsap';
