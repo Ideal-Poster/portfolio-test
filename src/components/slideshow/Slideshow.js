@@ -5,6 +5,7 @@ import '../slideshow/Slideshow.css';
 import Slide from '../slides/Slide';
 import debounce from '../utils/debounce';
 import projectsAPI from '../../api';
+import BackgroundText from '../backgroundText/BackgroundText';
 
 
 let colors = [
@@ -47,7 +48,7 @@ class Slideshow extends React.Component {
     // this.DOM.container = document.querySelector('#gallery__container');
     // this.DOM.backgroundDesc = document.querySelector('.background__description');
 
-    this.DOM.backgroundTitles = [];
+    // this.DOM.backgroundTitles = [];
 
     this.slides = [];
     document.querySelectorAll('.slide').forEach((slideEl, i) => this.slides.push(new Slide(slideEl, i)));
@@ -60,7 +61,7 @@ class Slideshow extends React.Component {
     this.init();
 
     // Intro animations
-    this.showBackgroundText();
+    // this.showBackgroundText();
 
     setTimeout(() => {
       this.showSlides();
@@ -75,52 +76,52 @@ class Slideshow extends React.Component {
     }
   }
 
-  initBackgroundText() {
-    document.querySelectorAll('.background__reveal').forEach((title, i) => {
-      if(i < 2){
-        this.DOM.backgroundTitles.push(title)
-      } else
-      {
-        if(i === 2) { this.DOM.backgroundTitles.push([]); }
-        this.DOM.backgroundTitles[2].push(title);
-      }
-    });
-  }
+  // initBackgroundText() {
+  //   document.querySelectorAll('.background__reveal').forEach((title, i) => {
+  //     if(i < 2){
+  //       this.DOM.backgroundTitles.push(title)
+  //     } else
+  //     {
+  //       if(i === 2) { this.DOM.backgroundTitles.push([]); }
+  //       this.DOM.backgroundTitles[2].push(title);
+  //     }
+  //   });
+  // }
 
-  showBackgroundText() {
-    this.initBackgroundText();
+  // showBackgroundText() {
+  //   this.initBackgroundText();
 
-    TweenMax.set(this.DOM.backgroundTitles[0], {
-      left: '10%'
-    })
+  //   TweenMax.set(this.DOM.backgroundTitles[0], {
+  //     left: '10%'
+  //   })
 
-    TweenMax.set(this.DOM.backgroundTitles[1], {
-      right: '10%'
-    })
+  //   TweenMax.set(this.DOM.backgroundTitles[1], {
+  //     right: '10%'
+  //   })
 
-    TweenMax.set(this.DOM.backgroundTitles[2], {
-      left: '10%'
-    })
+  //   TweenMax.set(this.DOM.backgroundTitles[2], {
+  //     left: '10%'
+  //   })
 
-    TweenMax.staggerTo(this.DOM.backgroundTitles, 2.5, {
-      ease: Power3.easeInOut,
-      right: 0,
-      left: 0,
-      opacity: 1
-    }, 0.05);
+  //   TweenMax.staggerTo(this.DOM.backgroundTitles, 2.5, {
+  //     ease: Power3.easeInOut,
+  //     right: 0,
+  //     left: 0,
+  //     opacity: 1
+  //   }, 0.05);
 
-    setTimeout(() => {
-      TweenMax.fromTo(this.DOM.backgroundDesc.current, 1,
-        {
-          opacity: 0,
-          ease: Power4.easeInOut,
-          top: 100
-        },{
-        opacity: 1,
-        top:0
-      })
-    }, 2000);
-  }
+  //   setTimeout(() => {
+  //     TweenMax.fromTo(this.DOM.backgroundDesc.current, 1,
+  //       {
+  //         opacity: 0,
+  //         ease: Power4.easeInOut,
+  //         top: 100
+  //       },{
+  //       opacity: 1,
+  //       top:0
+  //     })
+  //   }, 2000);
+  // }
 
 hideBackgroundText() {
    TweenMax.to(this.DOM.backgroundTitles, 2,
@@ -248,7 +249,7 @@ hideBackgroundText() {
   render() {
     return(
       <div id="gallery__container">
-        <div className="
+        {/* <div className="
           background__hide-text
           background__line-1">
           <h1 className="background__title background__reveal">Street. Street</h1>
@@ -264,7 +265,10 @@ hideBackgroundText() {
           <h1 className="background__title background__reveal">Studios.</h1>
           <p ref={this.DOM.backgroundDesc} className="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
           <h1  className="background__title background__reveal">Studio.</h1>
-        </div>
+        </div> */}
+
+        <BackgroundText/>
+
 
         <div id="slideshow">
           {projectsAPI.projects.map((project, i) =>
