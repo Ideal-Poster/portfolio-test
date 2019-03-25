@@ -1,9 +1,10 @@
 import  React from 'react';
+import { TweenMax, Power3, Power4 } from 'gsap';
+
 import '../slideshow/Slideshow.css';
 import Slide from '../slides/Slide';
 import debounce from '../utils/debounce';
 import projectsAPI from '../../api';
-import { TweenMax, Power3, Power4 } from 'gsap';
 
 
 let colors = [
@@ -28,13 +29,24 @@ class Slideshow extends React.Component {
       current: 0,
       exiting: false
     }
+
+    this.DOM = {
+      backgroundDesc: React.createRef()
+    };
+
   }
 
   componentDidMount() {
-    this.DOM = {};
 
-    this.DOM.container = document.querySelector('#gallery__container');
-    this.DOM.backgroundDesc = document.querySelector('.background__description');
+    console.log(
+      this.props
+    );
+
+
+    // this.DOM = {};
+    // this.DOM.container = document.querySelector('#gallery__container');
+    // this.DOM.backgroundDesc = document.querySelector('.background__description');
+
     this.DOM.backgroundTitles = [];
 
     this.slides = [];
@@ -75,22 +87,6 @@ class Slideshow extends React.Component {
     });
   }
 
-  // selectColorPalette() {
-  //   TweenMax.to(this.DOM.container, 1 , {
-  //     // background: colors[Math.floor(Math.random() * 6)][0]
-  //   });
-  //   // TweenMax.to(this.DOM.backgroundDesc, 1 , {
-  //   //   webkitTextStrokeColor: 'yellow'
-  //   // });
-
-  //   // console.log(
-  //   //   this.DOM.backgroundDesc
-  //   // );
-  //   // this.DOM.backgroundDesc.style["-webkit-text-stroke-color"] = "grey";
-
-
-  // }
-
   showBackgroundText() {
     this.initBackgroundText();
 
@@ -114,7 +110,7 @@ class Slideshow extends React.Component {
     }, 0.05);
 
     setTimeout(() => {
-      TweenMax.fromTo(this.DOM.backgroundDesc, 1,
+      TweenMax.fromTo(this.DOM.backgroundDesc.current, 1,
         {
           opacity: 0,
           ease: Power4.easeInOut,
@@ -133,7 +129,7 @@ hideBackgroundText() {
       top: -180
     }, 0.1);
 
-    TweenMax.to(this.DOM.backgroundDesc, 2,
+    TweenMax.to(this.DOM.backgroundDesc.current, 2,
       {
         ease: Power4.easeInOut,
         top: -180
@@ -266,7 +262,7 @@ hideBackgroundText() {
         background__hide-text
         background__line-3">
           <h1 className="background__title background__reveal">Studios.</h1>
-          <p className="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
+          <p ref={this.DOM.backgroundDesc} className="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
           <h1  className="background__title background__reveal">Studio.</h1>
         </div>
 
