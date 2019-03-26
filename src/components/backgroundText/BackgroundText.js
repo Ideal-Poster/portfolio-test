@@ -1,10 +1,12 @@
 import React from 'react';
 import {TweenMax, Power3, Power4 } from 'gsap';
 
+import './BackgroundText.css';
+
 class BackgroundText  extends React.Component {
 
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.DOM = {
       backgroundTitles: [],
     }
@@ -77,7 +79,8 @@ class BackgroundText  extends React.Component {
             className="background__title background__reveal">
             Studios.
           </h1>
-          <p ref={ (el) => {this.DOM.backgroundTitles[3] = [el] } } className="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
+          <p ref={ (el) => {this.DOM.backgroundTitles[3] = [el] } }
+            className="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
           <h1 ref={ (el) => { this.DOM.backgroundTitles[2] = this.DOM.backgroundTitles[2].concat([el]) } }
           className="background__title background__reveal">Studio.</h1>
         </div>
