@@ -27,7 +27,6 @@ class Slideshow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 0,
       exiting: false
     }
     this.DOM = {};
@@ -40,6 +39,7 @@ class Slideshow extends React.Component {
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
     this.slidesTotal = this.slides.length;
     this.isAnimating = false;
+    this.current = 0;
 
     this.setPos();
     this.init();
@@ -84,13 +84,13 @@ class Slideshow extends React.Component {
   }
 
   updateSlides() {
-    this.nextOutView2 = this.slides[this.state.current + 3];
-    this.nextOutView = this.slides[this.state.current +2];
-    this.nextSlide = this.slides[this.state.current +1];
-    this.currentSlide = this.slides[this.state.current];
-    this.prevSlide = this.slides[this.state.current -1];
-    this.prevOutView = this.slides[this.state.current -2];
-    this.prevOutView2 = this.slides[this.state.current -3];
+    this.nextOutView2 = this.slides[this.current + 3];
+    this.nextOutView = this.slides[this.current+2];
+    this.nextSlide = this.slides[this.current+1];
+    this.currentSlide = this.slides[this.current];
+    this.prevSlide = this.slides[this.current-1];
+    this.prevOutView = this.slides[this.current-2];
+    this.prevOutView2 = this.slides[this.current-3];
   }
 
   setPos() {
@@ -141,7 +141,7 @@ class Slideshow extends React.Component {
       });
 
       // Update Current`
-      this.setState({ current: direction === 'next' ? this.state.current+1 : this.state.current-1 });
+      this.current = direction === 'next' ? this.current+1 : this.current-1;
 
       this.updateSlides();
       this.currentSlide.showTitle();
