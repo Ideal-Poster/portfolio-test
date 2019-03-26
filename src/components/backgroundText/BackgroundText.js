@@ -4,16 +4,26 @@ import {TweenMax, Power3, Power4 } from 'gsap';
 import './BackgroundText.css';
 
 class BackgroundText  extends React.Component {
+  // state = { exiting: false };
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.DOM = {
       backgroundTitles: [],
+      backgroundDesc: null
     }
   }
 
   componentDidMount() {
     this.showBackgroundText();
+  }
+
+  componentDidUpdate() {
+    // console.log("background", this.props);
+
+    if (this.props.exiting === true) {
+      this.hideBackgroundText();
+    }
   }
 
   showBackgroundText() {
@@ -29,14 +39,7 @@ class BackgroundText  extends React.Component {
       left: '10%'
     })
 
-    const trimmedArray = this.DOM.backgroundTitles.filter((item, i) => {
-      if(i === 3) {
-        return false;
-      }
-      return true;
-    })
-
-    TweenMax.staggerTo(trimmedArray, 2.5, {
+    TweenMax.staggerTo(this.DOM.backgroundTitles, 2.5, {
       ease: Power3.easeInOut,
       right: 0,
       left: 0,
@@ -44,7 +47,7 @@ class BackgroundText  extends React.Component {
     }, 0.05);
 
     setTimeout(() => {
-      TweenMax.to(this.DOM.backgroundTitles[3], 1,
+      TweenMax.to(this.DOM.backgroundDesc, 1,
         {
           opacity: 1,
           ease: Power4.easeInOut,
@@ -52,6 +55,22 @@ class BackgroundText  extends React.Component {
       )
     }, 2000);
   }
+
+  hideBackgroundText() {
+    TweenMax.to(this.DOM.backgroundTitles, 2,
+     {
+       ease: Power4.easeInOut,
+       top: -180
+      }
+    );
+
+    //  TweenMax.to(this.DOM.backgroundDesc, 2,
+    //    {
+    //      ease: Power4.easeInOut,
+    //      top: -180
+    //    }
+    //   );
+   }
 
   render() {
     return(
@@ -79,7 +98,7 @@ class BackgroundText  extends React.Component {
             className="background__title background__reveal">
             Studios.
           </h1>
-          <p ref={ (el) => {this.DOM.backgroundTitles[3] = [el] } }
+          <p ref={ (el) => {this.DOM.backgroundDesc = el } }
             className="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
           <h1 ref={ (el) => { this.DOM.backgroundTitles[2] = this.DOM.backgroundTitles[2].concat([el]) } }
           className="background__title background__reveal">Studio.</h1>

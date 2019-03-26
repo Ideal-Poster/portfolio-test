@@ -48,27 +48,16 @@ class Slideshow extends React.Component {
       this.showSlides();
     }, 2500);
 
-  }
-
-  componentDidUpdate() {
-    if (this.state.exting === true) {
-      this.hideSlides();
-      this.hideBackgroundText();
+    // console.log(this.props.history.location.pathname);
+    window.onpopstate = () => {
+   this.setState({ exiting: true });
     }
   }
 
-hideBackgroundText() {
-   TweenMax.to(this.DOM.backgroundTitles, 2,
-    {
-      ease: Power4.easeInOut,
-      top: -180
-    }, 0.1);
-
-    TweenMax.to(this.DOM.backgroundDesc.current, 2,
-      {
-        ease: Power4.easeInOut,
-        top: -180
-      }, 0.1);
+  componentDidUpdate() {
+    if (this.state.exiting === true) {
+      this.hideSlides();
+    }
   }
 
 
@@ -81,7 +70,7 @@ hideBackgroundText() {
         this.navigate('prev');
       }
       else if (slide.isPositionedCenter()) {
-        this.setState({ exting: true });
+        this.setState({ exiting: true });
         this.props.history.push(`/site/${slide.index}`);
       }
     };
@@ -183,9 +172,7 @@ hideBackgroundText() {
   render() {
     return(
       <div id="gallery__container">
-        <BackgroundText/>
-
-
+        <BackgroundText exiting={ this.state.exiting }/>
         <div id="slideshow">
           {projectsAPI.projects.map((project, i) =>
             <div key={i} className={`slide slide${i}`}>
@@ -223,9 +210,7 @@ hideBackgroundText() {
           <p className="navigation bracket-1">［</p>
           <p className="navigation contact"> Contact</p>
           <p className="navigation bracket-2">］</p>
-
           <p className="navigation location">KY <br/> BN</p>
-
         </div>
       </div>
     );
