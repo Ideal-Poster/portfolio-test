@@ -50,7 +50,9 @@ class Slideshow extends React.Component {
 
     // console.log(this.props.history.location.pathname);
     window.onpopstate = () => {
-   this.setState({ exiting: true });
+      if (this.props.location.pathname !== "/home") {
+        this.setState({ exiting: true });
+      }
     }
   }
 
