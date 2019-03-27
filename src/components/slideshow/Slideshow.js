@@ -47,17 +47,11 @@ class Slideshow extends React.Component {
       this.showSlides();
     }, 2500);
 
-    window.onpopstate = function(event) {
-      console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-    };
   }
 
-  componentDidUpdate() {
-    if (this.state.exiting === true) {
-      this.hideSlides();
-    }
+  componentWillUnmount() {
+    this.routeListen();
   }
-
 
   init() {
     this.clickFn = (slide) => {
@@ -77,6 +71,12 @@ class Slideshow extends React.Component {
         this.clickFn(slide);
       });
     }
+    this.routeListen = this.props.history.listen((location) => {
+      if (location !== '/home') {
+        this.setState({ exiting: true });
+        this.hideSlides();
+      }
+    });
   }
 
   updateSlides() {

@@ -15,12 +15,11 @@ class BackgroundText  extends React.Component {
   }
 
   componentDidMount() {
+    // console.log("background", this.props);
     this.showBackgroundText();
   }
 
   componentDidUpdate() {
-    // console.log("background", this.props);
-
     if (this.props.exiting === true) {
       this.hideBackgroundText();
     }
@@ -60,7 +59,7 @@ class BackgroundText  extends React.Component {
     TweenMax.to(this.DOM.backgroundTitles, 2,
      {
        ease: Power4.easeInOut,
-       top: -180
+       top: -250
       }
     );
 
@@ -88,7 +87,7 @@ class BackgroundText  extends React.Component {
           background__line-2">
           <h1 ref={ (el) => {this.DOM.backgroundTitles[1] = el } }
             className="background__title background__reveal">
-            ammal. Mammal
+            mal. Mammal.
           </h1>
         </div>
         <div className="
