@@ -6,7 +6,6 @@ import debounce from '../utils/debounce';
 import projectsAPI from '../../api';
 import BackgroundText from '../backgroundText/BackgroundText';
 
-
 // let colors = [
 //     // Grey
 //    ['#B6B39C', '#ea2f3c', '#cd5d63'],
@@ -37,7 +36,6 @@ class Slideshow extends React.Component {
     this.slidesRefs.forEach((slideEl, i) => this.slides.push(new Slide(slideEl, i)));
 
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
-    this.slidesTotal = this.slides.length;
 
     this.setPos();
     this.init();
@@ -203,7 +201,6 @@ class Slideshow extends React.Component {
         <div>
           <p className="navigation name">Malcolm Gourdine</p>
           <p className="navigation contact">[ Get In Touch ]</p>
-          {/* <p className="navigation location">NY</p> */}
         </div>
       </div>
     );

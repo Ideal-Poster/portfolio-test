@@ -13,13 +13,11 @@ class BackgroundText  extends React.Component {
       backgroundDesc: null,
       row3: React.createRef()
     }
-
-
   }
 
   componentDidMount() {
     this.showBackgroundText();
-    console.log(this.DOM.row3);
+    // console.log(this.DOM.row3);
 
   }
 
@@ -69,14 +67,7 @@ class BackgroundText  extends React.Component {
        transform: 'translateY(-140%)'
       }
     );
-
-    // TweenMax.to(this.DOM.backgroundDesc, 2,
-    //   {
-    //   ease: Power4.easeInOut,
-    //   opacity: 0
-    //   }
-    // );
-   }
+  }
 
   render() {
     return(
