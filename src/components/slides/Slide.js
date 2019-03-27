@@ -171,7 +171,6 @@ class Slide extends React.Component {
     this.isCurrent = true;
     this.isLeft = false;
     this.isRight = false;
-    // this.DOM.el.classList.add('slide--current', 'slide--visible');
     // Position it on the current´s position.
     this.position(isContentOpen ? 5 : 2);
   }
@@ -180,7 +179,6 @@ class Slide extends React.Component {
     this.isCurrent = false;
     this.isRight = this.isCurrent = false;
     this.isLeft = true;
-    // this.DOM.el.classList.add('slide--visible');
     // Position it on the left position.
     this.position(isContentOpen ? 0 : 1);
   }
@@ -189,7 +187,6 @@ class Slide extends React.Component {
     this.isCurrent = false;
     this.isRight = this.isCurrent = false;
     this.isLeft = true;
-    // this.DOM.el.classList.add('slide--visible');
     // Position it on the left position.
     this.position(0);
   }
@@ -198,7 +195,6 @@ class Slide extends React.Component {
     this.isCurrent = false;
     this.isLeft = this.isCurrent = false;
     this.isRight = true;
-    // this.DOM.el.classList.add('slide--visible');
     // Position it on the right position.
     this.position(3);
   }
@@ -227,4 +223,5 @@ class Slide extends React.Component {
     return this.isCurrent;
   }
 }
+
 export default Slide;

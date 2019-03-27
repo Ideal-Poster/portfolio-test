@@ -80,7 +80,7 @@ class BackgroundText  extends React.Component {
           background__line-1">
           <h1 ref={ (el) => {this.DOM.backgroundTitles[0] = el } }
             className="background__title background__reveal">
-            Street. Street
+            Super. Super
           </h1>
         </div>
         <div className="
@@ -88,7 +88,7 @@ class BackgroundText  extends React.Component {
           background__line-2">
           <h1 ref={ (el) => {this.DOM.backgroundTitles[1] = el } }
             className="background__title background__reveal">
-            se. Wise. Wise
+            ammal. Mammal
           </h1>
         </div>
         <div className="

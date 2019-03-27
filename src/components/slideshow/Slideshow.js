@@ -26,10 +26,10 @@ class Slideshow extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      exiting: false
-    }
-    this.DOM = {};
+    this.state = { exiting: false }
+
+    this.isAnimating = false;
+    this.current = 0;
   }
 
   componentDidMount() {
@@ -38,8 +38,7 @@ class Slideshow extends React.Component {
 
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
     this.slidesTotal = this.slides.length;
-    this.isAnimating = false;
-    this.current = 0;
+
 
     this.setPos();
     this.init();
@@ -48,12 +47,9 @@ class Slideshow extends React.Component {
       this.showSlides();
     }, 2500);
 
-    // console.log(this.props.history.location.pathname);
-    window.onpopstate = () => {
-      if (this.props.location.pathname !== "/home") {
-        this.setState({ exiting: true });
-      }
-    }
+    window.onpopstate = function(event) {
+      console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    };
   }
 
   componentDidUpdate() {
@@ -72,7 +68,7 @@ class Slideshow extends React.Component {
         this.navigate('prev');
       }
       else if (slide.isPositionedCenter()) {
-        this.setState({ exiting: true });
+        // this.setState({ exiting: true });
         this.props.history.push(`/site/${slide.index}`);
       }
     };

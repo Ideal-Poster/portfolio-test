@@ -43,8 +43,10 @@
 }
 
 .background__line-1 {
-	bottom: 71vh;
+	bottom: 67.5vh;
 	width: 140vw;
+	padding-bottom: 3%;
+	padding-top: 3%;
 }
 
 .background__line-2 {
@@ -57,9 +59,11 @@
 }
 
 .background__line-3 {
-	top: 71vh;
+	top: 67.5vh;
 	transform: translateX(-5%);
 	display: flex;
 	flex-direction: row;
 	margin: 0 auto;
+	padding-bottom: 3%;
+	padding-top: 3%;
 }
