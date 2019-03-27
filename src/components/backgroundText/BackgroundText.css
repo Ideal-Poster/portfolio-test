@@ -39,7 +39,6 @@
 	padding-right: 20px;
 	margin-bottom: -2px;
 	opacity: 0;
-	/* background: saddlebrown; */
 }
 
 #background__line-1 {
@@ -51,10 +50,7 @@
 
 #background__line-2 {
 	top: 50vh;
-	transform:
-		translateY(-50%)
-		translateX(-10.2%)
-	;
+	transform: translateY(-50%) translateX(-10.2%);
 	width: 140vw;
 }
 
@@ -66,4 +62,8 @@
 	margin: 0 auto;
 	padding-bottom: 3%;
 	padding-top: 3%;
+}
+
+#row-3 {
+	display: flex;
 }

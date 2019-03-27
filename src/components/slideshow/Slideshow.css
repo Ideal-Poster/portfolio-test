@@ -113,23 +113,20 @@ body
 	color: #fffdfb;
 	font-size: 18px;
 	font-family: 'Suisse Int\'l';
-
-
 }
 
 .contact {
 	bottom: 20px;
-	left: 0;
-	writing-mode: vertical-rl;
-	text-orientation: upright;
 }
 
 .name {
 	top: 30px;
+}
+
+.name, .contact {
 	left: 50vw;
 	transform: translatex(-50%);
 	text-align: center;
-	/* text-transform: uppercase; */
 	letter-spacing: 9px;
 }
 
@@ -138,16 +135,4 @@ body
 	top: 31px;
 	writing-mode: vertical-rl;
   text-orientation: upright;
-}
-
-.bracket-1 {
-	bottom:190px;
-	left: 23px;
-	transform: rotate(90deg);
-}
-
-.bracket-2 {
-	bottom: -8px;
-	transform: rotate(90deg);
-	left: 23px;
 }

@@ -10,12 +10,17 @@ class BackgroundText  extends React.Component {
     super(props)
     this.DOM = {
       backgroundTitles: [],
-      backgroundDesc: null
+      backgroundDesc: null,
+      row3: React.createRef()
     }
+
+
   }
 
   componentDidMount() {
     this.showBackgroundText();
+    console.log(this.DOM.row3);
+
   }
 
   componentDidUpdate() {
@@ -55,19 +60,22 @@ class BackgroundText  extends React.Component {
   }
 
   hideBackgroundText() {
-    TweenMax.to(this.DOM.backgroundTitles, 2,
+    TweenMax.to(
+      [this.DOM.backgroundTitles[0], this.DOM.backgroundTitles[1], this.DOM.row3.current ]
+      ,
+      2,
      {
        ease: Power4.easeInOut,
-       top: -250
+       transform: 'translateY(-140%)'
       }
     );
 
-    TweenMax.to(this.DOM.backgroundDesc, 2,
-      {
-      ease: Power4.easeInOut,
-      opacity: 0
-      }
-    );
+    // TweenMax.to(this.DOM.backgroundDesc, 2,
+    //   {
+    //   ease: Power4.easeInOut,
+    //   opacity: 0
+    //   }
+    // );
    }
 
   render() {
@@ -78,27 +86,33 @@ class BackgroundText  extends React.Component {
           id="background__line-1">
           <h1 ref={ (el) => {this.DOM.backgroundTitles[0] = el } }
             className="background__title background__reveal">
-            Super. Super
+            Syntax. Syn
           </h1>
         </div>
         <div className="
           background__hide-text"
           id="background__line-2">
-          <h1 ref={ (el) => {this.DOM.backgroundTitles[1] = el } }
+          <h1 ref={ (el) => { this.DOM.backgroundTitles[1] = el } }
             className="background__title background__reveal">
             mal. Mammal.
           </h1>
         </div>
         <div className="background__hide-text"
             id="background__line-3">
-          <h1 ref={ (el) => {this.DOM.backgroundTitles[2] = [el] } }
-            className="background__title background__reveal">
-            Studios.
-          </h1>
-          <p ref={ (el) => {this.DOM.backgroundDesc = el } }
-            id="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
-          <h1 ref={ (el) => { this.DOM.backgroundTitles[2] = this.DOM.backgroundTitles[2].concat([el]) } }
-          className="background__title background__reveal">Studio.</h1>
+          <div id="row-3" ref={ this.DOM.row3 }>
+            <h1 ref={ (el) => { this.DOM.backgroundTitles[2] = [el] } }
+              className="background__title background__reveal">
+              Studios.
+            </h1>
+            <p ref={ (el) => { this.DOM.backgroundDesc = el } }
+              id="background__description">
+              I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York
+            </p>
+            <h1 ref={ (el) => { this.DOM.backgroundTitles[2] = this.DOM.backgroundTitles[2].concat([el]) } }
+              className="background__title background__reveal">
+              Studio.
+            </h1>
+          </div>
         </div>
       </div>
     )

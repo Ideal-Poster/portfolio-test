@@ -165,17 +165,12 @@ class Slideshow extends React.Component {
   }
 
   render() {
-    console.log(this.slides[0]);
-
     return(
       <div id="gallery__container">
         <BackgroundText exiting={ this.state.exiting }/>
         <div id="slideshow">
           {projectsAPI.projects.map((project, i) =>
             <div key={i} ref={ (el) => { this.slidesRefs[`${i}`] = el } } className={`slide slide${i}`}>
-              <div
-              // ref={this.slidesRefs[`${i}`]}
-              >
                 <div className="overlay">
                   <div>
                     <img src={require(`../../assets/img/${project.img}`) } className="slide__img" alt="slide"/>
@@ -201,17 +196,14 @@ class Slideshow extends React.Component {
                     </h3>
                   </div>
                 </div>
-              </div>
             </div>
           )}
         </div>
 
         <div>
           <p className="navigation name">Malcolm Gourdine</p>
-          <p className="navigation bracket-1">［</p>
-          <p className="navigation contact"> Contact</p>
-          <p className="navigation bracket-2">］</p>
-          <p className="navigation location">KY <br/> BN</p>
+          <p className="navigation contact">[ Get In Touch ]</p>
+          {/* <p className="navigation location">NY</p> */}
         </div>
       </div>
     );
