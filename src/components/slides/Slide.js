@@ -11,20 +11,11 @@ class Slide extends React.Component {
   constructor(el, index) {
     super();
     this.index = index;
-    this.DOM = { el: el };
-    // The image wrap element.
-    this.DOM.imgWrap = this.DOM.el;
-    // The image element.
-    this.DOM.img = this.DOM.imgWrap.querySelector('.slide__img');
-    // Slide cover
-    this.DOM.cover = this.DOM.imgWrap.querySelector('.overlay');
-    // The texts: the parent wrap, title, number and side text.
-    this.DOM.texts = {
-      wrap: this.DOM.el.querySelector('.slide__title-wrap'),
-      title: this.DOM.el.querySelectorAll('.slide__title'),
-      number: this.DOM.el.querySelector('.slide__number')
+    this.DOM = {
+      el: el ,
+      cover: el.querySelector('.overlay'),
+      texts: { title: el.querySelectorAll('.slide__title') }
     };
-
     this.DOM.texts.title.reverse = Array.from(this.DOM.texts.title).reverse();
 
     this.calcSizes();
@@ -35,8 +26,8 @@ class Slide extends React.Component {
   }
 
   calcSizes() {
-    this.width = (this.DOM.imgWrap.offsetWidth);
-    this.height = (this.DOM.imgWrap.offsetHeight);
+    this.width = (this.DOM.el.offsetWidth);
+    this.height = (this.DOM.el.offsetHeight);
   }
 
   // Gets the transforms per slide position.
@@ -71,7 +62,7 @@ class Slide extends React.Component {
   }
 
   position(pos) {
-    TweenMax.set(this.DOM.imgWrap, {
+    TweenMax.set(this.DOM.el, {
       x: this.transforms[pos].x,
       y: this.transforms[pos].y,
       rotationX: 0,
@@ -92,7 +83,7 @@ class Slide extends React.Component {
       2: right bottom corner outside the viewport
       3: left side, for when the content is shown
       */
-      TweenMax.to(this.DOM.imgWrap, 1.5, {
+      TweenMax.to(this.DOM.el, 1.5, {
           ease: Power3.easeInOut,
           delay: settings.delay || 0,
           startAt: settings.from !== undefined ? {
@@ -107,7 +98,7 @@ class Slide extends React.Component {
           rotationX: 0,
           rotationY: 0,
           // rotationZ: this.transforms[settings.position+2].rotation,
-          onStart: settings.from !== undefined ? () => TweenMax.set(this.DOM.imgWrap, {opacity: 1}) : null,
+          onStart: settings.from !== undefined ? () => TweenMax.set(this.DOM.el, {opacity: 1}) : null,
           onComplete: resolve
         });
     });

@@ -74,30 +74,29 @@ class BackgroundText  extends React.Component {
     return(
       <div>
         <div className="
-          background__hide-text
-          background__line-1">
+          background__hide-text"
+          id="background__line-1">
           <h1 ref={ (el) => {this.DOM.backgroundTitles[0] = el } }
             className="background__title background__reveal">
             Super. Super
           </h1>
         </div>
         <div className="
-          background__hide-text
-          background__line-2">
+          background__hide-text"
+          id="background__line-2">
           <h1 ref={ (el) => {this.DOM.backgroundTitles[1] = el } }
             className="background__title background__reveal">
             mal. Mammal.
           </h1>
         </div>
-        <div className="
-          background__hide-text
-          background__line-3">
+        <div className="background__hide-text"
+            id="background__line-3">
           <h1 ref={ (el) => {this.DOM.backgroundTitles[2] = [el] } }
             className="background__title background__reveal">
             Studios.
           </h1>
           <p ref={ (el) => {this.DOM.backgroundDesc = el } }
-            className="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
+            id="background__description">I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York</p>
           <h1 ref={ (el) => { this.DOM.backgroundTitles[2] = this.DOM.backgroundTitles[2].concat([el]) } }
           className="background__title background__reveal">Studio.</h1>
         </div>

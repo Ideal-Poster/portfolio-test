@@ -26,7 +26,7 @@
 	line-height: 0.75;
 }
 
-.background__description {
+#background__description {
 	position: relative;
 	display: inline-block;
 	font-family: 'Scto Grotesk A';
@@ -42,14 +42,14 @@
 	/* background: saddlebrown; */
 }
 
-.background__line-1 {
+#background__line-1 {
 	bottom: 65vh;
 	width: 140vw;
 	padding-bottom: 3%;
 	padding-top: 3%;
 }
 
-.background__line-2 {
+#background__line-2 {
 	top: 50vh;
 	transform:
 		translateY(-50%)
@@ -58,7 +58,7 @@
 	width: 140vw;
 }
 
-.background__line-3 {
+#background__line-3 {
 	top: 65vh;
 	transform: translateX(-5%);
 	display: flex;

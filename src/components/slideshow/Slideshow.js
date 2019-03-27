@@ -29,15 +29,15 @@ class Slideshow extends React.Component {
 
     this.isAnimating = false;
     this.current = 0;
+    this.slidesRefs = [];
+    this.slides = [];
   }
 
   componentDidMount() {
-    this.slides = [];
-    document.querySelectorAll('.slide').forEach((slideEl, i) => this.slides.push(new Slide(slideEl, i)));
+    this.slidesRefs.forEach((slideEl, i) => this.slides.push(new Slide(slideEl, i)));
 
     window.addEventListener('resize', () => debounce(this.setPos(), 10));
     this.slidesTotal = this.slides.length;
-
 
     this.setPos();
     this.init();
@@ -45,7 +45,6 @@ class Slideshow extends React.Component {
     setTimeout(() => {
       this.showSlides();
     }, 2500);
-
   }
 
   componentWillUnmount() {
@@ -61,12 +60,11 @@ class Slideshow extends React.Component {
         this.navigate('prev');
       }
       else if (slide.isPositionedCenter()) {
-        // this.setState({ exiting: true });
         this.props.history.push(`/site/${slide.index}`);
       }
     };
     for (let slide of this.slides) {
-      slide.DOM.imgWrap.addEventListener('click', () => {
+      slide.DOM.el.addEventListener('click', () => {
         this.clickFn(slide);
       });
     }
@@ -167,35 +165,41 @@ class Slideshow extends React.Component {
   }
 
   render() {
+    console.log(this.slides[0]);
+
     return(
       <div id="gallery__container">
         <BackgroundText exiting={ this.state.exiting }/>
         <div id="slideshow">
           {projectsAPI.projects.map((project, i) =>
-            <div key={i} className={`slide slide${i}`}>
-              <div className="overlay">
-                <div>
-                  <img src={require(`../../assets/img/${project.img}`) } className="slide__img" alt="slide"/>
-                </div>
-              </div>
-
-              <div className="title__container">
-                <div className="hide__text">
-                  <h3 className={`slide__title slide__title${i}`}>
-                    Alex
-                  </h3>
+            <div key={i} ref={ (el) => { this.slidesRefs[`${i}`] = el } } className={`slide slide${i}`}>
+              <div
+              // ref={this.slidesRefs[`${i}`]}
+              >
+                <div className="overlay">
+                  <div>
+                    <img src={require(`../../assets/img/${project.img}`) } className="slide__img" alt="slide"/>
+                  </div>
                 </div>
 
-                <div className="hide__text">
-                  <h3 className={`slide__title slide__title${i}`}>
-                  Brindis
-                  </h3>
-                </div>
+                <div className="title__container">
+                  <div className="hide__text">
+                    <h3 className={`slide__title slide__title${i}`}>
+                      Alex
+                    </h3>
+                  </div>
 
-                <div className="hide__text">
-                  <h3 className={`slide__title slide__title${i}`}>
-                  Design.
-                  </h3>
+                  <div className="hide__text">
+                    <h3 className={`slide__title slide__title${i}`}>
+                    Brindis
+                    </h3>
+                  </div>
+
+                  <div className="hide__text">
+                    <h3 className={`slide__title slide__title${i}`}>
+                    Design.
+                    </h3>
+                  </div>
                 </div>
               </div>
             </div>
