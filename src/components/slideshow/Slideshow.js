@@ -1,5 +1,4 @@
 import  React from 'react';
-import { TweenMax, Power4 } from 'gsap';
 
 import '../slideshow/Slideshow.css';
 import Slide from '../slides/Slide';
@@ -8,20 +7,20 @@ import projectsAPI from '../../api';
 import BackgroundText from '../backgroundText/BackgroundText';
 
 
-let colors = [
-    // Grey
-   ['#B6B39C', '#ea2f3c', '#cd5d63'],
-   // Black
-   ['#21201d','#b6b39c','#b6b39c'],
-   // Yellow
-   ['#e7c986','#FEFEFE','#0e1f2c'],
-   // orange
-   ['#f7b47c','#eb272d','#fefefe'],
-   // white
-   ['#e6e7e9','#eb1020','#eb1020'],
-   // blue
-   ['#7bc4d3','#fef4f2','#030603']
-];
+// let colors = [
+//     // Grey
+//    ['#B6B39C', '#ea2f3c', '#cd5d63'],
+//    // Black
+//    ['#21201d','#b6b39c','#b6b39c'],
+//    // Yellow
+//    ['#e7c986','#FEFEFE','#0e1f2c'],
+//    // orange
+//    ['#f7b47c','#eb272d','#fefefe'],
+//    // white
+//    ['#e6e7e9','#eb1020','#eb1020'],
+//    // blue
+//    ['#7bc4d3','#fef4f2','#030603']
+// ];
 class Slideshow extends React.Component {
 
   constructor(props) {

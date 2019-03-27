@@ -15,7 +15,6 @@ class BackgroundText  extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("background", this.props);
     this.showBackgroundText();
   }
 
@@ -46,7 +45,7 @@ class BackgroundText  extends React.Component {
     }, 0.05);
 
     setTimeout(() => {
-      TweenMax.to(this.DOM.backgroundDesc, 1,
+      TweenMax.to(this.DOM.backgroundDesc, 2,
         {
           opacity: 1,
           ease: Power4.easeInOut,
@@ -63,12 +62,12 @@ class BackgroundText  extends React.Component {
       }
     );
 
-    //  TweenMax.to(this.DOM.backgroundDesc, 2,
-    //    {
-    //      ease: Power4.easeInOut,
-    //      top: -180
-    //    }
-    //   );
+    TweenMax.to(this.DOM.backgroundDesc, 2,
+      {
+      ease: Power4.easeInOut,
+      opacity: 0
+      }
+    );
    }
 
   render() {
