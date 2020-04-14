@@ -14,7 +14,7 @@ let colors = [
    // Green
    ['#345d31','#FEFEFE','#0e1f2c'],
    // Prurple
-   ['#4b1e46','#eb272d','#fefefe'],
+  //  ['#4b1e46','#eb272d','#fefefe'],
    // white
   //  ['#e6e7e9','#eb1020','#eb1020'],
    // blue
