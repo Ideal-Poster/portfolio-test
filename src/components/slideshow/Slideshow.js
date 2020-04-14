@@ -6,20 +6,23 @@ import debounce from '../utils/debounce';
 import projectsAPI from '../../api';
 import BackgroundText from '../backgroundText/BackgroundText';
 
-// let colors = [
-//     // Grey
-//    ['#B6B39C', '#ea2f3c', '#cd5d63'],
-//    // Black
-//    ['#21201d','#b6b39c','#b6b39c'],
-//    // Yellow
-//    ['#e7c986','#FEFEFE','#0e1f2c'],
-//    // orange
-//    ['#f7b47c','#eb272d','#fefefe'],
-//    // white
-//    ['#e6e7e9','#eb1020','#eb1020'],
-//    // blue
-//    ['#7bc4d3','#fef4f2','#030603']
-// ];
+let colors = [
+    // Grey
+   ['#B6B39C', '#ea2f3c', '#cd5d63'],
+   // Black
+   ['#21201d','#b6b39c','#b6b39c'],
+   // Green
+   ['#345d31','#FEFEFE','#0e1f2c'],
+   // Red
+   ['#AD3746','#eb272d','#fefefe'],
+   // white
+   ['#e6e7e9','#eb1020','#eb1020'],
+   // blue
+   ['#077ca4','#fef4f2','#030603']
+];
+
+let currentColor = colors[Math.floor(Math.random() * colors.length)][0];
+let currentLink =  projectsAPI.projects[0].link;
 class Slideshow extends React.Component {
 
   constructor(props) {
@@ -30,6 +33,9 @@ class Slideshow extends React.Component {
     this.current = 0;
     this.slidesRefs = [];
     this.slides = [];
+    setTimeout(() => {
+      this.showSlides();
+    }, 2500);
   }
 
   componentDidMount() {
@@ -40,9 +46,9 @@ class Slideshow extends React.Component {
     this.setPos();
     this.init();
 
-    setTimeout(() => {
-      this.showSlides();
-    }, 2500);
+    // setTimeout(() => {
+    //   this.showSlides();
+    // }, 2500);
   }
 
   componentWillUnmount() {
@@ -58,7 +64,8 @@ class Slideshow extends React.Component {
         this.navigate('prev');
       }
       else if (slide.isPositionedCenter()) {
-        this.props.history.push(`/site/${slide.index}`);
+        // this.props.history.push(`/site/${slide.index}`);
+        window.open(currentLink);
       }
     };
     for (let slide of this.slides) {
@@ -66,12 +73,12 @@ class Slideshow extends React.Component {
         this.clickFn(slide);
       });
     }
-    this.routeListen = this.props.history.listen((location) => {
-      if (location !== '/home') {
-        this.setState({ exiting: true });
-        this.hideSlides();
-      }
-    });
+    // this.routeListen = this.props.history.listen((location) => {
+    //   if (location !== '/home') {
+    //     this.setState({ exiting: true });
+    //     this.hideSlides();
+    //   }
+    // });
   }
 
   updateSlides() {
@@ -86,7 +93,8 @@ class Slideshow extends React.Component {
 
   setPos() {
     this.updateSlides();
-    this.currentSlide.setCurrent()
+    this.currentSlide.setCurrent();
+    currentLink = projectsAPI.projects[this.currentSlide.index].link;
     if (this.nextSlide) this.nextSlide.setRight();
     if (this.nextOutView) this.nextOutView.setRightOutView();
     if (this.nextOutView2) this.nextOutView2.setRightOutView();
@@ -164,45 +172,58 @@ class Slideshow extends React.Component {
 
   render() {
     return(
-      <div id="gallery__container">
-        <BackgroundText exiting={ this.state.exiting }/>
-        <div id="slideshow">
-          {projectsAPI.projects.map((project, i) =>
-            <div key={i} ref={ (el) => { this.slidesRefs[`${i}`] = el } } className={`slide slide${i}`}>
-                <div className="overlay">
-                  <div>
-                    <img src={require(`../../assets/img/${project.img}`) } className="slide__img" alt="slide"/>
-                  </div>
-                </div>
-
-                <div className="title__container">
-                  <div className="hide__text">
-                    <h3 className={`slide__title slide__title${i}`}>
-                      Alex
-                    </h3>
+      <main>
+        <div id="gallery__container"
+              style={{background: currentColor}}>
+          <BackgroundText exiting={ this.state.exiting }/>
+          <div id="slideshow">
+            {projectsAPI.projects.map((project, i) =>
+              <div 
+                key={i}
+                ref={ (el) => { this.slidesRefs[`${i}`] = el } } 
+                className={`slide slide${i}`}>
+                  <div className="overlay">
+                    <div>
+                      <img src={require(`../../assets/img/${project.img}`) } className="slide__img" alt="slide"/>
+                    </div>
                   </div>
 
-                  <div className="hide__text">
-                    <h3 className={`slide__title slide__title${i}`}>
-                    Brindis
-                    </h3>
-                  </div>
+                  <div className="title__container">
+                    <div className="hide__text">
+                      <h3 className={`slide__title slide__title${i}`}>
+                        {project.name.split(' ')[0]}
+                      </h3>
+                    </div>
 
-                  <div className="hide__text">
-                    <h3 className={`slide__title slide__title${i}`}>
-                    Design.
-                    </h3>
+                      {
+                       project.name.split(' ')[1] &&
+                        <div className="hide__text">
+                          <h3 className={`slide__title slide__title${i}`}>
+                          { project.name.split(' ')[1] }
+                          </h3>
+                        </div>
+                      }
+
+                      {
+                       project.name.split(' ')[2] &&
+                        <div className="hide__text">
+                          <h3 className={`slide__title slide__title${i}`}>
+                           { project.name.split(' ')[2] }
+                          </h3>
+                        </div>
+                      }
                   </div>
-                </div>
-            </div>
-          )}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <p className="navigation name">Malcolm Gourdine</p>
+            <p className="navigation contact"><a href="mailto:malcolmgourdine@protonmail.com" style={{color: 'white'}}>[ Get In Touch ]</a></p>
+          </div>
         </div>
 
-        <div>
-          <p className="navigation name">Malcolm Gourdine</p>
-          <p className="navigation contact">[ Get In Touch ]</p>
-        </div>
-      </div>
+      </main>
     );
   }
 }

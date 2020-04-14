@@ -5,7 +5,6 @@ import './BackgroundText.css';
 
 class BackgroundText  extends React.Component {
   // state = { exiting: false };
-
   constructor(props) {
     super(props)
     this.DOM = {
@@ -17,8 +16,6 @@ class BackgroundText  extends React.Component {
 
   componentDidMount() {
     this.showBackgroundText();
-    // console.log(this.DOM.row3);
-
   }
 
   componentDidUpdate() {
@@ -48,7 +45,7 @@ class BackgroundText  extends React.Component {
     }, 0.05);
 
     setTimeout(() => {
-      TweenMax.to(this.DOM.backgroundDesc, 2,
+      TweenMax.to(this.DOM.backgroundDesc, 3,
         {
           opacity: 1,
           ease: Power4.easeInOut,
@@ -77,7 +74,7 @@ class BackgroundText  extends React.Component {
           id="background__line-1">
           <h1 ref={ (el) => {this.DOM.backgroundTitles[0] = el } }
             className="background__title background__reveal">
-            Syntax. Syn
+              Local. Local. Local
           </h1>
         </div>
         <div className="
@@ -85,7 +82,7 @@ class BackgroundText  extends React.Component {
           id="background__line-2">
           <h1 ref={ (el) => { this.DOM.backgroundTitles[1] = el } }
             className="background__title background__reveal">
-            mal. Mammal.
+            Area. Area. Area
           </h1>
         </div>
         <div className="background__hide-text"
@@ -97,7 +94,7 @@ class BackgroundText  extends React.Component {
             </h1>
             <p ref={ (el) => { this.DOM.backgroundDesc = el } }
               id="background__description">
-              I'm Maloclm Gourdine. A Digital designer & fullstack Web development. Based in Brooklyn New York
+              I'm Maloclm Gourdine. A Digital designer & fullstack Web developmer. Based in Brooklyn New York.
             </p>
             <h1 ref={ (el) => { this.DOM.backgroundTitles[2] = this.DOM.backgroundTitles[2].concat([el]) } }
               className="background__title background__reveal">

@@ -27,6 +27,7 @@
 	grid-area: slide;
 	position: relative;
 	width: 100%;
+	cursor: pointer;
 }
 
 .slide > img {
@@ -43,11 +44,11 @@
 	height: 100%;
 	width: 100%;
 }
-
+/* 
 body
 {
 	background: #AD3746;
-}
+} */
 
 .overlay {
 	overflow: hidden;
@@ -57,7 +58,7 @@ body
 	/* color: #AE9680; */
 	position: relative;
 	display: inline-block;
-	font-family: 'Scto Grotesk A';
+	font-family: 'Helvetica';
 	margin: 0;
 	font-size: 8vw;
 	font-weight: 600;
@@ -112,7 +113,7 @@ body
 	position: fixed;
 	color: #fffdfb;
 	font-size: 18px;
-	font-family: 'Suisse Int\'l';
+	font-family: 'Suisse Int';
 }
 
 .contact {

@@ -2,3 +2,8 @@
   font-family: 'La Nord Light';
   src: url('../assets/fonts/La\ Nord\ Light.otf'); /* IE9 Compat Modes */
 }
+
+@font-face {
+  font-family: 'Suisse Int';
+  src: url('../assets/fonts/Suisse BP Int Regular.otf'); /* IE9 Compat Modes */
+}
