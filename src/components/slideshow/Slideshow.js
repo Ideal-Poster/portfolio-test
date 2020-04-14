@@ -13,10 +13,10 @@ let colors = [
    ['#21201d','#b6b39c','#b6b39c'],
    // Green
    ['#345d31','#FEFEFE','#0e1f2c'],
-   // Red
-   ['#AD3746','#eb272d','#fefefe'],
+   // Prurple
+   ['#4b1e46','#eb272d','#fefefe'],
    // white
-   ['#e6e7e9','#eb1020','#eb1020'],
+  //  ['#e6e7e9','#eb1020','#eb1020'],
    // blue
    ['#077ca4','#fef4f2','#030603']
 ];
