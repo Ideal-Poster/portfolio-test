@@ -6,7 +6,7 @@
     "animejs": "^2.2.0",
     "antd": "^3.11.2",
     "charming": "^2.2.4",
-    "gsap": "^2.0.2",
+    "gsap": "^3.6.0",
     "imagesloaded": "^4.1.4",
     "immer": "^2.1.3",
     "react": "^16.4.2",
