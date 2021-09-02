@@ -8,7 +8,7 @@
     "charming": "^2.2.4",
     "gsap": "^2.0.2",
     "imagesloaded": "^4.1.4",
-    "immer": "^2.1.3",
+    "immer": "^9.0.6",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-router-dom": "^4.3.1",
